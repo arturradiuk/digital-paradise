@@ -18,8 +18,8 @@ public class Client {
     @Getter @Setter
     private Address address;
 
-    public Client(UUID uuid, String firstName, String lastName, Address address) {
-        this.uuid = uuid;
+    public Client(String firstName, String lastName, Address address) {
+        this.uuid = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -32,5 +32,21 @@ public class Client {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object ob) {
+        if (this == ob)
+            return true;
+        if (ob == null)
+            return false;
+        if (getClass() != ob.getClass())
+            return false;
+        Client other = (Client) ob;
+        if(other.getUuid() == this.uuid){
+            return true;
+        }
+        return false;
+
     }
 }
