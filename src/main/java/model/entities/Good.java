@@ -1,19 +1,15 @@
 package model.entities;
 
+import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
-
-public class Good {
+public abstract class Good {
     @Getter
-    private UUID uuid;
-    @Getter @Setter
+    private final UUID uuid;
+    @Getter
+    @Setter
     private double price;
-
-    public Good() {
-        this.uuid = UUID.randomUUID();
-    }
 
     public Good(double price) {
         this.uuid = UUID.randomUUID();
