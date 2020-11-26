@@ -1,4 +1,6 @@
 package model.goods;
 
-public class PC {
+import java.util.UUID;
+
+public class PC extends Computer{
 }
