@@ -1,6 +1,9 @@
 package model.goods;
 
-import java.util.UUID;
+import controller.exceptions.GoodException;
 
-public class PC extends Computer{
+public class PC extends Computer {
+    public PC(double basePrice, int ram, int ssdCapacity) throws GoodException {
+        super(basePrice, ram, ssdCapacity);
+    }
 }
