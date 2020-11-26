@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Order {
@@ -48,5 +49,21 @@ public class Order {
             throw new OrderException("client cannot be null.");
         }
         this.client = client;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(uuid, order.uuid) &&
+                Objects.equals(orderDateTime, order.orderDateTime) &&
+                Objects.equals(goods, order.goods) &&
+                Objects.equals(client, order.client);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid, orderDateTime, goods, client);
     }
 }

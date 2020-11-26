@@ -1,4 +1,4 @@
 package model.repositories;
 
-public interface Repository {
+public interface Repository {z
 }
