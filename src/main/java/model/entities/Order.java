@@ -4,6 +4,7 @@ import controller.exceptions.OrderException;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -14,7 +15,7 @@ public class Order {
     @Getter
     private LocalDateTime orderDateTime;
     @Getter
-    private List<Good> goods;
+    private List<Good> goods = new ArrayList<Good>();
     @Getter
     private Client client;
 
@@ -49,6 +50,20 @@ public class Order {
             throw new OrderException("client cannot be null.");
         }
         this.client = client;
+    }
+
+    public void addGood(Good good) throws OrderException {
+        if (good == null) {
+            throw new OrderException("good cannot be null");
+        }
+        this.goods.add(good);
+    }
+
+    public void removeGood(Good good) throws OrderException {
+        if (!this.goods.contains(good)) {
+            throw new OrderException("you cannot remove this good");
+        }
+        this.goods.remove(good);
     }
 
     @Override

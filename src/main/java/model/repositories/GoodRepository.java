@@ -1,10 +1,11 @@
 package model.repositories;
 
 import controller.exceptions.RepozytoryException;
+import lombok.NoArgsConstructor;
 import model.entities.Good;
 
 import java.util.List;
-
+@NoArgsConstructor
 public class GoodRepository implements Repository<Good> {
     private List<Good> goods;
 

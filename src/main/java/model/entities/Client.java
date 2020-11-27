@@ -11,30 +11,32 @@ public class Client {
     @Getter
     private UUID uuid;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String email;
 
+    @Getter
+    @Setter
+    private String name;
 
-    @Getter @Setter
-    private String lastName;
-
-    @Getter @Setter
+    @Getter
+    @Setter
     private Address address;
 
     public Client() {
     }
 
-    public Client(String email, String lastName, Address address) throws ClientException {
-        if(email.equals(""))
+    public Client(String email, String name, Address address) throws ClientException {
+        if (email.equals(""))
             throw new ClientException("Email field is not set");
-        if(lastName.equals(""))
+        if (name.equals(""))
             throw new ClientException("Last name field is not set");
-        if(address == null)
+        if (address == null)
             throw new ClientException("Address is not set");
 
         this.uuid = UUID.randomUUID();
         this.email = email;
-        this.lastName = lastName;
+        this.name = name;
         this.address = address;
     }
 
@@ -43,7 +45,7 @@ public class Client {
         return "Client{" +
                 "uuid=" + uuid +
                 ", firstName='" + email + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 

@@ -1,11 +1,13 @@
 package model.repositories;
 
 import controller.exceptions.RepozytoryException;
+import lombok.NoArgsConstructor;
 import model.entities.Order;
 
 import java.util.List;
 
-public class OrderRepository implements Repository<Order>{
+@NoArgsConstructor
+public class OrderRepository implements Repository<Order> {
     private List<Order> orders;
 
     @Override
@@ -21,8 +23,8 @@ public class OrderRepository implements Repository<Order>{
 
     @Override
     public void add(Order element) throws RepozytoryException {
-        for (Order order:orders) {
-            if(order.equals(element))
+        for (Order order : orders) {
+            if (order.equals(element))
                 throw new RepozytoryException("This order already exists");
         }
         this.orders.add(element);
@@ -30,8 +32,8 @@ public class OrderRepository implements Repository<Order>{
 
     @Override
     public void remove(Order element) throws RepozytoryException {
-        for (Order order:orders) {
-            if(order.equals(element)) {
+        for (Order order : orders) {
+            if (order.equals(element)) {
                 this.orders.remove(element);
             }
         }

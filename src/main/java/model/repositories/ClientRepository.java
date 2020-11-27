@@ -1,10 +1,12 @@
 package model.repositories;
 
 import controller.exceptions.RepozytoryException;
+import lombok.NoArgsConstructor;
 import model.entities.Client;
 
 import java.util.List;
 
+@NoArgsConstructor
 public class ClientRepository implements Repository<Client> {
 
     private List<Client> clients;
