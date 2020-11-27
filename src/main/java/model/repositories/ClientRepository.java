@@ -8,7 +8,7 @@ import java.util.List;
 public class ClientRepository implements Repository<Client> {
 
     private List<Client> clients;
-    
+
     public ClientRepository(List<Client> clients) {
         this.clients = clients;
     }

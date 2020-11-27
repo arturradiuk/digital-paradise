@@ -20,6 +20,9 @@ public class Address {
                 '}';
     }
 
+    public Address() {
+    }
+
     public Address(String street, String number) throws AddressException {
         if(street.equals(""))
             throw new AddressException("Street field is not set");

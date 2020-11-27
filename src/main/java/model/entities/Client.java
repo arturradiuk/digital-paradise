@@ -21,6 +21,9 @@ public class Client {
     @Getter @Setter
     private Address address;
 
+    public Client() {
+    }
+
     public Client(String email, String lastName, Address address) throws ClientException {
         if(email.equals(""))
             throw new ClientException("Email field is not set");
