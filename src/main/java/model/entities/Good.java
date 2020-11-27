@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.util.Objects;
 import java.util.UUID;
 import controller.exceptions.GoodException;
 import lombok.Getter;
@@ -11,6 +12,10 @@ public abstract class Good {
 
     @Setter
     private double basePrice;
+
+    public Good() {
+        this.uuid = UUID.randomUUID();
+    }
 
     public Good(double basePrice) throws GoodException {
         if (basePrice < 0) {
@@ -30,5 +35,23 @@ public abstract class Good {
                 "uuid=" + uuid +
                 ", price=" + basePrice +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Good good = (Good) o;
+
+        return uuid.equals(good.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
     }
 }

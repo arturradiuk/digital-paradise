@@ -1,17 +1,18 @@
 package model.goods;
 
-import java.util.UUID;
 import controller.exceptions.GoodException;
 import lombok.Getter;
 import model.entities.Good;
 
 public abstract class Computer extends Good {
     @Getter
-    private final int ram;
+    private int ram;
     @Getter
-    private final int ssdCapacity;
-    @Getter
-    private final UUID uuid;
+    private int ssdCapacity;
+
+    public Computer() {
+        super();
+    }
 
     public Computer(double basePrice, int ram, int ssdCapacity) throws GoodException {
         super(basePrice);
@@ -21,7 +22,6 @@ public abstract class Computer extends Good {
         if (ssdCapacity < 0) {
             throw new GoodException("SSD disk capacity cannot be negative.");
         }
-        this.uuid = UUID.randomUUID();
         this.ram = ram;
         this.ssdCapacity = ssdCapacity;
     }
@@ -36,7 +36,6 @@ public abstract class Computer extends Good {
         return super.toString() + " Computer{" +
                 "ram=" + ram +
                 ", ssdCapacity=" + ssdCapacity +
-                ", uuid=" + uuid +
                 '}';
     }
 }

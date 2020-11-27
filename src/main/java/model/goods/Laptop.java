@@ -5,11 +5,15 @@ import lombok.Getter;
 
 public class Laptop extends Computer {
     @Getter
-    private final double screenSize;
+    private double screenSize;
     @Getter
-    private final boolean hasCamera;
+    private boolean hasCamera;
     @Getter
-    private final int usbAmount;
+    private int usbAmount;
+
+    public Laptop() {
+        super();
+    }
 
     public Laptop(double basePrice, int ram, int ssdCapacity, double screenSize, boolean hasCamera, int usbAmount) throws GoodException {
         super(basePrice, ram, ssdCapacity);
