@@ -1,5 +1,7 @@
 package model.entities;
 
+import controller.exceptions.AddressException;
+import controller.exceptions.ClientException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +12,8 @@ public class Client {
     private UUID uuid;
 
     @Getter @Setter
-    private String firstName;
+    private String email;
+
 
     @Getter @Setter
     private String lastName;
@@ -18,9 +21,16 @@ public class Client {
     @Getter @Setter
     private Address address;
 
-    public Client(String firstName, String lastName, Address address) {
+    public Client(String email, String lastName, Address address) throws ClientException {
+        if(email.equals(""))
+            throw new ClientException("Email field is not set");
+        if(lastName.equals(""))
+            throw new ClientException("Last name field is not set");
+        if(address == null)
+            throw new ClientException("Address is not set");
+
         this.uuid = UUID.randomUUID();
-        this.firstName = firstName;
+        this.email = email;
         this.lastName = lastName;
         this.address = address;
     }
@@ -29,7 +39,7 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "uuid=" + uuid +
-                ", firstName='" + firstName + '\'' +
+                ", firstName='" + email + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
@@ -43,10 +53,8 @@ public class Client {
         if (getClass() != ob.getClass())
             return false;
         Client other = (Client) ob;
-        if(other.getUuid() == this.uuid){
-            return true;
-        }
-        return false;
+
+        return other.getEmail().equals(this.email) && other.getUuid() == uuid;
 
     }
 }
