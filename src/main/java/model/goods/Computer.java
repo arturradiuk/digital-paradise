@@ -14,8 +14,8 @@ public abstract class Computer extends Good {
         super();
     }
 
-    public Computer(double basePrice, int ram, int ssdCapacity) throws GoodException {
-        super(basePrice);
+    public Computer(double basePrice, int count,int ram, int ssdCapacity) throws GoodException {
+        super(basePrice,count);
         if (ram < 0) {
             throw new GoodException("RAM amount cannot be negative.");
         }

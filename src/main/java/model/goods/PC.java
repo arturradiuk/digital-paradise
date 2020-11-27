@@ -7,7 +7,7 @@ public class PC extends Computer {
         super();
     }
 
-    public PC(double basePrice, int ram, int ssdCapacity) throws GoodException {
-        super(basePrice, ram, ssdCapacity);
+    public PC(double basePrice,int count, int ram, int ssdCapacity) throws GoodException {
+        super(basePrice, count, ram, ssdCapacity);
     }
 }
