@@ -1,6 +1,6 @@
 package model.repositories;
 
-import controller.exceptions.RepozytoryException;
+import controller.exceptions.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.entities.Good;
 
@@ -10,22 +10,22 @@ public class GoodRepository implements Repository<Good> {
     private List<Good> goods;
 
     @Override
-    public void add(Good element) throws RepozytoryException {
+    public void add(Good element) throws RepositoryException {
         for (Good good:goods) {
             if(good.equals(element))
-                throw new RepozytoryException("This good already exists");
+                throw new RepositoryException("This good already exists");
         }
         this.goods.add(element);
     }
 
     @Override
-    public void remove(Good element) throws RepozytoryException {
+    public void remove(Good element) throws RepositoryException {
         for (Good good:goods) {
             if(good.equals(element)) {
                 this.goods.remove(element);
             }
         }
-        throw new RepozytoryException("This good doesn't exist");
+        throw new RepositoryException("This good doesn't exist");
     }
 
     @Override

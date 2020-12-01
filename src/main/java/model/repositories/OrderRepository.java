@@ -1,6 +1,6 @@
 package model.repositories;
 
-import controller.exceptions.RepozytoryException;
+import controller.exceptions.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.entities.Order;
 
@@ -22,22 +22,22 @@ public class OrderRepository implements Repository<Order> {
     }
 
     @Override
-    public void add(Order element) throws RepozytoryException {
+    public void add(Order element) throws RepositoryException {
         for (Order order : orders) {
             if (order.equals(element))
-                throw new RepozytoryException("This order already exists");
+                throw new RepositoryException("This order already exists");
         }
         this.orders.add(element);
     }
 
     @Override
-    public void remove(Order element) throws RepozytoryException {
+    public void remove(Order element) throws RepositoryException {
         for (Order order : orders) {
             if (order.equals(element)) {
                 this.orders.remove(element);
             }
         }
-        throw new RepozytoryException("This order doesn't exist");
+        throw new RepositoryException("This order doesn't exist");
     }
 
     @Override

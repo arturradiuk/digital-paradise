@@ -1,6 +1,6 @@
 package model.repositories;
 
-import controller.exceptions.RepozytoryException;
+import controller.exceptions.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.entities.Client;
 
@@ -16,22 +16,22 @@ public class ClientRepository implements Repository<Client> {
     }
 
     @Override
-    public void add(Client element) throws RepozytoryException {
+    public void add(Client element) throws RepositoryException {
         for (Client client:clients) {
             if(client.equals(element))
-                throw new RepozytoryException("This client already exists");
+                throw new RepositoryException("This client already exists");
         }
         this.clients.add(element);
     }
 
     @Override
-    public void remove(Client element) throws RepozytoryException {
+    public void remove(Client element) throws RepositoryException {
         for (Client client:clients) {
             if(client.equals(element)) {
                 this.clients.remove(element);
             }
         }
-        throw new RepozytoryException("This client doesn't exist");
+        throw new RepositoryException("This client doesn't exist");
     }
 
     @Override

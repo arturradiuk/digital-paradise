@@ -2,14 +2,12 @@ package controller.managers;
 
 
 import controller.exceptions.OrderException;
-import controller.exceptions.RepozytoryException;
+import controller.exceptions.RepositoryException;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import model.entities.Client;
 import model.entities.Good;
 import model.entities.Order;
-import model.repositories.OrderRepository;
 import model.repositories.Repository;
 
 import java.time.LocalDateTime;
@@ -25,7 +23,7 @@ public class OrderManager {
     public void addOrder(Order order) {
         try {
             this.orderRepository.add(order);
-        } catch (RepozytoryException e) { // todo handle exception
+        } catch (RepositoryException e) { // todo handle exception
             e.printStackTrace();
         }
     }
@@ -33,7 +31,7 @@ public class OrderManager {
     public void removeOrder(Order order) {
         try {
             this.orderRepository.remove(order);
-        } catch (RepozytoryException e) { // todo handle exception
+        } catch (RepositoryException e) { // todo handle exception
             e.printStackTrace();
         }
     }

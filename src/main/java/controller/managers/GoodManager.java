@@ -1,9 +1,7 @@
 package controller.managers;
 
-import controller.exceptions.RepozytoryException;
-import lombok.Getter;
+import controller.exceptions.RepositoryException;
 import lombok.NoArgsConstructor;
-import model.entities.Client;
 import model.entities.Good;
 import model.repositories.GoodRepository;
 import model.repositories.Repository;
@@ -18,7 +16,7 @@ public class GoodManager {
     public void addGood(Good good) {
         try {
             this.goodRepository.add(good);
-        } catch (RepozytoryException e) { // todo handle exception
+        } catch (RepositoryException e) { // todo handle exception
             e.printStackTrace();
         }
     }
@@ -26,7 +24,7 @@ public class GoodManager {
     public void removeGood(Good good) {
         try {
             this.goodRepository.remove(good);
-        } catch (RepozytoryException e) {
+        } catch (RepositoryException e) {
             e.printStackTrace();
         }
 

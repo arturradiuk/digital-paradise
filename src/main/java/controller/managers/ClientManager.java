@@ -1,7 +1,6 @@
 package controller.managers;
 
-import controller.exceptions.RepozytoryException;
-import lombok.Getter;
+import controller.exceptions.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.entities.Client;
 import model.repositories.ClientRepository;
@@ -17,7 +16,7 @@ public class ClientManager {
     public void addClient(Client client) {
         try {
             clientRepository.add(client);
-        } catch (RepozytoryException e) { // todo handle exception
+        } catch (RepositoryException e) { // todo handle exception
             e.printStackTrace();
         } finally {
 
@@ -27,7 +26,7 @@ public class ClientManager {
     public void removeClient(Client client) {
         try {
             this.clientRepository.remove(client);
-        } catch (RepozytoryException e) { // todo handle exception
+        } catch (RepositoryException e) { // todo handle exception
             e.printStackTrace();
         }
     }

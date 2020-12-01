@@ -17,7 +17,7 @@ public abstract class Good {
 
     @Setter
     @Getter
-    private int count;
+    private int count; // todo remove this attribute
 
     public Good() {
         this.uuid = UUID.randomUUID();
