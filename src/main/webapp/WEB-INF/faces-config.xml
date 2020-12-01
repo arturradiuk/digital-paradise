@@ -40,4 +40,13 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AllOrders</from-outcome>
+            <to-view-id>/AllOrders.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

@@ -10,14 +10,20 @@ import model.entities.Good;
 import model.entities.Order;
 import model.repositories.Repository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Named
+@ApplicationScoped
 @NoArgsConstructor
 @Data
 public class OrderManager {
+    @Inject
     private Repository<Order> orderRepository;
 
     public void addOrder(Order order) {

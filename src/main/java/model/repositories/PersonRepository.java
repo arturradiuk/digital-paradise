@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class PersonRepository implements Repository<Person> {
+public class PersonRepository implements Repository<Person> { // todo write methods getBy...
 
     private List<Person> people;
 
@@ -46,7 +46,8 @@ public class PersonRepository implements Repository<Person> {
 
 
      @PostConstruct
-     private void initPeople() {
+//     private void initPeople() {
+     public void initPeople() {
          DataFiller dataFiller = new StaticPersonFiller();
          this.people = dataFiller.Fill();
      }

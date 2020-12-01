@@ -6,6 +6,7 @@ import model.goods.Laptop;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class StaticGoodFiller implements DataFiller {
 //    @Override
@@ -20,11 +21,25 @@ public class StaticGoodFiller implements DataFiller {
     public List<Good> Fill() {
         List<Good> goods = new ArrayList<>();
         try {
-            goods.add(new Laptop(110, 4, "Lenovo", 16, 256, 13, true, 2));
-            goods.add(new Laptop(120, 4, "Apple", 16, 256, 13, true, 2));
-            goods.add(new Laptop(130, 4, "HP", 16, 256, 13, true, 2));
-            goods.add(new Laptop(140, 4, "Dell", 16, 256, 13, true, 2));
-            goods.add(new Laptop(150, 4, "Acer", 16, 256, 13, true, 2));
+            Good temp = new Laptop(110, 4, "Lenovo", 16, 256, 13, true, 2);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("1234567890_good").getBytes()));
+            goods.add(temp);
+
+            temp = new Laptop(120, 4, "Apple", 16, 256, 13, true, 2);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("2234567890_good").getBytes()));
+            goods.add(temp);
+
+            temp = new Laptop(130, 4, "HP", 16, 256, 13, true, 2);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("3234567890_good").getBytes()));
+            goods.add(temp);
+
+            temp = new Laptop(140, 4, "Dell", 16, 256, 13, true, 2);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("4234567890_good").getBytes()));
+            goods.add(temp);
+
+            temp = new Laptop(150, 4, "Acer", 16, 256, 13, true, 2);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("5234567890_good").getBytes()));
+            goods.add(temp);
 
         } catch (GoodException e) {
             e.printStackTrace();

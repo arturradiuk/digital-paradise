@@ -7,18 +7,14 @@ import model.clients.Employee;
 import model.entities.Address;
 import model.entities.Person;
 
+import java.util.UUID;
+
 public class Main {
     public static void main(String[] args) throws ClientException {
-        Address address = null;
-        try {
-            address = new Address("Street", "number");
-        } catch (AddressException e) {
-            e.printStackTrace();
-        }
-        Person employee = new Employee("John@gmail.com", "John", address);
-        Person administrator = new Administrator("Bob@gmail.com", "Bob", address);
-        if (administrator instanceof Employee){
-            System.out.println("Employee");
-        }
+        String aString="123456789";
+        String result = UUID.nameUUIDFromBytes(aString.getBytes()).toString();
+        System.out.println(result);
+        System.out.println(UUID.nameUUIDFromBytes(aString.getBytes()).toString());
+
     }
 }

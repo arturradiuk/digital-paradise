@@ -14,7 +14,7 @@ import java.util.List;
 //@ApplicationScoped // todo check the necessity
 @Data
 @NoArgsConstructor
-public class GoodRepository implements Repository<Good> {
+public class GoodRepository implements Repository<Good> { // todo write methods getBy...
     private List<Good> goods;
 
     @Override
@@ -42,7 +42,8 @@ public class GoodRepository implements Repository<Good> {
     }
 
     @PostConstruct
-    private void initGoods() {
+//    private void initGoods() {// todo because of using in static filler
+    public void initGoods() {
         DataFiller dataFiller = new StaticGoodFiller();
             this.goods = dataFiller.Fill();
     }

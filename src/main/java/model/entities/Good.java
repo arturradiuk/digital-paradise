@@ -13,7 +13,7 @@ public abstract class Good {
 
     private String goodName;
 
-    private final UUID uuid = UUID.randomUUID();
+    private UUID uuid = UUID.randomUUID();
 
     private double basePrice;
 

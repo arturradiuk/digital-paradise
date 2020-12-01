@@ -10,6 +10,7 @@ import model.entities.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class StaticPersonFiller implements DataFiller { // todo rename to people filler
     @Override
@@ -22,11 +23,23 @@ public class StaticPersonFiller implements DataFiller { // todo rename to people
             e.printStackTrace();
         }
         try {
-            people.add(new Client("Tola@gmail.com", "Tola", address));
-            people.add(new Client("Lolek@gmail.com", "Lolek", address));
-            people.add(new Client("Bolek@gmail.com", "Bolek", address));
-            people.add(new Employee("John@gmail.com", "John", address));
-            people.add(new Administrator("Bob@gmail.com", "Bob", address));
+            Person temp = new Client("Tola@gmail.com", "Tola", address);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("1234567890_person").getBytes()));
+            people.add(temp);
+
+           Person temp2 = new Client("Lolek@gmail.com", "Lolek", address);
+            temp2.setUuid(UUID.nameUUIDFromBytes(new String("2234567890_person").getBytes()));
+            people.add(temp2);
+
+            temp = new Client("Bolek@gmail.com", "Bolek", address);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("3234567890_person").getBytes()));
+            people.add(temp);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("434567890_person").getBytes()));
+            temp = new Employee("John@gmail.com", "John", address);
+            people.add(temp);
+            temp.setUuid(UUID.nameUUIDFromBytes(new String("534567890_person").getBytes()));
+            temp = new Administrator("Bob@gmail.com", "Bob", address);
+            people.add(temp);
 
 
         } catch (ClientException e) {

@@ -1,13 +1,19 @@
 package model.repositories;
 
 import controller.exceptions.RepositoryException;
+import fillers.DataFiller;
+import fillers.StaticGoodFiller;
+import fillers.StaticOrderFiller;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.entities.Order;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
+@Data
 @NoArgsConstructor
-public class OrderRepository implements Repository<Order> {
+public class OrderRepository implements Repository<Order> {// todo write methods getBy...
     private List<Order> orders;
 
     @Override
@@ -43,5 +49,11 @@ public class OrderRepository implements Repository<Order> {
     @Override
     public List<Order> getAll() {
         return orders;
+    }
+
+    @PostConstruct
+    private void initOrders() {
+        DataFiller dataFiller = new StaticOrderFiller();
+        this.orders = dataFiller.Fill();
     }
 }
