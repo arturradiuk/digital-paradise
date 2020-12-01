@@ -2,8 +2,10 @@ package model.goods;
 
 import controller.exceptions.GoodException;
 import lombok.Getter;
+import lombok.ToString;
 import model.entities.Good;
 
+@ToString(callSuper = true)
 public abstract class Computer extends Good {
     @Getter
     private int ram;
@@ -14,8 +16,8 @@ public abstract class Computer extends Good {
         super();
     }
 
-    public Computer(double basePrice, int count,int ram, int ssdCapacity) throws GoodException {
-        super(basePrice,count);
+    public Computer(double basePrice, int count, String goodName, int ram, int ssdCapacity) throws GoodException {
+        super(basePrice,count,goodName);
         if (ram < 0) {
             throw new GoodException("RAM amount cannot be negative.");
         }
@@ -31,11 +33,5 @@ public abstract class Computer extends Good {
         return super.getBasePrice() + (this.ram / 1024.0) * 50 + (ssdCapacity / 1024.0) * 150;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " Computer{" +
-                "ram=" + ram +
-                ", ssdCapacity=" + ssdCapacity +
-                '}';
-    }
+
 }

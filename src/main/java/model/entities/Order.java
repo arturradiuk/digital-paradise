@@ -17,18 +17,18 @@ public class Order {
     @Getter
     private List<Good> goods = new ArrayList<Good>();
     @Getter
-    private Client client;
+    private Person person;
 
     public Order() {
     }
 
-    public Order(LocalDateTime orderDateTime, List<Good> goods, Client client) throws OrderException {
-        if (orderDateTime == null || goods == null || client == null) {
+    public Order(LocalDateTime orderDateTime, List<Good> goods, Person person) throws OrderException {
+        if (orderDateTime == null || goods == null || person == null) {
             throw new OrderException("NullPointerException in model.entities.Order.Order()");
         }
         this.orderDateTime = orderDateTime;
         this.goods = goods;
-        this.client = client;
+        this.person = person;
     }
 
     public void setOrderDateTime(LocalDateTime orderDateTime) throws OrderException {
@@ -45,11 +45,11 @@ public class Order {
         this.goods = goods;
     }
 
-    public void setClient(Client client) throws OrderException {
-        if (client == null) {
+    public void setPerson(Person person) throws OrderException {
+        if (person == null) {
             throw new OrderException("client cannot be null.");
         }
-        this.client = client;
+        this.person = person;
     }
 
     public void addGood(Good good) throws OrderException {
@@ -74,11 +74,11 @@ public class Order {
         return Objects.equals(uuid, order.uuid) &&
                 Objects.equals(orderDateTime, order.orderDateTime) &&
                 Objects.equals(goods, order.goods) &&
-                Objects.equals(client, order.client);
+                Objects.equals(person, order.person);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, orderDateTime, goods, client);
+        return Objects.hash(uuid, orderDateTime, goods, person);
     }
 }

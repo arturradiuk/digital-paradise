@@ -1,24 +1,15 @@
 package model.entities;
 
 import controller.exceptions.AddressException;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-
+@Data
 public class Address {
 
-    @Getter @Setter
     private String street;
 
-    @Getter @Setter
     private String number;
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "street='" + street + '\'' +
-                ", number='" + number + '\'' +
-                '}';
-    }
 
     public Address() {
     }

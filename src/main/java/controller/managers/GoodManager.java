@@ -6,12 +6,18 @@ import model.entities.Good;
 import model.repositories.GoodRepository;
 import model.repositories.Repository;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 import java.util.UUID;
 
+@Named
+@ApplicationScoped
 @NoArgsConstructor
 public class GoodManager {
-    private Repository<Good> goodRepository = new GoodRepository();
+    @Inject
+    private Repository<Good> goodRepository; // = new GoodRepository();
 
     public void addGood(Good good) {
         try {
