@@ -2,12 +2,9 @@ package controller.managers;
 
 import controller.exceptions.RepositoryException;
 import lombok.NoArgsConstructor;
-import model.clients.Client;
 import model.entities.Good;
-import model.entities.User;
 import model.goods.Laptop;
 import model.goods.PC;
-import model.repositories.GoodRepository;
 import model.repositories.Repository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -32,13 +29,15 @@ public class GoodManager {
         }
     }
 
-    public void removeGood(Good good) {
-        try {
-            this.goodRepository.remove(good);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
+    public String removeGood(Good good) { // save deleting
+        synchronized (goodRepository) {
+            try {
+                this.goodRepository.remove(good);
+            } catch (RepositoryException e) {
+                e.printStackTrace();
+            }
         }
-
+        return "AllGoods";
     }
 
     public Good getGoodByUUID(UUID uuid) {
@@ -52,9 +51,8 @@ public class GoodManager {
     }
 
     public List<Good> getAllLaptops() {
-        List<Good> laptops = this.getAllGoods().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());
-        return laptops;
-
+            List<Good> laptops = this.getAllGoods().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());
+            return laptops;
     }
 
     public List<Good> getAllPCs() {

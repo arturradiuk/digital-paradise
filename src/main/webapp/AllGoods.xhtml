@@ -57,13 +57,24 @@
                 <f:facet name="header">Sold</f:facet>
                 ${laptopIterator.sold}
             </h:column>
-            <!--            <h:column>-->
-            <!--                <f:facet name="header">Actions</f:facet> // todo CRUD-->
-            <!--                <h:commandButton value="Delete" action="#{personListController.deletePerson(personIterator)}"></h:commandButton>-->
-            <!--            </h:column>-->
+
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:column>
+                    <f:facet name="header">Delete</f:facet>
+                    <h:commandButton value="Delete"
+                                     action="#{goodManager.removeGood(laptopIterator)}"></h:commandButton>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Update</f:facet>
+                    <h:commandButton value="Update"
+                                     action="LaptopUpdate"></h:commandButton>
+                </h:column>
+            </h:column>
+
         </h:dataTable>
-        <!--        <h:commandButton value="Main" action="main"></h:commandButton>-->
-        <!--        <h:commandButton value="Refresh" action="#{personListController.initCurrentPersons}"></h:commandButton>-->
+        <h:commandButton value="Add Laptop" action="AddLaptop"></h:commandButton>
     </h:form>
 
     <br/>
@@ -73,43 +84,54 @@
 
     <h3>Personal computers:</h3>
     <h:form>
-        <h:dataTable value="#{goodManager.allLaptops}" var="laptopIterator">  <!-- przeplot -->
+        <h:dataTable value="#{goodManager.allPCs}" var="pcIterator">  <!-- przeplot -->
             <h:column>
                 <f:facet name="header">UUID</f:facet>
-                ${laptopIterator.uuid}
+                ${pcIterator.uuid}
             </h:column>
 
             <h:column>
                 <f:facet name="header">GoodName</f:facet>
-                ${laptopIterator.goodName}
+                ${pcIterator.goodName}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Base Price</f:facet>
-                ${laptopIterator.basePrice}
+                ${pcIterator.basePrice}
             </h:column>
 
             <h:column>
                 <f:facet name="header">RAM</f:facet>
-                ${laptopIterator.ram}
+                ${pcIterator.ram}
             </h:column>
 
             <h:column>
                 <f:facet name="header">SSD Capacity</f:facet>
-                ${laptopIterator.ssdCapacity}
+                ${pcIterator.ssdCapacity}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Sold</f:facet>
-                ${laptopIterator.sold}
+                ${pcIterator.sold}
             </h:column>
-            <!--            <h:column>-->
-            <!--                <f:facet name="header">Actions</f:facet> // todo CRUD-->
-            <!--                <h:commandButton value="Delete" action="#{personListController.deletePerson(personIterator)}"></h:commandButton>-->
-            <!--            </h:column>-->
+
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:column>
+                    <f:facet name="header">Delete</f:facet>
+                    <h:commandButton value="Delete"
+                                     action="#{goodManager.removeGood(pcIterator)}"></h:commandButton>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Update</f:facet>
+                    <h:commandButton value="Update"
+                                     action="PCUpdate"></h:commandButton>
+                </h:column>
+            </h:column>
+
         </h:dataTable>
-        <!--        <h:commandButton value="Main" action="main"></h:commandButton>-->
-        <!--        <h:commandButton value="Refresh" action="#{personListController.initCurrentPersons}"></h:commandButton>-->
+        <h:commandButton value="Add PC" action="AddPC"></h:commandButton>
     </h:form>
 </h:body>
 </html>
