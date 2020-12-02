@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @ToString(callSuper = true)
-public abstract class Person {
+public abstract class User {
     private UUID uuid;
 
     private String email;
@@ -18,7 +18,7 @@ public abstract class Person {
     private Address address;
 
 
-    public Person(String email, String name, Address address) throws ClientException {
+    public User(String email, String name, Address address) throws ClientException {
         if (email.equals(""))
             throw new ClientException("Email field is not set");
         if (name.equals(""))

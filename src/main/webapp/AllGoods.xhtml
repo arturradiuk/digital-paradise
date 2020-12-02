@@ -10,13 +10,106 @@
     <title>Good List</title>
 </h:head>
 <h:body>
-    Goods:
-    <h:dataTable value="#{goodManager.allGoods}" var="goodIterator">  <!-- przeplot -->
-        <h:column>
-            <f:facet name="header">Goods</f:facet>
-            ${goodIterator.toString()}
-        </h:column>
-    </h:dataTable>
+    <h3>Laptops:</h3>
+    <h:form>
+        <h:dataTable value="#{goodManager.allLaptops}" var="laptopIterator">  <!-- przeplot -->
+            <h:column>
+                <f:facet name="header">UUID</f:facet>
+                ${laptopIterator.uuid}
+            </h:column>
 
+            <h:column>
+                <f:facet name="header">GoodName</f:facet>
+                ${laptopIterator.goodName}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Base Price</f:facet>
+                ${laptopIterator.basePrice}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">RAM</f:facet>
+                ${laptopIterator.ram}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">SSD Capacity</f:facet>
+                ${laptopIterator.ssdCapacity}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Screen Size</f:facet>
+                ${laptopIterator.screenSize}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Camera</f:facet>
+                ${laptopIterator.hasCamera}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">USB amount</f:facet>
+                ${laptopIterator.usbAmount}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Sold</f:facet>
+                ${laptopIterator.sold}
+            </h:column>
+            <!--            <h:column>-->
+            <!--                <f:facet name="header">Actions</f:facet> // todo CRUD-->
+            <!--                <h:commandButton value="Delete" action="#{personListController.deletePerson(personIterator)}"></h:commandButton>-->
+            <!--            </h:column>-->
+        </h:dataTable>
+        <!--        <h:commandButton value="Main" action="main"></h:commandButton>-->
+        <!--        <h:commandButton value="Refresh" action="#{personListController.initCurrentPersons}"></h:commandButton>-->
+    </h:form>
+
+    <br/>
+    <br/>
+    <br/>
+
+
+    <h3>Personal computers:</h3>
+    <h:form>
+        <h:dataTable value="#{goodManager.allLaptops}" var="laptopIterator">  <!-- przeplot -->
+            <h:column>
+                <f:facet name="header">UUID</f:facet>
+                ${laptopIterator.uuid}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">GoodName</f:facet>
+                ${laptopIterator.goodName}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Base Price</f:facet>
+                ${laptopIterator.basePrice}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">RAM</f:facet>
+                ${laptopIterator.ram}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">SSD Capacity</f:facet>
+                ${laptopIterator.ssdCapacity}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Sold</f:facet>
+                ${laptopIterator.sold}
+            </h:column>
+            <!--            <h:column>-->
+            <!--                <f:facet name="header">Actions</f:facet> // todo CRUD-->
+            <!--                <h:commandButton value="Delete" action="#{personListController.deletePerson(personIterator)}"></h:commandButton>-->
+            <!--            </h:column>-->
+        </h:dataTable>
+        <!--        <h:commandButton value="Main" action="main"></h:commandButton>-->
+        <!--        <h:commandButton value="Refresh" action="#{personListController.initCurrentPersons}"></h:commandButton>-->
+    </h:form>
 </h:body>
 </html>

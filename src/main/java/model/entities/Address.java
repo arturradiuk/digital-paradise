@@ -4,7 +4,8 @@ import controller.exceptions.AddressException;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-@Data
+@Getter
+@Setter
 public class Address {
 
     private String street;
@@ -21,5 +22,12 @@ public class Address {
             throw new AddressException("Number field is not set");
         this.street = street;
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "street='" + street + '\'' +
+                ", number='" + number + '\'';
     }
 }

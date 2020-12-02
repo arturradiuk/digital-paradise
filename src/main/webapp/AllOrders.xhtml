@@ -10,12 +10,51 @@
 </h:head>
 <h:body>
     Orders:
-    <h:dataTable value="#{orderManager.allOrders}" var="orderIterator">  <!-- przeplot -->
-        <h:column>
-            <f:facet name="header">Orders</f:facet>
-            ${orderIterator.toString()}
-        </h:column>
-    </h:dataTable>
+    <h3>Personal computers:</h3>
+    <h:form>
+        <h:dataTable value="#{orderManager.allOrders}" var="laptopIterator">  <!-- przeplot -->
+            <h:column>
+                <f:facet name="header">UUID</f:facet>
+                ${laptopIterator.uuid}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Client UUID</f:facet>
+                ${laptopIterator.client.uuid}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Client Name</f:facet>
+                ${laptopIterator.client.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Goods</f:facet>
+                <h:dataTable value="#{laptopIterator.goods}" var="goodIterator">  <!-- przeplot -->
+                    <h:column>
+                        <f:facet name="header">Good UUID</f:facet>
+                        ${goodIterator.uuid}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Good name</f:facet>
+                        ${goodIterator.goodName}
+                    </h:column>
+                </h:dataTable>
+            </h:column>
+
+
+            <h:column>
+                <f:facet name="header">OrderDateTime</f:facet>
+                ${laptopIterator.orderDateTime}
+            </h:column>
+
+            <!--            <h:column>-->
+            <!--                <f:facet name="header">Actions</f:facet> // todo CRUD-->
+            <!--                <h:commandButton value="Delete" action="#{personListController.deletePerson(personIterator)}"></h:commandButton>-->
+            <!--            </h:column>-->
+        </h:dataTable>
+        <!--        <h:commandButton value="Main" action="main"></h:commandButton>-->
+        <!--        <h:commandButton value="Refresh" action="#{personListController.initCurrentPersons}"></h:commandButton>-->
+    </h:form>
 
 </h:body>
 </html>

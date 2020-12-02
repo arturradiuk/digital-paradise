@@ -6,16 +6,16 @@ import model.clients.Administrator;
 import model.clients.Client;
 import model.clients.Employee;
 import model.entities.Address;
-import model.entities.Person;
+import model.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class StaticPersonFiller implements DataFiller { // todo rename to people filler
+public class StaticUserFiller implements DataFiller { // todo rename to people filler
     @Override
-    public List<Person> Fill() {
-        List<Person> people = new ArrayList<>();
+    public List<User> Fill() {
+        List<User> people = new ArrayList<>();
         Address address = null;
         try {
             address = new Address("Street", "number");
@@ -23,11 +23,11 @@ public class StaticPersonFiller implements DataFiller { // todo rename to people
             e.printStackTrace();
         }
         try {
-            Person temp = new Client("Tola@gmail.com", "Tola", address);
+            User temp = new Client("Tola@gmail.com", "Tola", address);
             temp.setUuid(UUID.nameUUIDFromBytes(new String("1234567890_person").getBytes()));
             people.add(temp);
 
-           Person temp2 = new Client("Lolek@gmail.com", "Lolek", address);
+           User temp2 = new Client("Lolek@gmail.com", "Lolek", address);
             temp2.setUuid(UUID.nameUUIDFromBytes(new String("2234567890_person").getBytes()));
             people.add(temp2);
 

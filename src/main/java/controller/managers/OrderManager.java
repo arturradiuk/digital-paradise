@@ -5,7 +5,8 @@ import controller.exceptions.OrderException;
 import controller.exceptions.RepositoryException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import model.entities.Person;
+import model.clients.Client;
+import model.entities.User;
 import model.entities.Good;
 import model.entities.Order;
 import model.repositories.Repository;
@@ -58,10 +59,10 @@ public class OrderManager {
         return this.orderRepository.getAll();
     }
 
-    public List<Order> getAllOrdersForTheClient(Person person) {
+    public List<Order> getAllOrdersForTheClient(User user) {
         List<Order> orders = new ArrayList<>();
         for (Order order : this.orderRepository.getAll()) {
-            if (order.getPerson().equals(person)) {
+            if (order.getClient().equals(user)) {
                 orders.add(order);
             }
         }
@@ -79,13 +80,11 @@ public class OrderManager {
         return orders;
     }
 
-    public Order createOrder(List<Good> goods, Person person) throws OrderException {
-        if (goods.stream().anyMatch(good -> good.getCount() < 0)) {
-            throw new OrderException("Cannot create an order");
-        }
-        goods.stream().forEach(good -> good.setBasePrice(good.getCount() - 1));
-        return new Order(LocalDateTime.now(), goods, person);
+    public Order createOrder(List<Good> goods, Client user) throws OrderException {
+        return new Order(LocalDateTime.now(), goods, user);
     }
+
+
 
 
 }

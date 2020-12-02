@@ -16,8 +16,8 @@ public abstract class Computer extends Good {
         super();
     }
 
-    public Computer(double basePrice, int count, String goodName, int ram, int ssdCapacity) throws GoodException {
-        super(basePrice,count,goodName);
+    public Computer(double basePrice, String goodName, int ram, int ssdCapacity) throws GoodException {
+        super(basePrice,goodName);
         if (ram < 0) {
             throw new GoodException("RAM amount cannot be negative.");
         }
@@ -29,7 +29,7 @@ public abstract class Computer extends Good {
     }
 
     @Override
-    protected double getBasePrice() {
+    public double getBasePrice() {
         return super.getBasePrice() + (this.ram / 1024.0) * 50 + (ssdCapacity / 1024.0) * 150;
     }
 

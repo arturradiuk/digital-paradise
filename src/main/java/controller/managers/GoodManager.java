@@ -2,7 +2,11 @@ package controller.managers;
 
 import controller.exceptions.RepositoryException;
 import lombok.NoArgsConstructor;
+import model.clients.Client;
 import model.entities.Good;
+import model.entities.User;
+import model.goods.Laptop;
+import model.goods.PC;
 import model.repositories.GoodRepository;
 import model.repositories.Repository;
 
@@ -11,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Named
 @ApplicationScoped
@@ -44,6 +49,17 @@ public class GoodManager {
 
     public List<Good> getAllGoods() {
         return this.goodRepository.getAll();
+    }
+
+    public List<Good> getAllLaptops() {
+        List<Good> laptops = this.getAllGoods().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());
+        return laptops;
+
+    }
+
+    public List<Good> getAllPCs() {
+        List<Good> pcs = this.getAllGoods().stream().filter(pc -> pc instanceof PC).collect(Collectors.toList());
+        return pcs;
     }
 
 }

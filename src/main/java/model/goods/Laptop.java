@@ -17,8 +17,8 @@ public class Laptop extends Computer {
         super();
     }
 
-    public Laptop(double basePrice, int count, String goodName, int ram, int ssdCapacity, double screenSize, boolean hasCamera, int usbAmount) throws GoodException {
-        super(basePrice, count, goodName, ram, ssdCapacity);
+    public Laptop(double basePrice,String goodName, int ram, int ssdCapacity, double screenSize, boolean hasCamera, int usbAmount) throws GoodException {
+        super(basePrice, goodName, ram, ssdCapacity);
         if (screenSize < 0) {
             throw new GoodException("Screen size cannot be negative.");
         }

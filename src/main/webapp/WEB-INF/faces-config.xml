@@ -13,38 +13,24 @@
         </navigation-case>
     </navigation-rule>
 
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>AllClients</from-outcome>
-            <to-view-id>/AllClients.xhtml</to-view-id>
-            <redirect/> <!-- to make browser change the url "post redirect get" -->
-        </navigation-case>
-    </navigation-rule>
 
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>AllEmployees</from-outcome>
-            <to-view-id>/AllEmployees.xhtml</to-view-id>
-            <redirect/> <!-- to make browser change the url "post redirect get" -->
-        </navigation-case>
-    </navigation-rule>
-
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>AllAdministrators</from-outcome>
-            <to-view-id>/AllAdministrators.xhtml</to-view-id>
-            <redirect/> <!-- to make browser change the url "post redirect get" -->
-        </navigation-case>
-    </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
             <to-view-id>/AllOrders.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+
+
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AllUsers</from-outcome>
+            <to-view-id>/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>

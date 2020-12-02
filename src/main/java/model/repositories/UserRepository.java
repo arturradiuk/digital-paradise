@@ -3,36 +3,36 @@ package model.repositories;
 import controller.exceptions.RepositoryException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import model.entities.Person;
+import model.entities.User;
 import fillers.DataFiller;
-import fillers.StaticPersonFiller;
+import fillers.StaticUserFiller;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class PersonRepository implements Repository<Person> { // todo write methods getBy...
+public class UserRepository implements Repository<User> { // todo write methods getBy...
 
-    private List<Person> people;
+    private List<User> people;
 
-    public PersonRepository(List<Person> people) {
+    public UserRepository(List<User> people) {
         this.people = people;
     }
 
     @Override
-    public void add(Person element) throws RepositoryException {
-        for (Person person : people) {
-            if (person.equals(element))
+    public void add(User element) throws RepositoryException {
+        for (User user : people) {
+            if (user.equals(element))
                 throw new RepositoryException("This client already exists");
         }
         this.people.add(element);
     }
 
     @Override
-    public void remove(Person element) throws RepositoryException {
-        for (Person person : people) {
-            if (person.equals(element)) {
+    public void remove(User element) throws RepositoryException {
+        for (User user : people) {
+            if (user.equals(element)) {
                 this.people.remove(element);
             }
         }
@@ -40,7 +40,7 @@ public class PersonRepository implements Repository<Person> { // todo write meth
     }
 
     @Override
-    public List<Person> getAll() {
+    public List<User> getAll() {
         return people;
     }
 
@@ -48,7 +48,7 @@ public class PersonRepository implements Repository<Person> { // todo write meth
      @PostConstruct
 //     private void initPeople() {
      public void initPeople() {
-         DataFiller dataFiller = new StaticPersonFiller();
+         DataFiller dataFiller = new StaticUserFiller();
          this.people = dataFiller.Fill();
      }
 

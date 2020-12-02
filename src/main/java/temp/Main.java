@@ -1,11 +1,6 @@
 package temp;
 
-import controller.exceptions.AddressException;
 import controller.exceptions.ClientException;
-import model.clients.Administrator;
-import model.clients.Employee;
-import model.entities.Address;
-import model.entities.Person;
 
 import java.util.UUID;
 
