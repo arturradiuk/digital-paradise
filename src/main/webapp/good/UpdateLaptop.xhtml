@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Update Laptop</title>
+</h:head>
+<h:body>
+    Your Laptop
+    <h:form>
+
+        UUID: <h:outputText value="#{goodController.currentLaptop.uuid}" required="true" converter="UUIDConverter"></h:outputText> <br/>
+        *Good Name: <h:inputText value="#{goodController.currentLaptop.goodName}" required="true"></h:inputText> <br/>
+        *BasePrice: <h:inputText value="#{goodController.currentLaptop.basePrice}" required="true"></h:inputText> <br/>
+        *RAM: <h:inputText value="#{goodController.currentLaptop.ram}" required="true"></h:inputText> <br/>
+        *SSD: <h:inputText value="#{goodController.currentLaptop.ssdCapacity}" required="true"></h:inputText> <br/>
+        *Screen size: <h:inputText value="#{goodController.currentLaptop.screenSize}" required="true"></h:inputText> <br/>
+        *Has camera: <h:inputText value="#{goodController.currentLaptop.hasCamera}" required="true"></h:inputText> <br/>
+        *USB amount: <h:inputText value="#{goodController.currentLaptop.usbAmount}" required="true"></h:inputText> <br/>
+        <h:commandButton value="Confirm" action="#{goodController.updateLaptop}"
+                         immediate="false"></h:commandButton>
+    </h:form>
+</h:body>
+</html>

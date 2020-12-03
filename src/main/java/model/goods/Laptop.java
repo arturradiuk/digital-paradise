@@ -1,16 +1,20 @@
 package model.goods;
 
 import controller.exceptions.GoodException;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.Objects;
+import java.util.UUID;
+
+@Data
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class Laptop extends Computer {
-    @Getter
     private double screenSize;
-    @Getter
     private boolean hasCamera;
-    @Getter
     private int usbAmount;
 
     public Laptop() {
@@ -33,5 +37,6 @@ public class Laptop extends Computer {
     public double getPrice() {
         return getBasePrice() + screenSize * 10 + usbAmount * 100 + (hasCamera ? 200 : 0);
     }
+
 
 }

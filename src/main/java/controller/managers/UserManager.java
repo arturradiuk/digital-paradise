@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class UserManager {
     @Inject
-    private Repository<User> clientRepository;// = new PersonRepository();
+    private Repository<User, UUID> clientRepository;// = new PersonRepository();
 
     public void addClient(User user) {
         try {
@@ -31,6 +31,8 @@ public class UserManager {
 
         }
     }
+
+
 
     public void removeClient(User user) {
         try {

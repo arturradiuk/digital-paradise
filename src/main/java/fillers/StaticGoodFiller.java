@@ -22,7 +22,7 @@ public class StaticGoodFiller implements DataFiller {
     @Override
     public List<Good> Fill() {
         List<Good> goods = new CopyOnWriteArrayList<>();
-//        List<Good> goods = new ArrayList<>(); // todo causes java.util.ConcurrentModificationException during remove operation
+//        List<Good> goods = new ArrayList<>(); // todo causes java.util.ConcurrentModificationException during remove operation; is there any other solution
         try {
             Good temp = new Laptop(110, "Lenovo", 16, 256, 13, true, 2);
             temp.setUuid(UUID.nameUUIDFromBytes(new String("1234567890_good").getBytes()));

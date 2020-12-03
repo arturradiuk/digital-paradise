@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import controller.exceptions.GoodException;
@@ -13,6 +14,7 @@ public abstract class Good {
     private UUID uuid = UUID.randomUUID();
 
     private boolean sold= false;
+
 
     private String goodName;
 

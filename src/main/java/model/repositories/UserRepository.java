@@ -9,15 +9,21 @@ import fillers.StaticUserFiller;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-public class UserRepository implements Repository<User> { // todo write methods getBy...
+public class UserRepository implements Repository<User, UUID> { // todo write methods getBy...
 
     private List<User> people;
 
     public UserRepository(List<User> people) {
         this.people = people;
+    }
+
+    @Override
+    public void update(UUID id, User element) throws RepositoryException {
+
     }
 
     @Override

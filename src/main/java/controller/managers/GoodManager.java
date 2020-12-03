@@ -7,9 +7,12 @@ import model.goods.Laptop;
 import model.goods.PC;
 import model.repositories.Repository;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -17,9 +20,18 @@ import java.util.stream.Collectors;
 @Named
 @ApplicationScoped
 @NoArgsConstructor
-public class GoodManager {
+public class GoodManager implements Serializable {
     @Inject
-    private Repository<Good> goodRepository; // = new GoodRepository();
+    private Repository<Good,UUID> goodRepository; // = new GoodRepository();
+
+
+    public void updateGood(UUID uuid,Good good){
+        try {
+            this.goodRepository.update(uuid,good);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void addGood(Good good) {
         try {
@@ -29,15 +41,12 @@ public class GoodManager {
         }
     }
 
-    public String removeGood(Good good) { // save deleting
-        synchronized (goodRepository) {
+    public void removeGood(Good good) { // save deleting
             try {
                 this.goodRepository.remove(good);
             } catch (RepositoryException e) {
                 e.printStackTrace();
             }
-        }
-        return "AllGoods";
     }
 
     public Good getGoodByUUID(UUID uuid) {
@@ -46,16 +55,16 @@ public class GoodManager {
         return good;
     }
 
-    public List<Good> getAllGoods() {
+    private List<Good> getAllGoods() {
         return this.goodRepository.getAll();
     }
 
-    public List<Good> getAllLaptops() {
-            List<Good> laptops = this.getAllGoods().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());
-            return laptops;
+    public List<Good> getAllCurrentLaptops() {
+        List<Good> laptops = this.getAllGoods().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());
+        return laptops;
     }
 
-    public List<Good> getAllPCs() {
+    public List<Good> getAllCurrentPCs() {
         List<Good> pcs = this.getAllGoods().stream().filter(pc -> pc instanceof PC).collect(Collectors.toList());
         return pcs;
     }

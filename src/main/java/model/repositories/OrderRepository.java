@@ -10,11 +10,17 @@ import model.entities.Order;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-public class OrderRepository implements Repository<Order> {// todo write methods getBy...
+public class OrderRepository implements Repository<Order, UUID> {// todo write methods getBy...
     private List<Order> orders;
+
+    @Override
+    public void update(UUID id, Order element) throws RepositoryException {
+
+    }
 
     @Override
     public String toString() {

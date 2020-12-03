@@ -4,11 +4,22 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
     <!--    todo use pretty faces to map pages url in pretty way-->
+
+
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/AllGoods.xhtml</to-view-id>
+            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/AddLaptop.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AllGoods</from-outcome>
+            <to-view-id>/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
@@ -27,16 +38,27 @@
 
 
     <navigation-rule>
-        <from-view-id>/AllGoods.xhtml</from-view-id>
+        <from-view-id>/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/AllGoods.xhtml</to-view-id>
+            <to-view-id>/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/AllGoods.xhtml</from-view-id>
+        <from-view-id>/good/UpdateLaptop.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>UpdateLaptop</from-outcome>
+            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+
+
+    <navigation-rule>
+        <from-view-id>/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>PCUpdate</from-outcome>
             <to-view-id>/PCUpdate.xhtml</to-view-id>
@@ -46,28 +68,28 @@
 
 
     <navigation-rule>
-        <from-view-id>/AllGoods.xhtml</from-view-id>
+        <from-view-id>/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddPC</from-outcome>
-            <to-view-id>/AddPC.xhtml</to-view-id>
+            <to-view-id>/good/AddPC.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/AllGoods.xhtml</from-view-id>
+        <from-view-id>/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>AddLaptop</from-outcome>
-            <to-view-id>/AddLaptop.xhtml</to-view-id>
+            <from-outcome>NewLaptop</from-outcome>
+            <to-view-id>/good/AddLaptop.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/AllGoods.xhtml</from-view-id>
+        <from-view-id>/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>LaptopUpdate</from-outcome>
-            <to-view-id>/LaptopUpdate.xhtml</to-view-id>
+            <to-view-id>/good/UpdateLaptop.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>

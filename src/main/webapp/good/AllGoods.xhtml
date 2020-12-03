@@ -12,7 +12,7 @@
 <h:body>
     <h3>Laptops:</h3>
     <h:form>
-        <h:dataTable value="#{goodManager.allLaptops}" var="laptopIterator">  <!-- przeplot -->
+        <h:dataTable value="#{goodController.currentLaptops}" var="laptopIterator">  <!-- przeplot -->
             <h:column>
                 <f:facet name="header">UUID</f:facet>
                 ${laptopIterator.uuid}
@@ -63,18 +63,19 @@
                 <h:column>
                     <f:facet name="header">Delete</f:facet>
                     <h:commandButton value="Delete"
-                                     action="#{goodManager.removeGood(laptopIterator)}"></h:commandButton>
+                                     action="#{goodController.removeGood(laptopIterator)}"></h:commandButton>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Update</f:facet>
                     <h:commandButton value="Update"
-                                     action="LaptopUpdate"></h:commandButton>
+                                     action="#{goodController.seeLaptop(laptopIterator)}"></h:commandButton>
                 </h:column>
             </h:column>
 
         </h:dataTable>
         <h:commandButton value="Add Laptop" action="AddLaptop"></h:commandButton>
+        <h:commandButton value="Refresh" action="#{goodController.initCurrentGoods}"></h:commandButton>
     </h:form>
 
     <br/>
@@ -84,7 +85,7 @@
 
     <h3>Personal computers:</h3>
     <h:form>
-        <h:dataTable value="#{goodManager.allPCs}" var="pcIterator">  <!-- przeplot -->
+        <h:dataTable value="#{goodController.currentPCs}" var="pcIterator">  <!-- przeplot -->
             <h:column>
                 <f:facet name="header">UUID</f:facet>
                 ${pcIterator.uuid}
@@ -120,7 +121,7 @@
                 <h:column>
                     <f:facet name="header">Delete</f:facet>
                     <h:commandButton value="Delete"
-                                     action="#{goodManager.removeGood(pcIterator)}"></h:commandButton>
+                                     action="#{goodController.removeGood(pcIterator)}"></h:commandButton>
                 </h:column>
 
                 <h:column>
@@ -132,6 +133,9 @@
 
         </h:dataTable>
         <h:commandButton value="Add PC" action="AddPC"></h:commandButton>
+        <h:commandButton value="Refresh" action="#{goodController.initCurrentGoods}"></h:commandButton>
     </h:form>
+
+
 </h:body>
 </html>

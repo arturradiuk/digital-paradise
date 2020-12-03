@@ -25,7 +25,7 @@ import java.util.UUID;
 @Data
 public class OrderManager {
     @Inject
-    private Repository<Order> orderRepository;
+    private Repository<Order, UUID> orderRepository;
 
     public void addOrder(Order order) {
         try {
