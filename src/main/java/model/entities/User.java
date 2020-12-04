@@ -9,7 +9,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public abstract class User {
-    private UUID uuid;
+    private UUID uuid = UUID.randomUUID();
 
     private String email;
 
@@ -26,7 +26,6 @@ public abstract class User {
         if (address == null)
             throw new ClientException("Address is not set");
 
-        this.uuid = UUID.randomUUID();
         this.email = email;
         this.name = name;
         this.address = address;

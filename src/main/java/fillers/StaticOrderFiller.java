@@ -11,12 +11,13 @@ import model.repositories.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 public class StaticOrderFiller implements DataFiller {
     @Override
     public List<Order> Fill() {
-        List<Order> orders = new ArrayList<>();
+        List<Order> orders = new CopyOnWriteArrayList<>();
 
         UserRepository userRepository = new UserRepository();
         userRepository.initPeople();

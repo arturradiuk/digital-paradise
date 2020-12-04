@@ -75,7 +75,7 @@
 
         </h:dataTable>
         <h:commandButton value="Add Laptop" action="AddLaptop"></h:commandButton>
-        <h:commandButton value="Refresh" action="#{goodController.initCurrentGoods}"></h:commandButton>
+        <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>
     </h:form>
 
     <br/>
@@ -127,15 +127,18 @@
                 <h:column>
                     <f:facet name="header">Update</f:facet>
                     <h:commandButton value="Update"
-                                     action="PCUpdate"></h:commandButton>
+                                     action="#{goodController.seePC(pcIterator)}"></h:commandButton>
                 </h:column>
             </h:column>
 
         </h:dataTable>
         <h:commandButton value="Add PC" action="AddPC"></h:commandButton>
-        <h:commandButton value="Refresh" action="#{goodController.initCurrentGoods}"></h:commandButton>
+        <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>
     </h:form>
 
+<!--        <f:metadata>-->
+<!--            <f:viewAction action="#{goodController.refresh()}" onPostBack="true"/>-->
+<!--        </f:metadata>-->
 
 </h:body>
 </html>

@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class UserManager {
     @Inject
-    private Repository<User, UUID> clientRepository;// = new PersonRepository();
+    private Repository<User, UUID> userRepository;// = new PersonRepository();
 
     public void addClient(User user) {
         try {
-            clientRepository.add(user);
+            userRepository.add(user);
         } catch (RepositoryException e) { // todo handle exception
             e.printStackTrace();
         } finally {
@@ -33,43 +33,51 @@ public class UserManager {
     }
 
 
-
-    public void removeClient(User user) {
+    public void removeUser(User user) {
         try {
-            this.clientRepository.remove(user);
+            this.userRepository.remove(user);
         } catch (RepositoryException e) { // todo handle exception
             e.printStackTrace();
         }
     }
 
     public User getClientByLogin(String email) {
-        User user = this.clientRepository.getAll().stream()
+        User user = this.userRepository.getAll().stream()
                 .filter(c -> c.getEmail().equals(email)).findFirst().orElse(null);
         return user;
     }
 
     public User getClientByUUID(UUID uuid) {
-        User user = this.clientRepository.getAll().stream()
+        User user = this.userRepository.getAll().stream()
                 .filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
         return user;
     }
 
     public List<User> getAllPerson() {
-        return this.clientRepository.getAll();
+        return this.userRepository.getAll();
     }
 
     public List<User> getAllClients() {
         List<User> people = this.getAllPerson().stream().filter(person -> person instanceof Client).collect(Collectors.toList());
         return people;
     }
+
     public List<User> getAllEmployees() { // todo move to the repository
         List<User> people = this.getAllPerson().stream().filter(person -> person instanceof Employee).collect(Collectors.toList());
         return people;
     }
+
     public List<User> getAllAdministrators() {
         List<User> people = this.getAllPerson().stream().filter(person -> person instanceof Administrator).collect(Collectors.toList());
         return people;
     }
 
+    public void updateUser(UUID uuid, User user){
+        try {
+            this.userRepository.update(uuid,user);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

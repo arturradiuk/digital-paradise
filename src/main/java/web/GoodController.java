@@ -30,12 +30,22 @@ public class GoodController implements Serializable {
     private List<Good> currentLaptops;
     private List<Good> currentPCs;
 
-    public String processNewLaptop(){
+    public String seeLaptop(Laptop laptop) {
+        this.currentLaptop = laptop;
+        return "UpdateLaptop";
+    }
 
-        if (null == newLaptop.getGoodName() || newLaptop.getGoodName().isEmpty()) {
+    public String updateLaptop() {
+        this.goodManager.updateGood(this.currentLaptop.getUuid(), this.currentLaptop);
+        this.initCurrentGoods();
+        return "AllGoods";
+    }
+
+    public String processNewLaptop() {
+
+        if (null == newLaptop.getGoodName() || newLaptop.getGoodName().isEmpty()) { //todo
             throw new IllegalArgumentException("Proba zatwirdzenia NewLaptop bez goodName danych.");
         }
-
         this.goodManager.addGood(this.newLaptop);
 
         this.newLaptop = new Laptop();
@@ -44,30 +54,33 @@ public class GoodController implements Serializable {
         return "AllGoods";
     }
 
-
-    public List<Good> getCurrentLaptops() {
-        return this.currentLaptops;
+    public String seePC(PC pc) {
+        this.currentPC = pc;
+        return "UpdatePC";
     }
 
-    public List<Good> getCurrentPCs() {
-        return this.currentPCs;
-    }
-
-    public String removeGood(Good good) {
-        System.out.println("here");
-        this.goodManager.removeGood(good);
+    public String updatePC() {
+        this.goodManager.updateGood(this.currentPC.getUuid(), this.currentLaptop);
         this.initCurrentGoods();
-        System.out.println("here");
         return "AllGoods";
     }
 
-    public String seeLaptop(Laptop laptop){
-        this.currentLaptop = laptop;
-        return "UpdateLaptop";
+    public String processNewPC() {
+
+        if (null == newPC.getGoodName() || newPC.getGoodName().isEmpty()) { //todo
+            throw new IllegalArgumentException("Proba zatwirdzenia NewPC bez goodName danych.");
+        }
+        this.goodManager.addGood(this.newPC);
+
+        this.newPC = new PC();
+
+        this.initCurrentGoods();
+        return "AllGoods";
     }
 
-    public String updateLaptop(){
-        this.goodManager.updateGood(this.currentLaptop.getUuid(),this.currentLaptop);
+
+    public String removeGood(Good good) {
+        this.goodManager.removeGood(good);
         this.initCurrentGoods();
         return "AllGoods";
     }
@@ -78,5 +91,18 @@ public class GoodController implements Serializable {
         this.currentPCs = this.goodManager.getAllCurrentPCs();
     }
 
+    public String refresh(){
+        System.out.println("in good refresh");
+        this.initCurrentGoods();
+        return "AllGoods";
+    }
+
+    public List<Good> getCurrentLaptops() {
+        return this.currentLaptops;
+    }
+
+    public List<Good> getCurrentPCs() {
+        return this.currentPCs;
+    }
 
 }

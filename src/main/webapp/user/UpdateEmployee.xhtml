@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Update Employee</title>
+</h:head>
+<h:body>
+    Update Employee
+    <h:form>
+        *UUID: <h:outputText value="#{userController.currentEmployee.uuid}" required="true"
+                             converter="converters.UUIDConverter"></h:outputText> <br/>
+        *Email: <h:inputText value="#{userController.currentEmployee.email}" required="true"></h:inputText> <br/>
+        *Name: <h:inputText value="#{userController.currentEmployee.name}" required="true"></h:inputText> <br/>
+        *Address: <h:inputText value="#{userController.currentEmployee.address}" required="true"
+                               converter="converters.AddressConverter"></h:inputText> <br/>
+        <h:commandButton value="Update" action="#{userController.updateEmployee}"
+                         immediate="false"></h:commandButton>
+    </h:form>
+</h:body>
+</html>

@@ -9,6 +9,7 @@ import fillers.StaticUserFiller;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Data
@@ -23,7 +24,11 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
 
     @Override
     public void update(UUID id, User element) throws RepositoryException {
-
+        for (int i = 0; i < people.size(); i++) {
+            if (id.equals(people.get(i).getUuid())) {
+                this.people.set(i, element);
+            }
+        }
     }
 
     @Override
@@ -51,11 +56,11 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
     }
 
 
-     @PostConstruct
+    @PostConstruct
 //     private void initPeople() {
-     public void initPeople() {
-         DataFiller dataFiller = new StaticUserFiller();
-         this.people = dataFiller.Fill();
-     }
+    public void initPeople() {
+        DataFiller dataFiller = new StaticUserFiller();
+        this.people = dataFiller.Fill();
+    }
 
 }

@@ -15,6 +15,8 @@
         </navigation-case>
     </navigation-rule>
 
+
+
     <navigation-rule>
         <from-view-id>/good/AddLaptop.xhtml</from-view-id>
         <navigation-case>
@@ -23,18 +25,6 @@
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
-
-
-
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/AllOrders.xhtml</to-view-id>
-            <redirect/> <!-- to make browser change the url "post redirect get" -->
-        </navigation-case>
-    </navigation-rule>
-
 
 
     <navigation-rule>
@@ -49,7 +39,7 @@
     <navigation-rule>
         <from-view-id>/good/UpdateLaptop.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>UpdateLaptop</from-outcome>
+            <from-outcome>AllGoods</from-outcome>
             <to-view-id>/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
@@ -61,11 +51,22 @@
         <from-view-id>/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>PCUpdate</from-outcome>
-            <to-view-id>/PCUpdate.xhtml</to-view-id>
+            <to-view-id>/good/UpdatePC.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
+
+
+
+    <navigation-rule>
+        <from-view-id>/good/UpdatePC.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AllGoods</from-outcome>
+            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/good/AllGoods.xhtml</from-view-id>
@@ -94,13 +95,81 @@
         </navigation-case>
     </navigation-rule>
 
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/AllUsers.xhtml</to-view-id>
+            <to-view-id>/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddAdministrator</from-outcome>
+            <to-view-id>/user/AddAdministrator.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddEmployee</from-outcome>
+            <to-view-id>/user/AddEmployee.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddClient</from-outcome>
+            <to-view-id>/user/AddClient.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AllUsers</from-outcome>
+            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>UpdateAdministrator</from-outcome>
+            <to-view-id>/user/UpdateAdministrator.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/user/UpdateAdministrator.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AllUsers</from-outcome>
+            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AllOrders</from-outcome>
+            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+
 
 </faces-config>

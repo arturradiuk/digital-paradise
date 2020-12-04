@@ -7,6 +7,7 @@ import fillers.StaticOrderFiller;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.entities.Order;
+import model.entities.User;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -19,7 +20,11 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
 
     @Override
     public void update(UUID id, Order element) throws RepositoryException {
-
+        for (int i = 0; i < orders.size(); i++) {
+            if (id.equals(orders.get(i).getUuid())) {
+                this.orders.set(i, element);
+            }
+        }
     }
 
     @Override
