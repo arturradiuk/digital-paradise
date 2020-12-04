@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 //@ApplicationScoped // todo check the necessity
@@ -40,14 +41,14 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
 
     @Override
     public List<Good> getAll() {
-        return goods;
+        return new CopyOnWriteArrayList<>(goods);
     }
 
     @Override
     public void update(UUID id, Good element) throws RepositoryException {
         for (int i = 0; i < goods.size(); i++) {
             if (id.equals(goods.get(i).getUuid())) {
-                this.goods.set(i,element);
+                this.goods.set(i, element);
             }
         }
     }

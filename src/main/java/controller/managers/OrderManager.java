@@ -56,7 +56,8 @@ public class OrderManager {
     }
 
     public List<Order> getAllOrders() {
-        return this.orderRepository.getAll();
+        List<Order> orders= this.orderRepository.getAll();
+        return orders;
     }
 
     public List<Order> getAllOrdersForTheClient(User user) {

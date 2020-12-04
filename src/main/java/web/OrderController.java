@@ -17,9 +17,9 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Data
 @Named
@@ -41,10 +41,6 @@ public class OrderController implements Serializable {
 
     private List<Order> currentOrders;
 
-    @PostConstruct
-    public void initCurrentOrders() {
-        this.currentOrders = orderManager.getAllOrders();
-    }
 
     public String processNewOrder() {
 //        System.out.println("hellohellohellohellohellohellohellohellohellohellohellohellohellohello");
@@ -62,9 +58,31 @@ public class OrderController implements Serializable {
             e.printStackTrace();
         }
         this.newOrder = new Order();
+        this.clientUuid = null;
+        this.goodsUuid = null;
         this.initCurrentOrders();
         return "AllOrders";
     }
 
+
+    public String removeOrder(Order order) {
+        this.orderManager.removeOrder(order);
+        this.initCurrentOrders();
+        return "AllOrders";
+    }
+
+
+    public String refresh() {
+        System.out.println("in order refresh");
+        this.initCurrentOrders();
+        return "AllOrders";
+    }
+
+    @PostConstruct
+    public void initCurrentOrders() {
+        this.currentOrders = orderManager.getAllOrders();
+    }
+
+    // todo implement update
 
 }

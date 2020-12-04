@@ -27,16 +27,19 @@ public class StaticOrderFiller implements DataFiller {
         List<Good> laptopLenovo = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("1234567890_good").getBytes()))).collect(Collectors.toList());
         Good laptopApple = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("2234567890_good").getBytes()))).collect(Collectors.toList()).get(0);
         Good laptopDell = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("4234567890_good").getBytes()))).collect(Collectors.toList()).get(0);
+        Good laptopHP = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("3234567890_good").getBytes()))).collect(Collectors.toList()).get(0);
 
         List<Good> tolaGoods = new ArrayList<>();
         tolaGoods.add(laptopApple);
         tolaGoods.add(laptopDell);
 
         Optional<User> tola = userRepository.getAll().stream().findAny().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("1234567890_person").getBytes())));
-//        Optional<Person> lolek = personRepository.getAll().stream().findAny().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("3234567890_person").getBytes())));
         System.out.println(userRepository.toString());
         try {
             orders.add(new Order(LocalDateTime.now(),laptopLenovo,(Client)tola.get()));
+            orders.add(new Order(LocalDateTime.now(),tolaGoods,(Client)tola.get()));
+            tolaGoods = new ArrayList<>();
+            tolaGoods.add(laptopHP);
             orders.add(new Order(LocalDateTime.now(),tolaGoods,(Client)tola.get()));
         } catch (OrderException e) {
             e.printStackTrace();

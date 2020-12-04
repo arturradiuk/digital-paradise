@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Data
 @NoArgsConstructor
@@ -52,7 +53,7 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
 
     @Override
     public List<User> getAll() {
-        return people;
+        return new CopyOnWriteArrayList<>(people);
     }
 
 

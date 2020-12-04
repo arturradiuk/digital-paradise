@@ -9,27 +9,26 @@
     <title>Order List</title>
 </h:head>
 <h:body>
-    Orders:
-    <h3>Personal computers:</h3>
+    <h3>Orders:</h3>
     <h:form>
-        <h:dataTable value="#{orderManager.allOrders}" var="laptopIterator">  <!-- przeplot -->
+        <h:dataTable value="#{orderController.currentOrders}" var="orderIterator">  <!-- przeplot -->
             <h:column>
                 <f:facet name="header">UUID</f:facet>
-                ${laptopIterator.uuid}
+                ${orderIterator.uuid}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Client UUID</f:facet>
-                ${laptopIterator.client.uuid}
+                ${orderIterator.client.uuid}
             </h:column>
             <h:column>
                 <f:facet name="header">Client Name</f:facet>
-                ${laptopIterator.client.name}
+                ${orderIterator.client.name}
             </h:column>
 
             <h:column>
                 <f:facet name="header">Goods</f:facet>
-                <h:dataTable value="#{laptopIterator.goods}" var="goodIterator">  <!-- przeplot -->
+                <h:dataTable value="#{orderIterator.goods}" var="goodIterator">  <!-- przeplot -->
                     <h:column>
                         <f:facet name="header">Good UUID</f:facet>
                         ${goodIterator.uuid}
@@ -41,19 +40,32 @@
                 </h:dataTable>
             </h:column>
 
-
             <h:column>
                 <f:facet name="header">OrderDateTime</f:facet>
-                ${laptopIterator.orderDateTime}
+                ${orderIterator.orderDateTime}
             </h:column>
 
-            <!--            <h:column>-->
-            <!--                <f:facet name="header">Actions</f:facet> // todo CRUD-->
-            <!--                <h:commandButton value="Delete" action="#{personListController.deletePerson(personIterator)}"></h:commandButton>-->
-            <!--            </h:column>-->
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:column>
+                    <f:facet name="header">Delete</f:facet>
+                    <h:commandButton value="Delete"
+                                     action="#{orderController.removeOrder(orderIterator)}"></h:commandButton>
+                </h:column>
+
+                <!--                todo should be implemented-->
+                <!--                <h:column>-->
+                <!--                    <f:facet name="header">Update</f:facet>-->
+                <!--                    <h:commandButton value="Update"-->
+                <!--                                     action="#{userController.seeEmployee(employeeIterator)}"></h:commandButton>-->
+                <!--                </h:column>-->
+
+            </h:column>
+
+
         </h:dataTable>
-                <h:commandButton value="Add" action="AddOrder"></h:commandButton>
-<!--                <h:commandButton value="Refresh" action="#{personListController.initCurrentPersons}"></h:commandButton>-->
+        <h:commandButton value="Add" action="AddOrder"></h:commandButton>
+        <h:commandButton value="Refresh" action="#{orderController.refresh()}"></h:commandButton>
     </h:form>
 
 </h:body>

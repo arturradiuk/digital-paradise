@@ -12,6 +12,7 @@ import model.entities.User;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Data
 @NoArgsConstructor
@@ -49,17 +50,15 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
 
     @Override
     public void remove(Order element) throws RepositoryException {
-        for (Order order : orders) {
-            if (order.equals(element)) {
-                this.orders.remove(element);
-            }
+        if(!this.orders.remove(element)){
+
+            throw new RepositoryException("This order doesn't exist");
         }
-        throw new RepositoryException("This order doesn't exist");
     }
 
     @Override
     public List<Order> getAll() {
-        return orders;
+        return new CopyOnWriteArrayList<>(orders);
     }
 
     @PostConstruct
