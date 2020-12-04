@@ -1,6 +1,7 @@
 package model.entities;
 
 import controller.exceptions.OrderException;
+import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 import model.clients.Client;
@@ -11,15 +12,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Data
 @ToString
 public class Order {
-    @Getter
     private UUID uuid = UUID.randomUUID();
-    @Getter
     private LocalDateTime orderDateTime;
-    @Getter
     private List<Good> goods = new ArrayList<Good>();
-    @Getter
     private Client client;
 
     public Order() {
