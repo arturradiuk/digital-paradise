@@ -42,11 +42,11 @@ public class GoodManager implements Serializable {
     }
 
     public void removeGood(Good good) { // save deleting
-            try {
-                this.goodRepository.remove(good);
-            } catch (RepositoryException e) {
-                e.printStackTrace();
-            }
+        try {
+            this.goodRepository.remove(good);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
     }
 
     public Good getGoodByUUID(UUID uuid) {
@@ -70,3 +70,4 @@ public class GoodManager implements Serializable {
     }
 
 }
+

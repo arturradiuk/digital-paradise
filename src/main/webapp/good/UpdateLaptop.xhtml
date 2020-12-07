@@ -12,7 +12,7 @@
     Your Laptop
     <h:form>
 
-        UUID: <h:outputText value="#{goodController.currentLaptop.uuid}" required="true" converter="UUIDConverter"></h:outputText> <br/>
+        UUID: <h:outputText value="#{goodController.currentLaptop.uuid}" required="true" converter="converters.UUIDConverter"></h:outputText> <br/>
         *Good Name: <h:inputText value="#{goodController.currentLaptop.goodName}" required="true"></h:inputText> <br/>
         *BasePrice: <h:inputText value="#{goodController.currentLaptop.basePrice}" required="true"></h:inputText> <br/>
         *RAM: <h:inputText value="#{goodController.currentLaptop.ram}" required="true"></h:inputText> <br/>

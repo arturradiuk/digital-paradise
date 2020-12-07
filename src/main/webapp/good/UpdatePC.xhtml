@@ -12,7 +12,7 @@
     Your PC
     <h:form>
         UUID: <h:outputText value="#{goodController.currentPC.uuid}" required="true"
-                            converter="UUIDConverter"></h:outputText> <br/>
+                            converter="converters.UUIDConverter"></h:outputText> <br/>
         *Good Name: <h:inputText value="#{goodController.currentPC.goodName}" required="true"></h:inputText> <br/>
         *BasePrice: <h:inputText value="#{goodController.currentPC.basePrice}" required="true"></h:inputText> <br/>
         *RAM: <h:inputText value="#{goodController.currentPC.ram}" required="true"></h:inputText> <br/>
