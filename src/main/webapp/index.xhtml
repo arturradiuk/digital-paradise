@@ -11,16 +11,27 @@
 <h:body>
     <h3>Welcome to our online store Digital Paradise</h3>
 
-    <ul>
-        <li><h:link outcome="Login"> Login </h:link></li>
+    <ui:composition template="/layouts/commonLayout.xhtml">
+        <ui:define name="header"/>
 
-        <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
+        <ui:define name="content">
+            <h5>EMPTY</h5>
+        </ui:define>
 
-        <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
+        <ui:define name="sidemenu">
+            <ul>
+                <li><h:link outcome="Login"> Login </h:link></li>
 
-        <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
 
-    </ul>
+                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
+
+                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+            </ul>
+        </ui:define>
+
+    </ui:composition>
+
 
 </h:body>
 </html>
