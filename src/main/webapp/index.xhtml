@@ -7,18 +7,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Digital Paradise</title>
+
 </h:head>
+
 <h:body>
-    <h3>Welcome to our online store Digital Paradise</h3>
+    <ui:composition template="/template/common.xhtml">
 
-    <ui:composition template="/layouts/commonLayout.xhtml">
-        <ui:define name="header"/>
-
-        <ui:define name="content">
-            <h5>EMPTY</h5>
-        </ui:define>
-
+        <!---->
         <ui:define name="sidemenu">
+            <h:outputStylesheet name="css/sidemenu.css"/>
+
+            <p class="temp_sidemunu">Side menu: </p>
+
             <ul>
                 <li><h:link outcome="Login"> Login </h:link></li>
 
@@ -30,8 +30,11 @@
             </ul>
         </ui:define>
 
+        <ui:define name="content">
+            <h:outputStylesheet name="css/content.css"/>
+            <p class="temp_content">Content: </p>
+        </ui:define>
     </ui:composition>
-
 
 </h:body>
 </html>
