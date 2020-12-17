@@ -9,20 +9,45 @@
     <title>Add Order</title>
 </h:head>
 <h:body>
-    Add Order
-    <h:form>
-        *UUID: <h:inputText value="#{orderController.newOrder.uuid}" required="true"
-                            converter="converters.UUIDConverter"></h:inputText> <br/>
+    <ui:composition template="/template/common.xhtml">
 
-        *Client UUID: <h:inputText value="#{orderController.clientUuid}" required="true"
-                                   converter="converters.UUIDConverter"></h:inputText> <br/>
+        <ui:define name="sidemenu">
+            <h:outputStylesheet name="css/common/sidemenu.css"/>
 
-        *Goods UUID: <h:inputText value="#{orderController.goodsUuid}" required="true"
-                                  converter="converters.MultipleUUIDConverter"></h:inputText> <br/>
+            <p class="temp_side_menu">Side menu: </p>
 
-        <h:commandButton value="Confirm" action="#{orderController.processNewOrder}"
-                         immediate="false"></h:commandButton>
+            <ul>
+                <li><h:link outcome="Login"> Login </h:link></li>
 
-    </h:form>
+                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
+
+                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
+
+                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+            </ul>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:outputStylesheet name="css/order/addorder_content.css"/>
+
+            <h3 class="order_h3">Add Order</h3>
+            <h:form>
+                *UUID: <h:inputText value="#{orderController.newOrder.uuid}" required="true"
+                                    converter="converters.UUIDConverter"></h:inputText> <br/>
+
+                *Client UUID: <h:inputText value="#{orderController.clientUuid}" required="true"
+                                           converter="converters.UUIDConverter"></h:inputText> <br/>
+
+                *Goods UUID: <h:inputText value="#{orderController.goodsUuid}" required="true"
+                                          converter="converters.MultipleUUIDConverter"></h:inputText> <br/>
+
+                <h:commandButton value="Confirm" action="#{orderController.processNewOrder}"
+                                 immediate="false"></h:commandButton>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+
 </h:body>
 </html>

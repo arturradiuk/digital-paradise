@@ -10,137 +10,160 @@
 </h:head>
 <h:body>
 
-    <h3>Administrators:</h3>
-    <h:form>
-        <h:dataTable value="#{userController.currentAdministrators}" var="adminIterator">  <!-- przeplot -->
-            <h:column>
-                <f:facet name="header">UUID</f:facet>
-                ${adminIterator.uuid}
-            </h:column>
 
-            <h:column>
-                <f:facet name="header">Email</f:facet>
-                ${adminIterator.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                ${adminIterator.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Address</f:facet>
-                ${adminIterator.address}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Actions</f:facet>
-                <h:column>
-                    <f:facet name="header">Delete</f:facet>
-                    <h:commandButton value="Delete"
-                                     action="#{userController.removeUser(adminIterator)}"/>
-                </h:column>
+    <ui:composition template="/template/common.xhtml">
 
-                <h:column>
-                    <f:facet name="header">Update</f:facet>
-                    <h:commandButton value="Update"
-                                     action="#{userController.seeAdministrator(adminIterator)}"/>
-                </h:column>
-            </h:column>
-        </h:dataTable>
-        <h:commandButton value="Add" action="AddAdministrator"/>
-        <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
-    </h:form>
+        <ui:define name="sidemenu">
+            <h:outputStylesheet name="css/common/sidemenu.css"/>
 
-    <br/>
-    <br/>
-    <br/>
+            <p class="temp_side_menu">Side menu: </p>
 
-    <h3>Employees:</h3>
-    <h:form>
-        <h:dataTable value="#{userController.currentEmployees}" var="employeeIterator">  <!-- przeplot -->
-            <h:column>
-                <f:facet name="header">UUID</f:facet>
-                ${employeeIterator.uuid}
-            </h:column>
+            <ul>
+                <li><h:link outcome="Login"> Login </h:link></li>
 
-            <h:column>
-                <f:facet name="header">Email</f:facet>
-                ${employeeIterator.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                ${employeeIterator.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Address</f:facet>
-                ${employeeIterator.address}
-            </h:column>
+                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
 
-            <h:column>
-                <f:facet name="header">Actions</f:facet>
-                <h:column>
-                    <f:facet name="header">Delete</f:facet>
-                    <h:commandButton value="Delete"
-                                     action="#{userController.removeUser(employeeIterator)}"/>
-                </h:column>
+                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
 
-                <h:column>
-                    <f:facet name="header">Update</f:facet>
-                    <h:commandButton value="Update"
-                                     action="#{userController.seeEmployee(employeeIterator)}"/>
-                </h:column>
+                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+            </ul>
+        </ui:define>
 
-            </h:column>
+        <ui:define name="content">
+            <h:outputStylesheet name="css/user/allusers_content.css"/>
 
-        </h:dataTable>
-        <h:commandButton value="Add" action="AddEmployee"/>
-        <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
-    </h:form>
+            <h3 class="admin_h3">Administrators:</h3>
+            <h:form>
+                <h:dataTable value="#{userController.currentAdministrators}" var="adminIterator">  <!-- przeplot -->
+                    <h:column>
+                        <f:facet name="header">UUID</f:facet>
+                        ${adminIterator.uuid}
+                    </h:column>
 
-    <br/>
-    <br/>
-    <br/>
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        ${adminIterator.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        ${adminIterator.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Address</f:facet>
+                        ${adminIterator.address}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:column>
+                            <f:facet name="header">Delete</f:facet>
+                            <h:commandButton value="Delete"
+                                             action="#{userController.removeUser(adminIterator)}"/>
+                        </h:column>
 
-    <h3>Clients:</h3>
-    <h:form>
-        <h:dataTable value="#{userController.currentClients}" var="clientIterator">  <!-- przeplot -->
-            <h:column>
-                <f:facet name="header">UUID</f:facet>
-                ${clientIterator.uuid}
-            </h:column>
+                        <h:column>
+                            <f:facet name="header">Update</f:facet>
+                            <h:commandButton value="Update"
+                                             action="#{userController.seeAdministrator(adminIterator)}"/>
+                        </h:column>
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value="Add" action="AddAdministrator"/>
+                <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
+            </h:form>
 
-            <h:column>
-                <f:facet name="header">Email</f:facet>
-                ${clientIterator.email}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Name</f:facet>
-                ${clientIterator.name}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Address</f:facet>
-                ${clientIterator.address}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Actions</f:facet>
-                <h:column>
-                    <f:facet name="header">Delete</f:facet>
-                    <h:commandButton value="Delete"
-                                     action="#{userController.removeUser(clientIterator)}"/>
-                </h:column>
+            <br/>
+            <br/>
+            <br/>
 
-                <h:column>
-                    <f:facet name="header">Update</f:facet>
-                    <h:commandButton value="Update"
-                                     action="#{userController.seeClient(clientIterator)}"/>
-                </h:column>
-            </h:column>
-        </h:dataTable>
-        <h:commandButton value="Add" action="AddClient"/>
-        <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
-    </h:form>
+            <h3 class="employee_h3">Employees:</h3>
+            <h:form>
+                <h:dataTable value="#{userController.currentEmployees}" var="employeeIterator">  <!-- przeplot -->
+                    <h:column>
+                        <f:facet name="header">UUID</f:facet>
+                        ${employeeIterator.uuid}
+                    </h:column>
 
-    <!--    <f:metadata>-->
-    <!--        <f:viewAction action="#{userController.refresh()}" onPostBack="true"/>-->
-    <!--    </f:metadata>-->
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        ${employeeIterator.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        ${employeeIterator.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Address</f:facet>
+                        ${employeeIterator.address}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:column>
+                            <f:facet name="header">Delete</f:facet>
+                            <h:commandButton value="Delete"
+                                             action="#{userController.removeUser(employeeIterator)}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Update</f:facet>
+                            <h:commandButton value="Update"
+                                             action="#{userController.seeEmployee(employeeIterator)}"/>
+                        </h:column>
+
+                    </h:column>
+
+                </h:dataTable>
+                <h:commandButton value="Add" action="AddEmployee"/>
+                <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
+            </h:form>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <h3 class="client_h3">Clients:</h3>
+            <h:form>
+                <h:dataTable value="#{userController.currentClients}" var="clientIterator">  <!-- przeplot -->
+                    <h:column>
+                        <f:facet name="header">UUID</f:facet>
+                        ${clientIterator.uuid}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Email</f:facet>
+                        ${clientIterator.email}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        ${clientIterator.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Address</f:facet>
+                        ${clientIterator.address}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:column>
+                            <f:facet name="header">Delete</f:facet>
+                            <h:commandButton value="Delete"
+                                             action="#{userController.removeUser(clientIterator)}"/>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Update</f:facet>
+                            <h:commandButton value="Update"
+                                             action="#{userController.seeClient(clientIterator)}"/>
+                        </h:column>
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value="Add" action="AddClient"/>
+                <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+
 
 
 </h:body>

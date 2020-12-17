@@ -9,16 +9,41 @@
     <title>Add Client</title>
 </h:head>
 <h:body>
-    New Client
-    <h:form>
-        *UUID: <h:inputText value="#{userController.newClient.uuid}" required="true" converter="converters.UUIDConverter"></h:inputText> <br/>
-        *Email: <h:inputText value="#{userController.newClient.email}" required="true" ></h:inputText> <br/>
-        *Name: <h:inputText value="#{userController.newClient.name}" required="true" ></h:inputText> <br/>
-        *Address: <h:inputText value="#{userController.newClient.address}" required="true" converter="converters.AddressConverter" ></h:inputText> <br/>
+
+    <ui:composition template="/template/common.xhtml">
+
+        <ui:define name="sidemenu">
+            <h:outputStylesheet name="css/common/sidemenu.css"/>
+
+            <p class="temp_side_menu">Side menu: </p>
+
+            <ul>
+                <li><h:link outcome="Login"> Login </h:link></li>
+
+                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
+
+                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
+
+                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+            </ul>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:outputStylesheet name="css/user/addclient_content.css"/>
+
+            <h3 class="client_h3">New Client</h3>
+            <h:form>
+                *UUID: <h:inputText value="#{userController.newClient.uuid}" required="true" converter="converters.UUIDConverter"></h:inputText> <br/>
+                *Email: <h:inputText value="#{userController.newClient.email}" required="true" ></h:inputText> <br/>
+                *Name: <h:inputText value="#{userController.newClient.name}" required="true" ></h:inputText> <br/>
+                *Address: <h:inputText value="#{userController.newClient.address}" required="true" converter="converters.AddressConverter" ></h:inputText> <br/>
 
 
-        <h:commandButton value="Confirm" action="#{userController.processNewClient}"
-                         immediate="false"></h:commandButton>
-    </h:form>
+                <h:commandButton value="Confirm" action="#{userController.processNewClient}"
+                                 immediate="false"></h:commandButton>
+            </h:form>        </ui:define>
+    </ui:composition>
+
+
 </h:body>
 </html>

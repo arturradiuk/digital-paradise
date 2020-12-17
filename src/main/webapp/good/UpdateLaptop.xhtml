@@ -9,19 +9,50 @@
     <title>Update Laptop</title>
 </h:head>
 <h:body>
-    Your Laptop
-    <h:form>
+    <ui:composition template="/template/common.xhtml">
 
-        UUID: <h:outputText value="#{goodController.currentLaptop.uuid}" required="true" converter="converters.UUIDConverter"></h:outputText> <br/>
-        *Good Name: <h:inputText value="#{goodController.currentLaptop.goodName}" required="true"></h:inputText> <br/>
-        *BasePrice: <h:inputText value="#{goodController.currentLaptop.basePrice}" required="true"></h:inputText> <br/>
-        *RAM: <h:inputText value="#{goodController.currentLaptop.ram}" required="true"></h:inputText> <br/>
-        *SSD: <h:inputText value="#{goodController.currentLaptop.ssdCapacity}" required="true"></h:inputText> <br/>
-        *Screen size: <h:inputText value="#{goodController.currentLaptop.screenSize}" required="true"></h:inputText> <br/>
-        *Has camera: <h:inputText value="#{goodController.currentLaptop.hasCamera}" required="true"></h:inputText> <br/>
-        *USB amount: <h:inputText value="#{goodController.currentLaptop.usbAmount}" required="true"></h:inputText> <br/>
-        <h:commandButton value="Confirm" action="#{goodController.updateLaptop}"
-                         immediate="false"></h:commandButton>
-    </h:form>
+        <ui:define name="sidemenu">
+            <h:outputStylesheet name="css/common/sidemenu.css"/>
+
+            <p class="temp_side_menu">Side menu: </p>
+
+            <ul>
+                <li><h:link outcome="Login"> Login </h:link></li>
+
+                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
+
+                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
+
+                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+            </ul>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:outputStylesheet name="css/good/updatelaptop_content.css"/>
+            <h3 class="laptop_h3">Your Laptop</h3>
+            <h:form>
+
+                UUID: <h:outputText value="#{goodController.currentLaptop.uuid}" required="true"
+                                    converter="converters.UUIDConverter"></h:outputText> <br/>
+                *Good Name: <h:inputText value="#{goodController.currentLaptop.goodName}" required="true"></h:inputText>
+                <br/>
+                *BasePrice: <h:inputText value="#{goodController.currentLaptop.basePrice}"
+                                         required="true"></h:inputText> <br/>
+                *RAM: <h:inputText value="#{goodController.currentLaptop.ram}" required="true"></h:inputText> <br/>
+                *SSD: <h:inputText value="#{goodController.currentLaptop.ssdCapacity}" required="true"></h:inputText>
+                <br/>
+                *Screen size: <h:inputText value="#{goodController.currentLaptop.screenSize}"
+                                           required="true"></h:inputText> <br/>
+                *Has camera: <h:inputText value="#{goodController.currentLaptop.hasCamera}"
+                                          required="true"></h:inputText> <br/>
+                *USB amount: <h:inputText value="#{goodController.currentLaptop.usbAmount}"
+                                          required="true"></h:inputText> <br/>
+                <h:commandButton value="Confirm" action="#{goodController.updateLaptop}"
+                                 immediate="false"></h:commandButton>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+
 </h:body>
 </html>

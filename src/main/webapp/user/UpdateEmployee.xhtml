@@ -9,16 +9,41 @@
     <title>Update Employee</title>
 </h:head>
 <h:body>
-    Update Employee
-    <h:form>
-        *UUID: <h:outputText value="#{userController.currentEmployee.uuid}" required="true"
-                             converter="converters.UUIDConverter"></h:outputText> <br/>
-        *Email: <h:inputText value="#{userController.currentEmployee.email}" required="true"></h:inputText> <br/>
-        *Name: <h:inputText value="#{userController.currentEmployee.name}" required="true"></h:inputText> <br/>
-        *Address: <h:inputText value="#{userController.currentEmployee.address}" required="true"
-                               converter="converters.AddressConverter"></h:inputText> <br/>
-        <h:commandButton value="Update" action="#{userController.updateEmployee}"
-                         immediate="false"></h:commandButton>
-    </h:form>
+
+    <ui:composition template="/template/common.xhtml">
+
+        <ui:define name="sidemenu">
+            <h:outputStylesheet name="css/common/sidemenu.css"/>
+
+            <p class="temp_side_menu">Side menu: </p>
+
+            <ul>
+                <li><h:link outcome="Login"> Login </h:link></li>
+
+                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
+
+                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
+
+                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+            </ul>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:outputStylesheet name="css/user/updateemployee_content.css"/>
+
+            <h3 class="employee_h3">Update Employee</h3>
+            <h:form>
+                *UUID: <h:outputText value="#{userController.currentEmployee.uuid}" required="true"
+                                     converter="converters.UUIDConverter"></h:outputText> <br/>
+                *Email: <h:inputText value="#{userController.currentEmployee.email}" required="true"></h:inputText> <br/>
+                *Name: <h:inputText value="#{userController.currentEmployee.name}" required="true"></h:inputText> <br/>
+                *Address: <h:inputText value="#{userController.currentEmployee.address}" required="true"
+                                       converter="converters.AddressConverter"></h:inputText> <br/>
+                <h:commandButton value="Update" action="#{userController.updateEmployee}"
+                                 immediate="false"></h:commandButton>
+            </h:form>        </ui:define>
+    </ui:composition>
+
+
 </h:body>
 </html>

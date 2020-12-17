@@ -9,16 +9,43 @@
     <title>Update Administrator</title>
 </h:head>
 <h:body>
-    Update Administrator
-    <h:form>
-        *UUID: <h:outputText value="#{userController.currentAdministrator.uuid}" required="true"
-                            converter="converters.UUIDConverter"></h:outputText> <br/>
-        *Email: <h:inputText value="#{userController.currentAdministrator.email}" required="true"></h:inputText> <br/>
-        *Name: <h:inputText value="#{userController.currentAdministrator.name}" required="true"></h:inputText> <br/>
-        *Address: <h:inputText value="#{userController.currentAdministrator.address}" required="true"
-                               converter="converters.AddressConverter"></h:inputText> <br/>
-        <h:commandButton value="Update" action="#{userController.updateAdministrator}"
-                         immediate="false"></h:commandButton>
-    </h:form>
+    <ui:composition template="/template/common.xhtml">
+
+        <ui:define name="sidemenu">
+            <h:outputStylesheet name="css/common/sidemenu.css"/>
+
+            <p class="temp_side_menu">Side menu: </p>
+
+            <ul>
+                <li><h:link outcome="Login"> Login </h:link></li>
+
+                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
+
+                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
+
+                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
+            </ul>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:outputStylesheet name="css/user/updateadministrator_content.css"/>
+
+            <h3 class="admin_h3">Update Administrator</h3>
+            <h:form>
+                *UUID: <h:outputText value="#{userController.currentAdministrator.uuid}" required="true"
+                                     converter="converters.UUIDConverter"></h:outputText> <br/>
+                *Email: <h:inputText value="#{userController.currentAdministrator.email}" required="true"></h:inputText>
+                <br/>
+                *Name: <h:inputText value="#{userController.currentAdministrator.name}" required="true"></h:inputText>
+                <br/>
+                *Address: <h:inputText value="#{userController.currentAdministrator.address}" required="true"
+                                       converter="converters.AddressConverter"></h:inputText> <br/>
+                <h:commandButton value="Update" action="#{userController.updateAdministrator}"
+                                 immediate="false"></h:commandButton>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+
 </h:body>
 </html>
