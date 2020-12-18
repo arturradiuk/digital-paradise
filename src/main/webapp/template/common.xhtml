@@ -4,11 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+>
 
 <h:head>
     <h:outputStylesheet name="css/common/header.css"/>
     <h:outputStylesheet name="css/common/footer.css"/>
+    <h:outputStylesheet name="css/common/sidemenu.css"/>
     <h:outputStylesheet name="css/common/common.css"/>
 </h:head>
 
@@ -18,43 +19,26 @@
         <ui:include src="header.xhtml"/>
     </ui:insert>
 
-    <div class="main_wrapper">
-        <span class="side_menu">
-
+    
+    <div class="content-wrapper">
+        <div class="sidemenu">
             <ui:insert name="sidemenu">
                 <ui:include src="sidemenu.xhtml"/>
             </ui:insert>
-
-        </span>
-        <span class="content">
-
+        </div>
+        
+        <div class="content">
             <ui:insert name="content">
                 <ui:include src="contents.xhtml"/>
             </ui:insert>
-
-        </span>
+        </div>
     </div>
 
-    <!--    <table>-->
-    <!--        <tr>-->
-    <!--            <td>-->
-    <!--                <ui:insert name="sidemenu">-->
-    <!--                    <ui:include src="sidemenu.xhtml"/>-->
-    <!--                </ui:insert>-->
-    <!--            </td>-->
-    <!---->
-    <!--            <td>-->
-    <!--                <ui:insert name="content">-->
-    <!--                    <ui:include src="contents.xhtml"/>-->
-    <!--                </ui:insert>-->
-    <!--            </td>-->
-    <!---->
-    <!--        </tr>-->
-    <!--    </table>-->
-
-
-    <ui:insert name="footer">
-        <ui:include src="footer.xhtml"/>
-    </ui:insert>
+    <div class="footer-wrapper">
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+    </div>
+    
 </h:body>
 </html>

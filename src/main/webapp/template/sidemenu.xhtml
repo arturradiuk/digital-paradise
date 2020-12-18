@@ -3,9 +3,37 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<ui:composition>
-    <h1>Default Sidemenu</h1>
-</ui:composition>
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+    <ui:composition>
+        <div class="wrapper">
+            <div class="sidebar">
+                <h2>Menu</h2>
+                <ul>
+                    <li class="menu-item">
+                        <h:outputLink value="#">
+                            <h:outputLabel value="Login"/>
+                        </h:outputLink>
+                    </li>
+                    <li class="menu-item">
+                        <h:outputLink value="#{goodController.refresh()}">
+                            <h:outputLabel value="Goods"/>
+                        </h:outputLink>
+                    </li>
+                    <li class="menu-item">
+                        <h:outputLink value="#{orderController.refresh()}">
+                            <h:outputLabel value="Orders"/>
+                        </h:outputLink>
+                    </li>
+                    <li class="menu-item">
+                        <h:outputLink value="#{userController.refresh()}">
+                            <h:outputLabel value="Users"/>
+                        </h:outputLink>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ui:composition>
+</h:body>
 </html>
