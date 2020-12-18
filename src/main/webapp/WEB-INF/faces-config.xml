@@ -5,6 +5,18 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
     <!--    todo use pretty faces to map pages url in pretty way-->
 
+    <application>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>fr</supported-locale>
+        </locale-config>
+
+        <resource-bundle>
+            <base-name>com.language.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+
 
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
