@@ -1,6 +1,5 @@
 package model.entities;
 
-import controller.exceptions.ClientException;
 import controller.exceptions.UserException;
 import lombok.*;
 
@@ -17,6 +16,10 @@ public abstract class User {
     private String name;
 
     private Address address;
+
+    public void changeActivity() {
+
+    }
 
 
     public User(String email, String name, Address address) throws UserException {
