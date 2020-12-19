@@ -37,6 +37,7 @@
                 *Name: <h:inputText value="#{userController.newAdministrator.name}" required="true"></h:inputText> <br/>
                 *Address: <h:inputText value="#{userController.newAdministrator.address}" required="true"
                                        converter="converters.AddressConverter"></h:inputText> <br/>
+                *IsHeadAdmin: <h:inputText value="#{userController.newAdministrator.isHeadAdmin}" required="true"  ></h:inputText> <br/>
                 <h:commandButton value="Confirm" action="#{userController.processNewAdministrator}"
                                  immediate="false"></h:commandButton>
             </h:form>        </ui:define>

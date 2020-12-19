@@ -39,6 +39,7 @@
                 *Name: <h:inputText value="#{userController.currentEmployee.name}" required="true"></h:inputText> <br/>
                 *Address: <h:inputText value="#{userController.currentEmployee.address}" required="true"
                                        converter="converters.AddressConverter"></h:inputText> <br/>
+                *Earnings: <h:inputText value="#{userController.currentEmployee.earnings}" required="true"  ></h:inputText> <br/>
                 <h:commandButton value="Update" action="#{userController.updateEmployee}"
                                  immediate="false"></h:commandButton>
             </h:form>        </ui:define>

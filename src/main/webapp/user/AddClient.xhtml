@@ -37,7 +37,7 @@
                 *Email: <h:inputText value="#{userController.newClient.email}" required="true" ></h:inputText> <br/>
                 *Name: <h:inputText value="#{userController.newClient.name}" required="true" ></h:inputText> <br/>
                 *Address: <h:inputText value="#{userController.newClient.address}" required="true" converter="converters.AddressConverter" ></h:inputText> <br/>
-
+                *PhoneNumber: <h:inputText value="#{userController.newClient.phoneNumber}" required="true"  ></h:inputText> <br/>
 
                 <h:commandButton value="Confirm" action="#{userController.processNewClient}"
                                  immediate="false"></h:commandButton>
