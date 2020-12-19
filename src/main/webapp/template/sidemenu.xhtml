@@ -12,24 +12,25 @@
                 <h2>Menu</h2>
                 <ul>
                     <li class="menu-item">
-                        <h:outputLink value="#">
-                            <h:outputLabel value="Login"/>
-                        </h:outputLink>
+                        <h:link outcome="#" value="Login"/>
                     </li>
                     <li class="menu-item">
-                        <h:outputLink value="#{goodController.refresh()}">
-                            <h:outputLabel value="Goods"/>
-                        </h:outputLink>
+                        <h:link outcome="#{goodController.refresh()}" value="Goods"/>
+<!--                        <h:outputLink value="#{goodController.refresh()}">-->
+<!--                            <h:outputLabel value="Goods"/>-->
+<!--                        </h:outputLink>-->
                     </li>
                     <li class="menu-item">
-                        <h:outputLink value="#{orderController.refresh()}">
-                            <h:outputLabel value="Orders"/>
-                        </h:outputLink>
+                        <h:link outcome="#{orderController.refresh()}" value="Orders"/>
+<!--                        <h:outputLink value="#{orderController.refresh()}">-->
+<!--                            <h:outputLabel value="Orders"/>-->
+<!--                        </h:outputLink>-->
                     </li>
                     <li class="menu-item">
-                        <h:outputLink value="#{userController.refresh()}">
-                            <h:outputLabel value="Users"/>
-                        </h:outputLink>
+                        <h:link outcome="#{userController.refresh()}" value="Users"/>
+<!--                        <h:outputLink value="#{userController.refresh()}">-->
+<!--                            <h:outputLabel value="Users"/>-->
+<!--                        </h:outputLink>-->
                     </li>
                 </ul>
             </div>
