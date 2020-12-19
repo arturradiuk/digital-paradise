@@ -38,6 +38,7 @@
                 *Name: <h:inputText value="#{userController.currentClient.name}" required="true"></h:inputText> <br/>
                 *Address: <h:inputText value="#{userController.currentClient.address}" required="true"
                                        converter="converters.AddressConverter"></h:inputText> <br/>
+                *PhoneNumber: <h:inputText value="#{userController.currentClient.phoneNumber}" required="true"  ></h:inputText> <br/>
                 <h:commandButton value="Update" action="#{userController.updateClient}"
                                  immediate="false"></h:commandButton>
             </h:form>        </ui:define>

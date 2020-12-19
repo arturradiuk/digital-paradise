@@ -19,46 +19,49 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
 
     private List<User> people;
 
-    public UserRepository(List<User> people) {
-        this.people = people;
-    }
-
     @Override
-    public void update(UUID id, User element) throws RepositoryException {
-        for (int i = 0; i < people.size(); i++) {
-            if (id.equals(people.get(i).getUuid())) {
-                this.people.set(i, element);
+    public void update(UUID id, User element) {
+        synchronized (this.people) {
+            for (int i = 0; i < people.size(); i++) {
+                if (id.equals(people.get(i).getUuid())) {
+                    this.people.set(i, element);
+                }
             }
         }
     }
 
     @Override
     public void add(User element) throws RepositoryException {
-        for (User user : people) {
-            if (user.equals(element))
-                throw new RepositoryException("This client already exists");
+        synchronized (this.people) {
+            for (User user : people) {
+                if (user.equals(element))
+                    throw new RepositoryException("This client already exists");
+            }
+            this.people.add(element);
         }
-        this.people.add(element);
     }
 
     @Override
     public void remove(User element) throws RepositoryException {
-        for (User user : people) {
-            if (user.equals(element)) {
-                this.people.remove(element);
+        synchronized (this.people) {
+            for (User user : people) {
+                if (user.equals(element)) {
+                    this.people.remove(element);
+                }
             }
+            throw new RepositoryException("This client doesn't exist");
         }
-        throw new RepositoryException("This client doesn't exist");
     }
 
     @Override
     public List<User> getAll() {
-        return new CopyOnWriteArrayList<>(people);
+        synchronized (this.people) {
+            return new CopyOnWriteArrayList<>(people);
+        }
     }
 
 
     @PostConstruct
-//     private void initPeople() {
     public void initPeople() {
         DataFiller dataFiller = new StaticUserFiller();
         this.people = dataFiller.Fill();

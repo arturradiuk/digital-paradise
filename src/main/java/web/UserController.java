@@ -63,6 +63,10 @@ public class UserController implements Serializable {
         this.initCurrentUsers();
         return "AllUsers";
     }
+    public void changeClientActivity(User user)
+    {
+        this.userManager.getClientByUUID(user.getUuid()).changeActivity();
+    }
 
 
     @PostConstruct

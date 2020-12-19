@@ -1,6 +1,6 @@
 package model.entities;
 
-import controller.exceptions.ClientException;
+import controller.exceptions.UserException;
 import lombok.*;
 
 import java.util.UUID;
@@ -17,14 +17,18 @@ public abstract class User {
 
     private Address address;
 
+    public void changeActivity() {
 
-    public User(String email, String name, Address address) throws ClientException {
+    }
+
+
+    public User(String email, String name, Address address) throws UserException {
         if (email.equals(""))
-            throw new ClientException("Email field is not set");
+            throw new UserException("Email field is not set");
         if (name.equals(""))
-            throw new ClientException("Last name field is not set");
+            throw new UserException("Last name field is not set");
         if (address == null)
-            throw new ClientException("Address is not set");
+            throw new UserException("Address is not set");
 
         this.email = email;
         this.name = name;
