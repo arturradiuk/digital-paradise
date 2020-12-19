@@ -1,9 +1,6 @@
 package fillers;
 
-import controller.exceptions.AddressException;
-import controller.exceptions.AdminException;
-import controller.exceptions.ClientException;
-import controller.exceptions.EmployeeException;
+import controller.exceptions.*;
 import model.clients.Administrator;
 import model.clients.Client;
 import model.clients.Employee;
@@ -67,7 +64,7 @@ public class StaticUserFiller implements DataFiller { // todo rename to people f
             people.add(temp);
 
 
-        } catch (ClientException | AdminException | EmployeeException e) {
+        } catch (ClientException | AdminException | EmployeeException | UserException e) {
             e.printStackTrace();
         }
         return people;

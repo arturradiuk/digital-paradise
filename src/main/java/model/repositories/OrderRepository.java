@@ -20,10 +20,12 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
     private List<Order> orders;
 
     @Override
-    public void update(UUID id, Order element) throws RepositoryException {
-        for (int i = 0; i < orders.size(); i++) {
-            if (id.equals(orders.get(i).getUuid())) {
-                this.orders.set(i, element);
+    public void update(UUID id, Order element) {
+        synchronized (this.orders) {
+            for (int i = 0; i < orders.size(); i++) {
+                if (id.equals(orders.get(i).getUuid())) {
+                    this.orders.set(i, element);
+                }
             }
         }
     }
@@ -41,24 +43,30 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
 
     @Override
     public void add(Order element) throws RepositoryException {
-        for (Order order : orders) {
-            if (order.equals(element))
-                throw new RepositoryException("This order already exists");
+        synchronized (this.orders) {
+            for (Order order : orders) {
+                if (order.equals(element))
+                    throw new RepositoryException("This order already exists");
+            }
+            this.orders.add(element);
         }
-        this.orders.add(element);
     }
 
     @Override
     public void remove(Order element) throws RepositoryException {
-        if(!this.orders.remove(element)){
+        synchronized (this.orders) {
+            if (!this.orders.remove(element)) {
 
-            throw new RepositoryException("This order doesn't exist");
+                throw new RepositoryException("This order doesn't exist");
+            }
         }
     }
 
     @Override
     public List<Order> getAll() {
-        return new CopyOnWriteArrayList<>(orders);
+        synchronized (this.orders) {
+            return new CopyOnWriteArrayList<>(orders);
+        }
     }
 
     @PostConstruct

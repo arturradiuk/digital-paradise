@@ -3,6 +3,7 @@ package model.clients;
 import controller.exceptions.AdminException;
 import controller.exceptions.ClientException;
 import controller.exceptions.EmployeeException;
+import controller.exceptions.UserException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ public class Employee extends User {
     private Float earnings;
 
 
-    public Employee(String email, String name, Address address, Float earnings) throws ClientException, EmployeeException {
+    public Employee(String email, String name, Address address, Float earnings) throws EmployeeException, UserException {
         super(email, name, address);
         if (earnings == null)
             throw new EmployeeException("HeadAdmin is not set");

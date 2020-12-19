@@ -23,32 +23,40 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
 
     @Override
     public void add(Good element) throws RepositoryException {
+        synchronized (this.goods) {
+            if (this.goods.contains(element)) {
 
-        if (this.goods.contains(element)) {
+                throw new RepositoryException("This good already exists");
+            }
 
-            throw new RepositoryException("This good already exists");
+            this.goods.add(element);
         }
-
-        this.goods.add(element);
     }
 
     @Override
     public void remove(Good element) throws RepositoryException {
-        if (!this.goods.remove(element)) {
-            throw new RepositoryException("This good doesn't exist");
+        synchronized (this.goods) {
+            if (!this.goods.remove(element)) {
+
+                throw new RepositoryException("This good doesn't exist");
+            }
         }
     }
 
     @Override
     public List<Good> getAll() {
-        return new CopyOnWriteArrayList<>(goods);
+        synchronized (this.goods) {
+            return new CopyOnWriteArrayList<>(goods);
+        }
     }
 
     @Override
     public void update(UUID id, Good element) throws RepositoryException {
-        for (int i = 0; i < goods.size(); i++) {
-            if (id.equals(goods.get(i).getUuid())) {
-                this.goods.set(i, element);
+        synchronized (this.goods) {
+            for (int i = 0; i < goods.size(); i++) {
+                if (id.equals(goods.get(i).getUuid())) {
+                    this.goods.set(i, element);
+                }
             }
         }
     }
