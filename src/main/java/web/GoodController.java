@@ -2,7 +2,14 @@ package web;
 
 import controller.managers.GoodManager;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import model.clients.Administrator;
+import model.clients.Client;
+import model.clients.Employee;
 import model.entities.Good;
+import model.entities.Order;
+import model.entities.User;
 import model.goods.Laptop;
 import model.goods.PC;
 
@@ -12,6 +19,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 @Data
@@ -20,6 +29,10 @@ import java.util.List;
 public class GoodController implements Serializable {
     @Inject
     private GoodManager goodManager;
+
+    @Getter
+    @Setter
+    private String uuid;
 
     private Good newLaptop = new Laptop();
     private Good newPC = new PC();
@@ -103,6 +116,25 @@ public class GoodController implements Serializable {
 
     public List<Good> getCurrentPCs() {
         return this.currentPCs;
+    }
+
+    public String findGoodById() {
+        this.initCurrentGoodsById();
+        return "FindById";
+    }
+
+    private void initCurrentGoodsById() {
+//        User u = this.userManager.getUserByUUID(UUID.fromString(this.uuid));
+        Good g = this.goodManager.getGoodByUUID(UUID.fromString(this.uuid));
+        if (g instanceof Laptop) {
+            this.currentLaptops = new CopyOnWriteArrayList<>();
+            this.currentLaptops.add(g);
+        }
+        if (g instanceof PC) {
+            this.currentPCs = new CopyOnWriteArrayList<>();
+            this.currentPCs.add(g);
+        }
+
     }
 
 }

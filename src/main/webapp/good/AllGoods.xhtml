@@ -17,6 +17,11 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/good/allgoods_content.css"/>
 
+            <h:form>
+                Give Id: <h:inputText value="#{goodController.uuid}" required="true"/>
+                <h:commandButton value="FindById" action="#{goodController.findGoodById()}"/>
+            </h:form>
+
             <h:form id="form">
                 <p:growl id="msgs" showDetail="true"/>
 
@@ -66,7 +71,7 @@
 
                         <p:column>
                             <h:commandButton value="Delete"
-                                             action="#{goodController.removeGood(laptop)}"></h:commandButton>
+                                             action="#{goodController.removeGood(laptop)}"/>
                         </p:column>
 
                         <p:column>
@@ -76,8 +81,8 @@
 
                     </p:column>
                 </p:dataTable>
-                <h:commandButton value="Add Laptop" action="AddLaptop"></h:commandButton>
-                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>
+                <h:commandButton value="Add Laptop" action="AddLaptop"/>
+<!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
             </h:form>
 
 

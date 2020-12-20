@@ -41,13 +41,8 @@ public class UserManager {
         }
     }
 
-    public User getClientByLogin(String email) {
-        User user = this.userRepository.getAll().stream()
-                .filter(c -> c.getEmail().equals(email)).findFirst().orElse(null);
-        return user;
-    }
 
-    public User getClientByUUID(UUID uuid) {
+    public User getUserByUUID(UUID uuid) {
         User user = this.userRepository.getAll().stream()
                 .filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
         return user;

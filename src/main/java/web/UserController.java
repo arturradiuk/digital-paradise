@@ -1,8 +1,9 @@
 package web;
 
-import controller.exceptions.RepositoryException;
 import controller.managers.UserManager;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import model.clients.Administrator;
 import model.clients.Client;
 import model.clients.Employee;
@@ -10,10 +11,14 @@ import model.entities.User;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Data
 @Named
@@ -21,6 +26,10 @@ import java.util.List;
 public class UserController implements Serializable {
     @Inject
     private UserManager userManager;
+
+    @Setter
+    @Getter
+    private String uuid = new String();
 
     private User newAdministrator = new Administrator();
     private User newEmployee = new Employee();
@@ -63,9 +72,9 @@ public class UserController implements Serializable {
         this.initCurrentUsers();
         return "AllUsers";
     }
-    public void changeClientActivity(User user)
-    {
-        this.userManager.getClientByUUID(user.getUuid()).changeActivity();
+
+    public void changeClientActivity(User user) {
+        this.userManager.getUserByUUID(user.getUuid()).changeActivity();
     }
 
 
@@ -83,9 +92,8 @@ public class UserController implements Serializable {
     }
 
     public String refresh() {
-        System.out.println("in user refresh");
+        System.out.println("hello from refresh");
         this.initCurrentUsers();
-//        return FacesContext.getCurrentInstance().getViewRoot().getViewId() + "?faces-redirect=true";
         return "AllUsers";
     }
 
@@ -104,21 +112,45 @@ public class UserController implements Serializable {
         return "UpdateClient";
     }
 
-    public String updateAdministrator(){
-        this.userManager.updateUser(this.currentAdministrator.getUuid(),this.currentAdministrator);
+    public String updateAdministrator() {
+        this.userManager.updateUser(this.currentAdministrator.getUuid(), this.currentAdministrator);
         this.initCurrentUsers();
         return "AllUsers";
     }
 
-    public String updateEmployee(){
-        this.userManager.updateUser(this.currentEmployee.getUuid(),this.currentEmployee);
+    public String updateEmployee() {
+        this.userManager.updateUser(this.currentEmployee.getUuid(), this.currentEmployee);
         this.initCurrentUsers();
         return "AllUsers";
     }
-    public String updateClient(){
-        this.userManager.updateUser(this.currentClient.getUuid(),this.currentClient);
+
+    public String updateClient() {
+        this.userManager.updateUser(this.currentClient.getUuid(), this.currentClient);
         this.initCurrentUsers();
         return "AllUsers";
+    }
+
+    public String findUserById() {
+        this.initCurrentUsersById();
+        return "FindById";
+    }
+
+    private void initCurrentUsersById() {
+        User u = this.userManager.getUserByUUID(UUID.fromString(this.uuid));
+
+        if (u instanceof Administrator) {
+            this.currentAdministrators = new CopyOnWriteArrayList<>();
+            this.currentAdministrators.add(u);
+        }
+        if (u instanceof Client) {
+            this.currentClients = new CopyOnWriteArrayList<>();
+            this.currentClients.add(u);
+        }
+        if (u instanceof Employee) {
+            this.currentEmployees = new CopyOnWriteArrayList<>();
+            this.currentEmployees.add(u);
+        }
+
     }
 
 }

@@ -13,24 +13,14 @@
 
     <ui:composition template="/template/common.xhtml">
 
-        <ui:define name="sidemenu">
-            <h:outputStylesheet name="css/common/sidemenu.css"/>
-
-            <p class="temp_side_menu">Side menu: </p>
-
-            <ul>
-                <li><h:link outcome="Login"> Login </h:link></li>
-
-                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
-
-                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
-
-                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>
-            </ul>
-        </ui:define>
-
         <ui:define name="content">
             <h:outputStylesheet name="css/user/allusers_content.css"/>
+
+            <h:form>
+                Give Id: <h:inputText value="#{userController.uuid}" required="true"/>
+                <h:commandButton value="FindById" action="#{userController.findUserById()}"/>
+            </h:form>
+
 
             <h3 class="admin_h3">Administrators:</h3>
             <h:form>
@@ -72,7 +62,6 @@
                     </h:column>
                 </h:dataTable>
                 <h:commandButton value="Add" action="AddAdministrator"/>
-                <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
             </h:form>
 
             <br/>
@@ -121,8 +110,8 @@
 
                 </h:dataTable>
                 <h:commandButton value="Add" action="AddEmployee"/>
-                <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
             </h:form>
+
 
             <br/>
             <br/>
@@ -177,13 +166,11 @@
                     </h:column>
                 </h:dataTable>
                 <h:commandButton value="Add" action="AddClient"/>
-                <h:commandButton value="Refresh" action="#{userController.refresh()}"/>
             </h:form>
 
         </ui:define>
+
     </ui:composition>
-
-
 
 
 </h:body>

@@ -24,6 +24,20 @@
     margin-bottom: 30px;
 }
 
+/*.menu_class {*/
+/*    color: #ffffff;*/
+/*    text-transform: uppercase;*/
+/*    text-align: center;*/
+/*    margin-bottom: 30px;*/
+/*}*/
+
+.wrapper .sidebar h2 {
+    color: #ffffff;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .wrapper .sidebar ul li {
     padding: 15px;
     border-bottom: 1px solid rgba(0,0,0,0.05);

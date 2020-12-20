@@ -7,34 +7,35 @@
 
 <h:body>
     <ui:composition>
+
         <div class="wrapper">
             <div class="sidebar">
+
                 <h2>Menu</h2>
+
                 <ul>
                     <li class="menu-item">
                         <h:link outcome="#" value="Login"/>
                     </li>
                     <li class="menu-item">
-                        <h:link outcome="#{goodController.refresh()}" value="Goods"/>
-<!--                        <h:outputLink value="#{goodController.refresh()}">-->
-<!--                            <h:outputLabel value="Goods"/>-->
-<!--                        </h:outputLink>-->
+                        <h:form>
+                            <h:commandLink  action="#{goodController.refresh()}" value="Goods"/>
+                        </h:form>
                     </li>
                     <li class="menu-item">
-                        <h:link outcome="#{orderController.refresh()}" value="Orders"/>
-<!--                        <h:outputLink value="#{orderController.refresh()}">-->
-<!--                            <h:outputLabel value="Orders"/>-->
-<!--                        </h:outputLink>-->
+                        <h:form>
+                            <h:commandLink  action="#{orderController.refresh()}" value="Orders"/>
+                        </h:form>
                     </li>
                     <li class="menu-item">
-                        <h:link outcome="#{userController.refresh()}" value="Users"/>
-<!--                        <h:outputLink value="#{userController.refresh()}">-->
-<!--                            <h:outputLabel value="Users"/>-->
-<!--                        </h:outputLink>-->
+                        <h:form>
+                            <h:commandLink  action="#{userController.refresh()}" value="Users"/>
+                        </h:form>
                     </li>
                 </ul>
             </div>
         </div>
+
     </ui:composition>
 </h:body>
 </html>
