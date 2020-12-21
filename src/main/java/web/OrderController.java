@@ -7,9 +7,7 @@ import controller.managers.UserManager;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import model.clients.Administrator;
 import model.clients.Client;
-import model.clients.Employee;
 import model.entities.Good;
 import model.entities.Order;
 import model.entities.User;
@@ -38,7 +36,11 @@ public class OrderController implements Serializable {
 
     @Getter
     @Setter
-    private String uuid = new String();
+    private String orderUuid = new String();
+
+    @Getter
+    @Setter
+    private String userUuid = new String();
 
 
     private Order newOrder = new Order();
@@ -98,10 +100,23 @@ public class OrderController implements Serializable {
         return "FindById";
     }
 
+
     private void initCurrentOrdersById() {
-        Order o = this.orderManager.getOrderByUUID(UUID.fromString(this.uuid));
+        Order o = this.orderManager.getOrderByUUID(UUID.fromString(this.orderUuid));
         this.currentOrders = new CopyOnWriteArrayList<>();
         this.currentOrders.add(o);
     }
+
+    public String findOrdersForUserById() {
+        this.initCurrentOrdersByUserId();
+        return "FindById";
+    }
+
+    private void initCurrentOrdersByUserId() {
+        User user = this.userManager.getUserByUUID(UUID.fromString(userUuid));
+        System.out.println(user.toString());
+        this.currentOrders = this.orderManager.getAllOrdersForTheUser(user);
+    }
+
 
 }
