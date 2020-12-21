@@ -49,7 +49,6 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
     public void remove(Order element) throws RepositoryException {
         synchronized (this.orders) {
             if (!this.orders.remove(element)) {
-
                 throw new OrderRepositoryException(OrderRepositoryException.NOT_EXIST_ORDER);
             }
         }

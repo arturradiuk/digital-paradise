@@ -3,11 +3,14 @@ package model.goods;
 import controller.exceptions.good.ComputerException;
 import controller.exceptions.good.GoodException;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import model.entities.Good;
 
+import java.util.Objects;
+
 @Data
-//@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public abstract class Computer extends Good {
     private int ram;
@@ -33,6 +36,7 @@ public abstract class Computer extends Good {
     public double getBasePrice() {
         return super.getBasePrice() + (this.ram / 1024.0) * 50 + (ssdCapacity / 1024.0) * 150;
     }
+
 
 
 }

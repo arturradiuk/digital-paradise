@@ -100,14 +100,8 @@ public class OrderController implements Serializable {
     }
 
 
-    public String removeOrder(Order order) {
-        try {
-            this.orderManager.remove(order);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-            return ""; // todo redirect to the error page
-
-        }
+    public String removeOrder(Order order) throws RepositoryException {
+        this.orderManager.remove(order);
         this.initCurrentOrders();
         return "AllOrders";
     }
