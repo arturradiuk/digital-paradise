@@ -15,10 +15,23 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/order/allorders_content.css"/>
 
-            <h:form>
-                Give Id: <h:inputText value="#{orderController.uuid}" required="true"/>
-                <h:commandButton value="FindById" action="#{orderController.findOrderById()}"/>
-            </h:form>
+            <span>
+                <span>
+                    <h:form>
+                        Give Id of the Order: <h:inputText value="#{orderController.orderUuid}" required="true"/>
+                        <h:commandButton value="FindOrderById" action="#{orderController.findOrderById()}"/>
+                </h:form>
+                </span>
+
+                <span>
+                        <h:form>
+                        Give Id of the User: <h:inputText value="#{orderController.userUuid}" required="true"/>
+                        <h:commandButton value="FindUserOrdersById"
+                                         action="#{orderController.findOrdersForUserById()}"/>
+                </h:form>
+                </span>
+            </span>
+
 
             <h3 class="order_h3">Orders:</h3>
             <h:form>
@@ -63,6 +76,11 @@
                             <h:commandButton value="Delete"
                                              action="#{orderController.removeOrder(orderIterator)}"></h:commandButton>
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">Return</f:facet>
+                            <h:commandButton value="Return"
+                                             action="#{orderController.returnOrder(orderIterator)}"></h:commandButton>
+                        </h:column>
 
                         <!--                todo should be implemented-->
                         <!--                <h:column>-->
@@ -82,9 +100,6 @@
 
         </ui:define>
     </ui:composition>
-
-
-
 
 
 </h:body>

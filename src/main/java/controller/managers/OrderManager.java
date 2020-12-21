@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Named
 @ApplicationScoped
@@ -56,15 +57,18 @@ public class OrderManager {
     }
 
     public List<Order> getAllOrders() {
-        List<Order> orders= this.orderRepository.getAll();
+        List<Order> orders = this.orderRepository.getAll();
         return orders;
     }
 
-    public List<Order> getAllOrdersForTheClient(User user) {
-        List<Order> orders = new ArrayList<>();
+    public List<Order> getAllOrdersForTheUser(User user) {
+        List<Order> orders = new CopyOnWriteArrayList<>();
         for (Order order : this.orderRepository.getAll()) {
-            if (order.getClient().equals(user)) {
+            System.out.println(order);
+//            if (order.getClient().equals(user)) {
+            if (order.getClient().getUuid().equals(user.getUuid())) {
                 orders.add(order);
+                System.out.println(order);
             }
         }
         return orders;
@@ -84,8 +88,6 @@ public class OrderManager {
     public Order createOrder(List<Good> goods, Client user) throws OrderException {
         return new Order(LocalDateTime.now(), goods, user);
     }
-
-
 
 
 }

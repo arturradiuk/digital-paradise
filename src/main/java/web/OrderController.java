@@ -7,9 +7,7 @@ import controller.managers.UserManager;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import model.clients.Administrator;
 import model.clients.Client;
-import model.clients.Employee;
 import model.entities.Good;
 import model.entities.Order;
 import model.entities.User;
@@ -31,14 +29,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class OrderController implements Serializable {
     @Inject
     private OrderManager orderManager;
+
     @Inject
     private UserManager userManager;
+
     @Inject
     private GoodManager goodManager;
 
     @Getter
     @Setter
-    private String uuid = new String();
+    private String orderUuid = new String();
+
+    @Getter
+    @Setter
+    private String userUuid = new String();
 
 
     private Order newOrder = new Order();
@@ -58,8 +62,9 @@ public class OrderController implements Serializable {
 
         for (int i = 0; i < this.goodsUuid.size(); i++) {
             goods.add(this.goodManager.getGoodByUUID(this.goodsUuid.get(i)));
+            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
         }
-//        System.out.println(Arrays.toString(goods.toArray()));
+
         try {
             this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
         } catch (OrderException e) {
@@ -69,6 +74,15 @@ public class OrderController implements Serializable {
         this.clientUuid = null;
         this.goodsUuid = null;
         this.initCurrentOrders();
+        return "AllOrders";
+    }
+
+    public String returnOrder(Order order){
+        this.orderManager.removeOrder(order);
+        this.initCurrentOrders();
+        for(Good g: order.getGoods()){
+            this.goodManager.addGood(g);
+        }
         return "AllOrders";
     }
 
@@ -98,10 +112,23 @@ public class OrderController implements Serializable {
         return "FindById";
     }
 
+
     private void initCurrentOrdersById() {
-        Order o = this.orderManager.getOrderByUUID(UUID.fromString(this.uuid));
+        Order o = this.orderManager.getOrderByUUID(UUID.fromString(this.orderUuid));
         this.currentOrders = new CopyOnWriteArrayList<>();
         this.currentOrders.add(o);
     }
+
+    public String findOrdersForUserById() {
+        this.initCurrentOrdersByUserId();
+        return "FindById";
+    }
+
+    private void initCurrentOrdersByUserId() {
+        User user = this.userManager.getUserByUUID(UUID.fromString(userUuid));
+        System.out.println(user.toString());
+        this.currentOrders = this.orderManager.getAllOrdersForTheUser(user);
+    }
+
 
 }
