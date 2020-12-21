@@ -8,7 +8,7 @@
     <application>
         <locale-config>
             <default-locale>en</default-locale>
-            <supported-locale>fr</supported-locale>
+            <supported-locale>pl</supported-locale>
         </locale-config>
 
         <resource-bundle>
@@ -225,7 +225,7 @@
     </navigation-rule>
 
 
-<!--        -->
+    <!--        -->
     <navigation-rule>
         <from-view-id>/good/AllGoods.xhtml</from-view-id>
         <navigation-case>

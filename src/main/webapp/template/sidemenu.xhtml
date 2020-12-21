@@ -3,7 +3,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:body>
     <ui:composition>
@@ -15,24 +16,40 @@
 
                 <ul>
                     <li class="menu-item">
-                        <h:link outcome="#" value="Login"/>
+                        <h:link outcome="#" value="#{msg['login']}"/>
                     </li>
                     <li class="menu-item">
                         <h:form>
-                            <h:commandLink  action="#{goodController.refresh()}" value="Goods"/>
+                            <h:commandLink action="#{goodController.refresh()}" value="#{msg['goods']}"/>
                         </h:form>
                     </li>
                     <li class="menu-item">
                         <h:form>
-                            <h:commandLink  action="#{orderController.refresh()}" value="Orders"/>
+                            <h:commandLink action="#{orderController.refresh()}" value="#{msg['orders']}"/>
                         </h:form>
                     </li>
                     <li class="menu-item">
                         <h:form>
-                            <h:commandLink  action="#{userController.refresh()}" value="Users"/>
+                            <h:commandLink action="#{userController.refresh()}" value="#{msg['users']}"/>
                         </h:form>
                     </li>
                 </ul>
+
+                <h:form>
+
+
+                    <h:panelGrid columns="2">
+
+                        Language :
+                        <h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+                                         valueChangeListener="#{language.countryLocaleCodeChanged}">
+                            <f:selectItems value="#{language.countriesInMap}"/>
+                        </h:selectOneMenu>
+
+                    </h:panelGrid>
+
+                </h:form>
+
             </div>
         </div>
 

@@ -23,6 +23,7 @@ public class LanguageBean implements Serializable {
         countries = new LinkedHashMap<String, Object>();
         countries.put("English", Locale.ENGLISH); //label, value
         countries.put("Polish", Locale.forLanguageTag("pl-PL"));
+
     }
 
     public Map<String, Object> getCountriesInMap() {

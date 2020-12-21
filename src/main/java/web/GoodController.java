@@ -104,7 +104,7 @@ public class GoodController implements Serializable {
         this.currentPCs = this.goodManager.getAllCurrentPCs();
     }
 
-    public String refresh(){
+    public String refresh() {
         System.out.println("in good refresh");
         this.initCurrentGoods();
         return "AllGoods";
