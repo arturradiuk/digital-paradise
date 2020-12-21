@@ -110,15 +110,8 @@ public class GoodController implements Serializable {
     }
 
 
-    public String removeGood(Good good) {
-        try {
-            this.goodManager.remove(good);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-            return ""; // todo redirect to the error page
-
-        }
-
+    public String removeGood(Good good) throws RepositoryException {
+        this.goodManager.remove(good);
         this.initCurrentGoods();
         return "AllGoods";
     }
@@ -130,7 +123,6 @@ public class GoodController implements Serializable {
     }
 
     public String refresh() {
-        System.out.println("in good refresh");
         this.initCurrentGoods();
         return "AllGoods";
     }

@@ -25,62 +25,63 @@
             <h:form id="form">
                 <p:growl id="msgs" showDetail="true"/>
 
-                <p:dataTable id="laptops" var="laptop" value="#{goodController.currentLaptops}" editable="false"
+                <p:dataTable id="laptops" var="laptopIterator" value="#{goodController.currentLaptops}" editable="false"
                              style="margin-bottom:20px">
                     <f:facet name="header">
                         Laptops
                     </f:facet>
 
                     <p:column headerText="UUID">
-                        <h:outputText value="#{laptop.uuid}"/>
+                        <h:outputText value="#{laptopIterator.uuid}"/>
                     </p:column>
 
                     <p:column headerText="Product">
-                        <h:outputText value="#{laptop.goodName}"/>
+                        <h:outputText value="#{laptopIterator.goodName}"/>
                     </p:column>
 
                     <p:column headerText="Base price">
-                        <h:outputText value="#{laptop.basePrice}"/>
+                        <h:outputText value="#{laptopIterator.basePrice}"/>
                     </p:column>
 
                     <p:column headerText="RAM">
-                        <h:outputText value="#{laptop.ram}"/>
+                        <h:outputText value="#{laptopIterator.ram}"/>
                     </p:column>
 
                     <p:column headerText="SSD">
-                        <h:outputText value="#{laptop.ssdCapacity}"/>
+                        <h:outputText value="#{laptopIterator.ssdCapacity}"/>
                     </p:column>
 
                     <p:column headerText="Screen size">
-                        <h:outputText value="#{laptop.screenSize}"/>
+                        <h:outputText value="#{laptopIterator.screenSize}"/>
                     </p:column>
 
                     <p:column headerText="Camera">
-                        <h:outputText value="#{laptop.hasCamera}"/>
+                        <h:outputText value="#{laptopIterator.hasCamera}"/>
                     </p:column>
 
                     <p:column headerText="USB">
-                        <h:outputText value="#{laptop.usbAmount}"/>
+                        <h:outputText value="#{laptopIterator.usbAmount}"/>
                     </p:column>
 
                     <p:column headerText="Sold">
-                        <h:outputText value="#{laptop.sold}"/>
+                        <h:outputText value="#{laptopIterator.sold}"/>
                     </p:column>
 
                     <p:column headerText="Count">
-                        <h:outputText value="#{laptop.count}"/>
+                        <h:outputText value="#{laptopIterator.count}"/>
                     </p:column>
 
                     <p:column headerText="Actions">
 
                         <p:column>
-                            <h:commandButton value="Delete"
-                                             action="#{goodController.removeGood(laptop)}"/>
+                            <f:facet name="header">Delete</f:facet>
+                            <h:commandButton action="#{goodController.removeGood(laptopIterator)}"
+                                             rendered="true" value="Delete"/>
+
                         </p:column>
 
                         <p:column>
-                            <h:commandButton value="Update"
-                                             action="#{goodController.seeLaptop(laptop)}"/>
+                            <h:commandButton value="Update" action="#{goodController.seeLaptop(laptopIterator)}"/>
                         </p:column>
 
                     </p:column>
@@ -142,8 +143,6 @@
             <!--                        <f:facet name="header">Actions</f:facet>-->
             <!--                        <h:column>-->
             <!--                            <f:facet name="header">Delete</f:facet>-->
-            <!--                            <h:commandButton value="Delete"-->
-            <!--                                             action="#{goodController.removeGood(laptopIterator)}"></h:commandButton>-->
             <!--                        </h:column>-->
 
             <!--                        <h:column>-->
@@ -200,8 +199,6 @@
             <!--                        <f:facet name="header">Actions</f:facet>-->
             <!--                        <h:column>-->
             <!--                            <f:facet name="header">Delete</f:facet>-->
-            <!--                            <h:commandButton value="Delete"-->
-            <!--                                             action="#{goodController.removeGood(pcIterator)}"></h:commandButton>-->
             <!--                        </h:column>-->
 
             <!--                        <h:column>-->
