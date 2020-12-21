@@ -24,23 +24,30 @@ public class StaticOrderFiller implements DataFiller {
         GoodRepository goodRepository = new GoodRepository();
         goodRepository.initGoods();
 
-        List<Good> laptopLenovo = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("1234567890_good").getBytes()))).collect(Collectors.toList());
-        Good laptopApple = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("2234567890_good").getBytes()))).collect(Collectors.toList()).get(0);
-        Good laptopDell = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("4234567890_good").getBytes()))).collect(Collectors.toList()).get(0);
-        Good laptopHP = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("3234567890_good").getBytes()))).collect(Collectors.toList()).get(0);
+        List<Good> laptopLenovo = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("14a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList());
+        Good laptopApple = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("24a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
+        Good laptopDell = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("34a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
+        Good laptopHP = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("44a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
 
         List<Good> tolaGoods = new ArrayList<>();
         tolaGoods.add(laptopApple);
         tolaGoods.add(laptopDell);
 
-        Optional<User> tola = userRepository.getAll().stream().findAny().filter(good -> good.getUuid().equals(UUID.nameUUIDFromBytes(new String("1234567890_person").getBytes())));
-        System.out.println(userRepository.toString());
+        User tola = null;
+        for (User u : userRepository.getAll()) {
+            if (u.getUuid().equals(UUID.fromString("4d6b6bd5-be82-3a41-87ac-5cd1b3b24756"))) {
+                tola = u;
+            }
+
+        }
+//        Optional<User> tola = userRepository.getAll().stream().findAny().filter(good -> good.getUuid().equals(UUID.fromString("4d6b6bd5-be82-3a41-87ac-5cd1b3b24756")));
+
         try {
-            orders.add(new Order(LocalDateTime.now(),laptopLenovo,(Client)tola.get()));
-            orders.add(new Order(LocalDateTime.now(),tolaGoods,(Client)tola.get()));
+            orders.add(new Order(LocalDateTime.now(), laptopLenovo, (Client) tola));
+            orders.add(new Order(LocalDateTime.now(), tolaGoods, (Client) tola));
             tolaGoods = new ArrayList<>();
             tolaGoods.add(laptopHP);
-            orders.add(new Order(LocalDateTime.now(),tolaGoods,(Client)tola.get()));
+            orders.add(new Order(LocalDateTime.now(), tolaGoods, (Client) tola));
         } catch (OrderException e) {
             e.printStackTrace();
         }

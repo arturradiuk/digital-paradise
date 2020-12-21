@@ -29,8 +29,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class OrderController implements Serializable {
     @Inject
     private OrderManager orderManager;
+
     @Inject
     private UserManager userManager;
+
     @Inject
     private GoodManager goodManager;
 
@@ -60,8 +62,9 @@ public class OrderController implements Serializable {
 
         for (int i = 0; i < this.goodsUuid.size(); i++) {
             goods.add(this.goodManager.getGoodByUUID(this.goodsUuid.get(i)));
+            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
         }
-//        System.out.println(Arrays.toString(goods.toArray()));
+
         try {
             this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
         } catch (OrderException e) {
@@ -71,6 +74,15 @@ public class OrderController implements Serializable {
         this.clientUuid = null;
         this.goodsUuid = null;
         this.initCurrentOrders();
+        return "AllOrders";
+    }
+
+    public String returnOrder(Order order){
+        this.orderManager.removeOrder(order);
+        this.initCurrentOrders();
+        for(Good g: order.getGoods()){
+            this.goodManager.addGood(g);
+        }
         return "AllOrders";
     }
 
