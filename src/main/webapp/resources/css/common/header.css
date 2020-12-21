@@ -10,6 +10,7 @@
     height: 80px;
     display: block;
     background-color: #ff4d00;
+    /*z-index: 1;*/
 }
 
 .inner-header {

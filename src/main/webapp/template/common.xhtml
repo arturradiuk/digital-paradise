@@ -15,18 +15,20 @@
 
 <h:body>
 
-    <ui:insert name="header">
-        <ui:include src="header.xhtml"/>
-    </ui:insert>
+    <div class="header-wrapper">
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+    </div>
 
-    
+
     <div class="content-wrapper">
         <div class="sidemenu">
             <ui:insert name="sidemenu">
                 <ui:include src="sidemenu.xhtml"/>
             </ui:insert>
         </div>
-        
+
         <div class="content">
             <ui:insert name="content">
                 <ui:include src="contents.xhtml"/>
@@ -39,6 +41,6 @@
             <ui:include src="footer.xhtml"/>
         </ui:insert>
     </div>
-    
+
 </h:body>
 </html>
