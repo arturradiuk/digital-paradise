@@ -4,7 +4,9 @@ import controller.exceptions.user.AdminException;
 import controller.exceptions.user.UserException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import model.entities.Address;
 import model.entities.User;
@@ -14,14 +16,8 @@ import model.entities.User;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Administrator extends User {
-    public Boolean getHeadAdmin() {
-        return isHeadAdmin;
-    }
-
-    public void setHeadAdmin(Boolean headAdmin) {
-        isHeadAdmin = headAdmin;
-    }
-
+    
+    @Getter @Setter
     private Boolean isHeadAdmin;
 
     public Administrator(String email, String name, Address address, Boolean isHeadAdmin) throws UserException {

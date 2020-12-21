@@ -17,7 +17,7 @@ public class StaticUserFiller implements DataFiller { // todo rename to people f
         List<User> people = new CopyOnWriteArrayList<>();
         Address address = null;
         try {
-            address = new Address("Street", "number");
+            address = new Address("High Street", "32");
         } catch (AddressException e) {
             e.printStackTrace();
         }

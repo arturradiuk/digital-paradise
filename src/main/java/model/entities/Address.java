@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Address {
-
+    
     private String street;
 
     private String number;
@@ -17,7 +17,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(String number, String street) throws AddressException {
+    public Address(String street, String number) throws AddressException {
 
         if (street == null || number == null)
             throw new AddressException(AddressException.NULL_FIELD);

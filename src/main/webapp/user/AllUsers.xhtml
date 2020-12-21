@@ -4,12 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>User List</title>
 </h:head>
 <h:body>
-
 
     <ui:composition template="/template/common.xhtml">
 
@@ -17,155 +17,178 @@
             <h:outputStylesheet name="css/user/allusers_content.css"/>
 
             <h:form>
-                Give Id: <h:inputText value="#{userController.uuid}" required="true"/>
-                <h:commandButton value="FindById" action="#{userController.findUserById()}"/>
+                Give Id: <p:inputText value="#{userController.uuid}" required="true"/>
+                <p:commandButton value="FindById" action="#{userController.findUserById()}"/>
             </h:form>
 
+            <h:form id="form">
+                <p:dataTable id="administrators" var="admin" value="#{userController.currentAdministrators}"
+                             editable="false" tableStyle="table-layout: auto; align-content: center"
+                             style="margin-bottom: 20px; font-size: 10px;">
+                    <f:facet name="header">Administrators</f:facet>
 
-            <h3 class="admin_h3">Administrators:</h3>
-            <h:form>
-                <h:dataTable value="#{userController.currentAdministrators}" var="adminIterator">  <!-- przeplot -->
-                    <h:column>
-                        <f:facet name="header">UUID</f:facet>
-                        ${adminIterator.uuid}
-                    </h:column>
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="2" headerText="UUID"/>
+                            <p:column rowspan="2" headerText="Email"/>
+                            <p:column rowspan="2" headerText="Name"/>
+                            <p:column colspan="2" headerText="Address"/>
+                            <p:column rowspan="2" headerText="Head Admin"/>
+                            <p:column rowspan="2" headerText="Actions"/>
+                        </p:row>
+                        <p:row>
+                            <p:column headerText="Street"/>
+                            <p:column headerText="Number"/>
+                        </p:row>
+                    </p:columnGroup>
 
-                    <h:column>
-                        <f:facet name="header">Email</f:facet>
-                        ${adminIterator.email}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        ${adminIterator.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Address</f:facet>
-                        ${adminIterator.address}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">HeadAdmin</f:facet>
-                        ${adminIterator.isHeadAdmin}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Actions</f:facet>
-                        <h:column>
-                            <f:facet name="header">Delete</f:facet>
-                            <h:commandButton value="Delete"
-                                             action="#{userController.removeUser(adminIterator)}"/>
-                        </h:column>
+                    <p:column>
+                        <h:outputText value="#{admin.uuid}"/>
+                    </p:column>
 
-                        <h:column>
-                            <f:facet name="header">Update</f:facet>
-                            <h:commandButton value="Update"
-                                             action="#{userController.seeAdministrator(adminIterator)}"/>
-                        </h:column>
-                    </h:column>
-                </h:dataTable>
-                <h:commandButton value="Add" action="AddAdministrator"/>
-            </h:form>
+                    <p:column>
+                        <h:outputText value="#{admin.email}"/>
+                    </p:column>
 
-            <br/>
-            <br/>
-            <br/>
+                    <p:column>
+                        <h:outputText value="#{admin.name}"/>
+                    </p:column>
 
-            <h3 class="employee_h3">Employees:</h3>
-            <h:form>
-                <h:dataTable value="#{userController.currentEmployees}" var="employeeIterator">  <!-- przeplot -->
-                    <h:column>
-                        <f:facet name="header">UUID</f:facet>
-                        ${employeeIterator.uuid}
-                    </h:column>
+                    <p:column>
+                        <h:outputText value="#{admin.address.street}"/>
+                    </p:column>
 
-                    <h:column>
-                        <f:facet name="header">Email</f:facet>
-                        ${employeeIterator.email}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        ${employeeIterator.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Address</f:facet>
-                        ${employeeIterator.address}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Earnings</f:facet>
-                        ${employeeIterator.earnings}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Actions</f:facet>
-                        <h:column>
-                            <f:facet name="header">Delete</f:facet>
-                            <h:commandButton value="Delete"
-                                             action="#{userController.removeUser(employeeIterator)}"/>
-                        </h:column>
+                    <p:column>
+                        <h:outputText value="#{admin.address.number}"/>
+                    </p:column>
 
-                        <h:column>
-                            <f:facet name="header">Update</f:facet>
-                            <h:commandButton value="Update"
-                                             action="#{userController.seeEmployee(employeeIterator)}"/>
-                        </h:column>
+                    <p:column>
+                        <h:outputText value="#{admin.isHeadAdmin}"/>
+                    </p:column>
 
-                    </h:column>
+                    <p:column>
+                        <p:commandButton value="Delete"
+                                         action="#{userController.removeUser(admin)}" style="background-color: #ff4d00"/>
+                        <p:commandButton value="Update"
+                                         action="#{userController.seeAdministrator(admin)}" style="background-color: #ff4d00"/>
+                    </p:column>
 
-                </h:dataTable>
-                <h:commandButton value="Add" action="AddEmployee"/>
-            </h:form>
+                </p:dataTable>
 
+                <p:dataTable id="employees" var="employee" value="#{userController.currentEmployees}" editable="false"
+                             tableStyle="table-layout: auto; align-content: center"
+                             style="margin-bottom: 20px; font-size: 10px;">
+                    <f:facet name="header">Employees</f:facet>
 
-            <br/>
-            <br/>
-            <br/>
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="2" headerText="UUID"/>
+                            <p:column rowspan="2" headerText="Email"/>
+                            <p:column rowspan="2" headerText="Name"/>
+                            <p:column colspan="2" headerText="Address"/>
+                            <p:column rowspan="2" headerText="Earnings"/>
+                            <p:column rowspan="2" headerText="Actions"/>
+                        </p:row>
+                        <p:row>
+                            <p:column headerText="Street"/>
+                            <p:column headerText="Number"/>
+                        </p:row>
+                    </p:columnGroup>
 
-            <h3 class="client_h3">Clients:</h3>
-            <h:form>
-                <h:dataTable value="#{userController.currentClients}" var="clientIterator">  <!-- przeplot -->
-                    <h:column>
-                        <f:facet name="header">UUID</f:facet>
-                        ${clientIterator.uuid}
-                    </h:column>
+                    <p:column>
+                        <h:outputText value="#{employee.uuid}"/>
+                    </p:column>
 
-                    <h:column>
-                        <f:facet name="header">Email</f:facet>
-                        ${clientIterator.email}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        ${clientIterator.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Address</f:facet>
-                        ${clientIterator.address}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">PhoneNumber</f:facet>
-                        ${clientIterator.phoneNumber}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Active</f:facet>
-                        ${clientIterator.active}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Actions</f:facet>
-                        <h:column>
-                            <f:facet name="header">Delete</f:facet>
-                            <h:commandButton value="Delete"
-                                             action="#{userController.removeUser(clientIterator)}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Activate</f:facet>
-                            <h:commandButton value="Activate/Deactivate"
-                                             action="#{userController.changeClientActivity(clientIterator)}"/>
-                        </h:column>
+                    <p:column>
+                        <h:outputText value="#{employee.email}"/>
+                    </p:column>
 
-                        <h:column>
-                            <f:facet name="header">Update</f:facet>
-                            <h:commandButton value="Update"
-                                             action="#{userController.seeClient(clientIterator)}"/>
-                        </h:column>
-                    </h:column>
-                </h:dataTable>
-                <h:commandButton value="Add" action="AddClient"/>
+                    <p:column>
+                        <h:outputText value="#{employee.name}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{employee.address.street}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{employee.address.number}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{employee.earnings}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Delete"
+                                         action="#{userController.removeUser(employee)}"
+                                         style="background-color: #ff4d00"/>
+                        <p:commandButton value="Update"
+                                         action="#{userController.seeEmployee(employee)}" style="background-color: #ff4d00"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:dataTable id="clients" var="client" value="#{userController.currentClients}" editable="false"
+                             tableStyle="table-layout: auto; align-content: center"
+                             style="margin-bottom: 20px; font-size: 10px;">
+
+                    <f:facet name="header">Clients</f:facet>
+
+                    <p:columnGroup type="header">
+                        <p:row>
+                            <p:column rowspan="2" headerText="UUID"/>
+                            <p:column rowspan="2" headerText="Email"/>
+                            <p:column rowspan="2" headerText="Name"/>
+                            <p:column colspan="2" headerText="Address"/>
+                            <p:column rowspan="2" headerText="Phone number"/>
+                            <p:column rowspan="2" headerText="Active"/>
+                            <p:column rowspan="2" headerText="Actions"/>
+                        </p:row>
+                        <p:row>
+                            <p:column headerText="Street"/>
+                            <p:column headerText="Number"/>
+                        </p:row>
+                    </p:columnGroup>
+
+                    <p:column>
+                        <h:outputText value="#{client.uuid}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{client.email}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{client.name}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{client.address.street}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{client.address.number}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{client.phoneNumber}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:outputText value="#{client.active}"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Delete"
+                                         action="#{userController.removeUser(client)}" style="background-color: #ff4d00"/>
+                        <p:commandButton value="Activate/Deactivate"
+                                         action="#{userController.changeClientActivity(client)}" style="background-color: #ff4d00"/>
+                        <p:commandButton value="Update"
+                                         action="#{userController.seeClient(client)}" style="background-color: #ff4d00"/>
+                    </p:column>
+
+                </p:dataTable>
             </h:form>
 
         </ui:define>

@@ -12,22 +12,6 @@
 
     <ui:composition template="/template/common.xhtml">
 
-        <ui:define name="sidemenu">
-            <h:outputStylesheet name="css/common/sidemenu.css"/>
-
-            <p class="temp_side_menu">Side menu: </p>
-
-            <ul>
-                <li><h:link outcome="Login"> Login </h:link></li>
-
-                <li><h:link outcome="#{goodController.refresh()}"> See all goods </h:link></li>
-
-                <li><h:link outcome="#{orderController.refresh()}"> See all orders </h:link></li>
-
-<!--                <li><h:link outcome="#{userController.refresh()}"> See all users </h:link></li>-->
-            </ul>
-        </ui:define>
-
         <ui:define name="content">
             <h:outputStylesheet name="css/good/addlaptop_content.css"/>
 
