@@ -16,7 +16,7 @@
 
                 <ul>
                     <li class="menu-item">
-                        <h:link outcome="#" value="#{msg['login']}"/>
+                        <h:link outcome="/faces/index.xhtml" value="#{msg['main_page']}"/>
                     </li>
                     <li class="menu-item">
                         <h:form>
@@ -32,6 +32,9 @@
                         <h:form>
                             <h:commandLink action="#{userController.refresh()}" value="#{msg['users']}"/>
                         </h:form>
+                    </li>
+                    <li class="menu-item">
+                        <h:link outcome="#" value="#{msg['login']}"/>
                     </li>
                 </ul>
 

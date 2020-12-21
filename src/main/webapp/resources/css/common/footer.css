@@ -7,10 +7,13 @@
 
 .footer {
     width: 100vw;
+    position: absolute;
+    bottom: 0;
     overflow: hidden;
     padding: 15px 0;
     box-sizing: border-box;
     background-color: #272121;
+    /*z-index: 1;*/
 }
 
 .inner-footer {
