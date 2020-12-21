@@ -12,11 +12,9 @@ import model.entities.User;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -49,7 +47,7 @@ public class UserController implements Serializable {
             throw new IllegalArgumentException("Proba zatwirdzenia NewAdministrator bez name danych.");
         }
         try {
-            this.userManager.addClient(this.newAdministrator);
+            this.userManager.add(this.newAdministrator);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -65,7 +63,7 @@ public class UserController implements Serializable {
             throw new IllegalArgumentException("Proba zatwirdzenia NewEmployee bez name danych.");
         }
         try {
-            this.userManager.addClient(this.newEmployee);
+            this.userManager.add(this.newEmployee);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -81,7 +79,7 @@ public class UserController implements Serializable {
             throw new IllegalArgumentException("Proba zatwirdzenia newClient bez name danych.");
         }
         try {
-            this.userManager.addClient(this.newClient);
+            this.userManager.add(this.newClient);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -105,7 +103,7 @@ public class UserController implements Serializable {
     }
 
     public String removeUser(User user) throws RepositoryException {
-        this.userManager.removeUser(user);
+        this.userManager.remove(user);
         this.initCurrentUsers();
         return "AllUsers";
     }
@@ -132,7 +130,7 @@ public class UserController implements Serializable {
 
     public String updateAdministrator() {
         try {
-            this.userManager.updateUser(this.currentAdministrator.getUuid(), this.currentAdministrator);
+            this.userManager.update(this.currentAdministrator.getUuid(), this.currentAdministrator);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -143,7 +141,7 @@ public class UserController implements Serializable {
 
     public String updateEmployee() {
         try {
-            this.userManager.updateUser(this.currentEmployee.getUuid(), this.currentEmployee);
+            this.userManager.update(this.currentEmployee.getUuid(), this.currentEmployee);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -154,7 +152,7 @@ public class UserController implements Serializable {
 
     public String updateClient() {
         try {
-            this.userManager.updateUser(this.currentClient.getUuid(), this.currentClient);
+            this.userManager.update(this.currentClient.getUuid(), this.currentClient);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page

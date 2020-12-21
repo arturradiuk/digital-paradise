@@ -5,12 +5,7 @@ import controller.managers.GoodManager;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import model.clients.Administrator;
-import model.clients.Client;
-import model.clients.Employee;
 import model.entities.Good;
-import model.entities.Order;
-import model.entities.User;
 import model.goods.Laptop;
 import model.goods.PC;
 
@@ -51,7 +46,7 @@ public class GoodController implements Serializable {
 
     public String updateLaptop() {
         try {
-            this.goodManager.updateGood(this.currentLaptop.getUuid(), this.currentLaptop);
+            this.goodManager.update(this.currentLaptop.getUuid(), this.currentLaptop);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -66,7 +61,7 @@ public class GoodController implements Serializable {
             throw new IllegalArgumentException("Proba zatwirdzenia NewLaptop bez goodName danych.");
         }
         try {
-            this.goodManager.addGood(this.newLaptop);
+            this.goodManager.add(this.newLaptop);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -86,7 +81,7 @@ public class GoodController implements Serializable {
 
     public String updatePC() {
         try {
-            this.goodManager.updateGood(this.currentPC.getUuid(), this.currentLaptop);
+            this.goodManager.update(this.currentPC.getUuid(), this.currentLaptop);
 
         } catch (RepositoryException e) {
             e.printStackTrace();
@@ -102,7 +97,7 @@ public class GoodController implements Serializable {
             throw new IllegalArgumentException("Proba zatwirdzenia NewPC bez goodName danych.");
         }
         try {
-            this.goodManager.addGood(this.newPC);
+            this.goodManager.add(this.newPC);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -117,7 +112,7 @@ public class GoodController implements Serializable {
 
     public String removeGood(Good good) {
         try {
-            this.goodManager.removeGood(good);
+            this.goodManager.remove(good);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page

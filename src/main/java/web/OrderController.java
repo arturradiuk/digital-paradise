@@ -18,7 +18,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -103,7 +102,7 @@ public class OrderController implements Serializable {
 
     public String removeOrder(Order order) {
         try {
-            this.orderManager.removeOrder(order);
+            this.orderManager.remove(order);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return ""; // todo redirect to the error page
@@ -122,7 +121,7 @@ public class OrderController implements Serializable {
 
     @PostConstruct
     public void initCurrentOrders() {
-        this.currentOrders = orderManager.getAllOrders();
+        this.currentOrders = orderManager.getAll();
     }
 
     // todo implement update

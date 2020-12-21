@@ -22,6 +22,9 @@ public abstract class Good {
 
     private int count;
 
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public Good(double basePrice, String goodName, int count) throws GoodException {
         if (basePrice < 0) {

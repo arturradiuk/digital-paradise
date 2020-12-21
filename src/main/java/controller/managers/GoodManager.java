@@ -18,22 +18,30 @@ import java.util.stream.Collectors;
 @Named
 @ApplicationScoped
 @NoArgsConstructor
-public class GoodManager implements Serializable {
+public class GoodManager implements IManager<Good, UUID> {
 
     @Inject
     private Repository<Good, UUID> goodRepository; // = new GoodRepository();
 
 
-    public void updateGood(UUID uuid, Good good) throws RepositoryException {
+    @Override
+    public void update(UUID uuid, Good good) throws RepositoryException {
         this.goodRepository.update(uuid, good);
     }
 
-    public void addGood(Good good) throws RepositoryException {
+    @Override
+    public void add(Good good) throws RepositoryException {
         this.goodRepository.add(good);
     }
 
-    public void removeGood(Good good) throws RepositoryException { // save deleting
+    @Override
+    public void remove(Good good) throws RepositoryException { // save deleting
         this.goodRepository.remove(good);
+    }
+
+    @Override
+    public List<Good> getAll() {
+        return this.goodRepository.getAll();
     }
 
     public Good getGoodByUUID(UUID uuid) {
@@ -42,17 +50,13 @@ public class GoodManager implements Serializable {
         return good;
     }
 
-    public List<Good> getAllGoods() {
-        return this.goodRepository.getAll();
-    }
-
     public List<Good> getAllCurrentLaptops() {
-        List<Good> laptops = this.getAllGoods().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());
+        List<Good> laptops = this.getAll().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());
         return laptops;
     }
 
     public List<Good> getAllCurrentPCs() {
-        List<Good> pcs = this.getAllGoods().stream().filter(pc -> pc instanceof PC).collect(Collectors.toList());
+        List<Good> pcs = this.getAll().stream().filter(pc -> pc instanceof PC).collect(Collectors.toList());
         return pcs;
     }
 
