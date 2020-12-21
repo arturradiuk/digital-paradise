@@ -21,6 +21,8 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 @NoArgsConstructor
 public class GoodManager implements Serializable {
+    private UUID managerUuid = UUID.randomUUID();
+
     @Inject
     private Repository<Good,UUID> goodRepository; // = new GoodRepository();
 
@@ -55,7 +57,7 @@ public class GoodManager implements Serializable {
         return good;
     }
 
-    private List<Good> getAllGoods() {
+    public List<Good> getAllGoods() {
         return this.goodRepository.getAll();
     }
 

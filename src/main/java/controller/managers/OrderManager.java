@@ -25,14 +25,69 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @NoArgsConstructor
 @Data
 public class OrderManager {
+    private UUID managerUuid = UUID.randomUUID();
+
     @Inject
     private Repository<Order, UUID> orderRepository;
 
-    public void addOrder(Order order) {
+
+    private Order createOrder(List<Good> goods, Client client) throws OrderException {
+
+        for (Good g : goods) {
+            g.setCount(g.getCount() - 1);
+        }
+        Order order = new Order(LocalDateTime.now(), goods, client);
         try {
             this.orderRepository.add(order);
-        } catch (RepositoryException e) { // todo handle exception
+        } catch (RepositoryException e) {
             e.printStackTrace();
+        }
+
+        return order;
+    }
+
+
+    public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException {
+        for (Good g : goodManager.getAllGoods()) {
+
+            for (Good gs : goods) {
+                if (g.getUuid().equals(gs.getUuid())) {
+                    g.setCount(g.getCount() - 1);
+                }
+            }
+
+        }
+
+        Order order = new Order(LocalDateTime.now(), goods, client);
+        try {
+            this.orderRepository.add(order);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+
+        return order;
+
+    }
+
+
+    private void returnOrder(Order order) {
+
+        for (Good g : order.getGoods()) {
+            g.setCount(g.getCount() + 1);
+        }
+        this.removeOrder(order);
+
+    }
+
+    public void returnOrder(GoodManager goodManager, Order order) {
+        this.removeOrder(order);
+        for (Good g : goodManager.getAllGoods()) {
+
+            for (Good og : order.getGoods()) {
+                if (g.getUuid().equals(og.getUuid())) {
+                    g.setCount(g.getCount() + 1);
+                }
+            }
         }
     }
 
@@ -85,9 +140,9 @@ public class OrderManager {
         return orders;
     }
 
-    public Order createOrder(List<Good> goods, Client user) throws OrderException {
-        return new Order(LocalDateTime.now(), goods, user);
-    }
+//    public Order createOrder(List<Good> goods, Client user) throws OrderException {
+//        return new Order(LocalDateTime.now(), goods, user);
+//    }
 
 
 }

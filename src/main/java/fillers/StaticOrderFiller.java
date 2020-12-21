@@ -24,10 +24,33 @@ public class StaticOrderFiller implements DataFiller {
         GoodRepository goodRepository = new GoodRepository();
         goodRepository.initGoods();
 
-        List<Good> laptopLenovo = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("14a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList());
-        Good laptopApple = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("24a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
-        Good laptopDell = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("34a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
-        Good laptopHP = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("44a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
+
+        List<Good> laptopLenovo = new ArrayList<>();
+        Good laptopApple = null;
+        Good laptopDell = null;
+        Good laptopHP = null;
+        for (Good g :
+                goodRepository.getAll()) {
+            if(g.getUuid().equals(UUID.fromString("14a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))){
+                laptopLenovo.add(g);
+            }
+            if(g.getUuid().equals(UUID.fromString("24a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))){
+                laptopApple = g;
+            }
+            if(g.getUuid().equals(UUID.fromString("34a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))){
+                laptopDell = g;
+            }
+            if(g.getUuid().equals(UUID.fromString("44a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))){
+                laptopHP= g;
+            }
+
+        }
+
+
+//        List<Good> laptopLenovo = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("14a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList());
+//        Good laptopApple = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("24a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
+//        Good laptopDell = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("34a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
+//        Good laptopHP = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("44a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
 
         List<Good> tolaGoods = new ArrayList<>();
         tolaGoods.add(laptopApple);

@@ -92,7 +92,6 @@ public class UserController implements Serializable {
     }
 
     public String refresh() {
-        System.out.println("hello from refresh");
         this.initCurrentUsers();
         return "AllUsers";
     }

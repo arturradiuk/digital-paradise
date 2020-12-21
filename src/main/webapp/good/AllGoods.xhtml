@@ -67,6 +67,10 @@
                         <h:outputText value="#{laptop.sold}"/>
                     </p:column>
 
+                    <p:column headerText="Count">
+                        <h:outputText value="#{laptop.count}"/>
+                    </p:column>
+
                     <p:column headerText="Actions">
 
                         <p:column>
@@ -76,141 +80,141 @@
 
                         <p:column>
                             <h:commandButton value="Update"
-                                             action="#{goodController.seeLaptop(laptop)}"></h:commandButton>
+                                             action="#{goodController.seeLaptop(laptop)}"/>
                         </p:column>
 
                     </p:column>
                 </p:dataTable>
                 <h:commandButton value="Add Laptop" action="AddLaptop"/>
-<!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
+                <!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
             </h:form>
 
 
-<!--            <h3 class="laptop_h3">Laptops:</h3>-->
-<!--            <h:form id="form">-->
-<!--                <h:dataTable value="#{goodController.currentLaptops}" var="laptopIterator">  &lt;!&ndash; przeplot &ndash;&gt;-->
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">UUID</f:facet>-->
-<!--                        ${laptopIterator.uuid}-->
-<!--                    </h:column>-->
+            <!--            <h3 class="laptop_h3">Laptops:</h3>-->
+            <!--            <h:form id="form">-->
+            <!--                <h:dataTable value="#{goodController.currentLaptops}" var="laptopIterator">  &lt;!&ndash; przeplot &ndash;&gt;-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">UUID</f:facet>-->
+            <!--                        ${laptopIterator.uuid}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">GoodName</f:facet>-->
-<!--                        ${laptopIterator.goodName}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">GoodName</f:facet>-->
+            <!--                        ${laptopIterator.goodName}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Base Price</f:facet>-->
-<!--                        ${laptopIterator.basePrice}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Base Price</f:facet>-->
+            <!--                        ${laptopIterator.basePrice}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">RAM</f:facet>-->
-<!--                        ${laptopIterator.ram}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">RAM</f:facet>-->
+            <!--                        ${laptopIterator.ram}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">SSD Capacity</f:facet>-->
-<!--                        ${laptopIterator.ssdCapacity}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">SSD Capacity</f:facet>-->
+            <!--                        ${laptopIterator.ssdCapacity}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Screen Size</f:facet>-->
-<!--                        ${laptopIterator.screenSize}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Screen Size</f:facet>-->
+            <!--                        ${laptopIterator.screenSize}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Camera</f:facet>-->
-<!--                        ${laptopIterator.hasCamera}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Camera</f:facet>-->
+            <!--                        ${laptopIterator.hasCamera}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">USB amount</f:facet>-->
-<!--                        ${laptopIterator.usbAmount}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">USB amount</f:facet>-->
+            <!--                        ${laptopIterator.usbAmount}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Sold</f:facet>-->
-<!--                        ${laptopIterator.sold}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Sold</f:facet>-->
+            <!--                        ${laptopIterator.sold}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Actions</f:facet>-->
-<!--                        <h:column>-->
-<!--                            <f:facet name="header">Delete</f:facet>-->
-<!--                            <h:commandButton value="Delete"-->
-<!--                                             action="#{goodController.removeGood(laptopIterator)}"></h:commandButton>-->
-<!--                        </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Actions</f:facet>-->
+            <!--                        <h:column>-->
+            <!--                            <f:facet name="header">Delete</f:facet>-->
+            <!--                            <h:commandButton value="Delete"-->
+            <!--                                             action="#{goodController.removeGood(laptopIterator)}"></h:commandButton>-->
+            <!--                        </h:column>-->
 
-<!--                        <h:column>-->
-<!--                            <f:facet name="header">Update</f:facet>-->
-<!--                            <h:commandButton value="Update"-->
-<!--                                             action="#{goodController.seeLaptop(laptopIterator)}"></h:commandButton>-->
-<!--                        </h:column>-->
-<!--                    </h:column>-->
+            <!--                        <h:column>-->
+            <!--                            <f:facet name="header">Update</f:facet>-->
+            <!--                            <h:commandButton value="Update"-->
+            <!--                                             action="#{goodController.seeLaptop(laptopIterator)}"></h:commandButton>-->
+            <!--                        </h:column>-->
+            <!--                    </h:column>-->
 
-<!--                </h:dataTable>-->
-<!--                <h:commandButton value="Add Laptop" action="AddLaptop"></h:commandButton>-->
-<!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
-<!--            </h:form>-->
+            <!--                </h:dataTable>-->
+            <!--                <h:commandButton value="Add Laptop" action="AddLaptop"></h:commandButton>-->
+            <!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
+            <!--            </h:form>-->
 
-<!--            <br/>-->
-<!--            <br/>-->
-<!--            <br/>-->
+            <!--            <br/>-->
+            <!--            <br/>-->
+            <!--            <br/>-->
 
 
-<!--            <h3 class="pc_h3">Personal computers:</h3>-->
-<!--            <h:form>-->
-<!--                <h:dataTable value="#{goodController.currentPCs}" var="pcIterator">  &lt;!&ndash; przeplot &ndash;&gt;-->
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">UUID</f:facet>-->
-<!--                        ${pcIterator.uuid}-->
-<!--                    </h:column>-->
+            <!--            <h3 class="pc_h3">Personal computers:</h3>-->
+            <!--            <h:form>-->
+            <!--                <h:dataTable value="#{goodController.currentPCs}" var="pcIterator">  &lt;!&ndash; przeplot &ndash;&gt;-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">UUID</f:facet>-->
+            <!--                        ${pcIterator.uuid}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">GoodName</f:facet>-->
-<!--                        ${pcIterator.goodName}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">GoodName</f:facet>-->
+            <!--                        ${pcIterator.goodName}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Base Price</f:facet>-->
-<!--                        ${pcIterator.basePrice}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Base Price</f:facet>-->
+            <!--                        ${pcIterator.basePrice}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">RAM</f:facet>-->
-<!--                        ${pcIterator.ram}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">RAM</f:facet>-->
+            <!--                        ${pcIterator.ram}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">SSD Capacity</f:facet>-->
-<!--                        ${pcIterator.ssdCapacity}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">SSD Capacity</f:facet>-->
+            <!--                        ${pcIterator.ssdCapacity}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Sold</f:facet>-->
-<!--                        ${pcIterator.sold}-->
-<!--                    </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Sold</f:facet>-->
+            <!--                        ${pcIterator.sold}-->
+            <!--                    </h:column>-->
 
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Actions</f:facet>-->
-<!--                        <h:column>-->
-<!--                            <f:facet name="header">Delete</f:facet>-->
-<!--                            <h:commandButton value="Delete"-->
-<!--                                             action="#{goodController.removeGood(pcIterator)}"></h:commandButton>-->
-<!--                        </h:column>-->
+            <!--                    <h:column>-->
+            <!--                        <f:facet name="header">Actions</f:facet>-->
+            <!--                        <h:column>-->
+            <!--                            <f:facet name="header">Delete</f:facet>-->
+            <!--                            <h:commandButton value="Delete"-->
+            <!--                                             action="#{goodController.removeGood(pcIterator)}"></h:commandButton>-->
+            <!--                        </h:column>-->
 
-<!--                        <h:column>-->
-<!--                            <f:facet name="header">Update</f:facet>-->
-<!--                            <h:commandButton value="Update"-->
-<!--                                             action="#{goodController.seePC(pcIterator)}"></h:commandButton>-->
-<!--                        </h:column>-->
-<!--                    </h:column>-->
+            <!--                        <h:column>-->
+            <!--                            <f:facet name="header">Update</f:facet>-->
+            <!--                            <h:commandButton value="Update"-->
+            <!--                                             action="#{goodController.seePC(pcIterator)}"></h:commandButton>-->
+            <!--                        </h:column>-->
+            <!--                    </h:column>-->
 
-<!--                </h:dataTable>-->
-<!--                <h:commandButton value="Add PC" action="AddPC"></h:commandButton>-->
-<!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
-<!--            </h:form>-->
+            <!--                </h:dataTable>-->
+            <!--                <h:commandButton value="Add PC" action="AddPC"></h:commandButton>-->
+            <!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
+            <!--            </h:form>-->
 
         </ui:define>
     </ui:composition>

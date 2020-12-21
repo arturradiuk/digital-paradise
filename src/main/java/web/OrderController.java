@@ -62,11 +62,13 @@ public class OrderController implements Serializable {
 
         for (int i = 0; i < this.goodsUuid.size(); i++) {
             goods.add(this.goodManager.getGoodByUUID(this.goodsUuid.get(i)));
-            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
+//            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
         }
 
         try {
-            this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
+//            this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
+            this.orderManager.createOrder(this.goodManager, goods, (Client) user);
+
         } catch (OrderException e) {
             e.printStackTrace();
         }
@@ -77,12 +79,13 @@ public class OrderController implements Serializable {
         return "AllOrders";
     }
 
-    public String returnOrder(Order order){
-        this.orderManager.removeOrder(order);
+    public String returnOrder(Order order) {
+//        this.orderManager.returnOrder(order);
+        this.orderManager.returnOrder(this.goodManager, order);
         this.initCurrentOrders();
-        for(Good g: order.getGoods()){
-            this.goodManager.addGood(g);
-        }
+//        for (Good g : order.getGoods()) {
+//            this.goodManager.addGood(g);
+//        }
         return "AllOrders";
     }
 

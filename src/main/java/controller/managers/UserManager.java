@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 @NoArgsConstructor
 public class UserManager {
+    private UUID managerUuid = UUID.randomUUID();
+
     @Inject
     private Repository<User, UUID> userRepository;// = new PersonRepository();
 
@@ -67,9 +69,9 @@ public class UserManager {
         return people;
     }
 
-    public void updateUser(UUID uuid, User user){
+    public void updateUser(UUID uuid, User user) {
         try {
-            this.userRepository.update(uuid,user);
+            this.userRepository.update(uuid, user);
         } catch (RepositoryException e) {
             e.printStackTrace();
         }
