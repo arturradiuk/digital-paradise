@@ -13,6 +13,10 @@ body {
     position: absolute;
 }
 
+/*.header-wrapper {*/
+/*    z-index: 2;*/
+/*}*/
+
 .content-wrapper {
     width: 100vw;
     /*!*height: 100%;*!*/
@@ -41,6 +45,7 @@ body {
     /*margin: 40px 40px 20px 240px;*/
     margin: 40px 40px 10rem 240px;
     padding: 40px;
+    z-index: 0;
 }
 
 .footer-wrapper {
