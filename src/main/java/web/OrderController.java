@@ -1,6 +1,7 @@
 package web;
 
 import controller.exceptions.OrderException;
+import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
 import controller.managers.OrderManager;
 import controller.managers.UserManager;
@@ -65,13 +66,18 @@ public class OrderController implements Serializable {
 //            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
         }
 
-        try {
 //            this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
+        try {
             this.orderManager.createOrder(this.goodManager, goods, (Client) user);
-
         } catch (OrderException e) {
             e.printStackTrace();
+            return ""; // todo redirect to the error page
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
         }
+
+
         this.newOrder = new Order();
         this.clientUuid = null;
         this.goodsUuid = null;
@@ -81,7 +87,12 @@ public class OrderController implements Serializable {
 
     public String returnOrder(Order order) {
 //        this.orderManager.returnOrder(order);
-        this.orderManager.returnOrder(this.goodManager, order);
+        try {
+            this.orderManager.returnOrder(this.goodManager, order);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+        }
         this.initCurrentOrders();
 //        for (Good g : order.getGoods()) {
 //            this.goodManager.addGood(g);
@@ -91,7 +102,13 @@ public class OrderController implements Serializable {
 
 
     public String removeOrder(Order order) {
-        this.orderManager.removeOrder(order);
+        try {
+            this.orderManager.removeOrder(order);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+
+        }
         this.initCurrentOrders();
         return "AllOrders";
     }

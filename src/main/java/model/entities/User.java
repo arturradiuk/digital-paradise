@@ -1,8 +1,9 @@
 package model.entities;
 
-import controller.exceptions.UserException;
+import controller.exceptions.user.UserException;
 import lombok.*;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Data
@@ -23,16 +24,28 @@ public abstract class User {
 
 
     public User(String email, String name, Address address) throws UserException {
-        if (email.equals(""))
-            throw new UserException("Email field is not set");
-        if (name.equals(""))
-            throw new UserException("Last name field is not set");
-        if (address == null)
-            throw new UserException("Address is not set");
+
+        if (address == null || email == null || address == null)
+            throw new UserException(UserException.NULL_FIELD);
+
+        if (email.equals("") || name.equals(""))
+            throw new UserException(UserException.EMPTY_FIELD);
 
         this.email = email;
         this.name = name;
         this.address = address;
     }
 
+    @Override
+    public boolean equals(Object o) { // todo remember
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return uuid.equals(user.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
+    }
 }

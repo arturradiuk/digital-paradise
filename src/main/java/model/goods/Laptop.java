@@ -1,16 +1,12 @@
 package model.goods;
 
-import controller.exceptions.GoodException;
+import controller.exceptions.good.GoodException;
+import controller.exceptions.good.LaptopException;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Objects;
-import java.util.UUID;
-
 @Data
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class Laptop extends Computer {
     private double screenSize;
@@ -24,10 +20,10 @@ public class Laptop extends Computer {
     public Laptop(double basePrice, String goodName, int ram, int ssdCapacity, double screenSize, boolean hasCamera, int usbAmount, int count) throws GoodException {
         super(basePrice, goodName, ram, ssdCapacity, count);
         if (screenSize < 0) {
-            throw new GoodException("Screen size cannot be negative.");
+            throw new LaptopException(LaptopException.NEGATIVE_SCREEN_SIZE);
         }
         if (usbAmount < 0) {
-            throw new GoodException("USB amount cannot be negative.");
+            throw new LaptopException(LaptopException.NEGATIVE_USB_AMOUNT);
         }
         this.screenSize = screenSize;
         this.hasCamera = hasCamera;

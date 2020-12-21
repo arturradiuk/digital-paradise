@@ -1,7 +1,7 @@
 package model.clients;
 
-import controller.exceptions.ClientException;
-import controller.exceptions.UserException;
+import controller.exceptions.user.ClientException;
+import controller.exceptions.user.UserException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,10 +18,14 @@ public class Client extends User {
     private String phoneNumber;
     private Boolean active;
 
-    public Client(String email, String name, Address address, String phoneNumber) throws ClientException, UserException {
+    public Client(String email, String name, Address address, String phoneNumber) throws  UserException {
         super(email, name, address);
+
         if (phoneNumber == null)
-            throw new ClientException("Phone number is not set");
+            throw new ClientException(ClientException.NULL_FIELD);
+        if (phoneNumber.equals(""))
+            throw new ClientException(ClientException.EMPTY_FIELD);
+
         this.phoneNumber = phoneNumber;
         this.active = true;
     }

@@ -3,6 +3,7 @@ package model.entities;
 import controller.exceptions.OrderException;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 import model.clients.Client;
 
@@ -12,74 +13,48 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@ToString(callSuper = true)
 @Data
-@ToString
+@NoArgsConstructor
 public class Order {
     private UUID uuid = UUID.randomUUID();
     private LocalDateTime orderDateTime;
     private List<Good> goods = new ArrayList<Good>();
     private Client client;
 
-    public Order() {
-    }
-
     public Order(LocalDateTime orderDateTime, List<Good> goods, Client client) throws OrderException {
-        if (orderDateTime == null || goods == null || client == null) {
-            throw new OrderException("NullPointerException in model.entities.Order.Order()");
-        }
+        if (orderDateTime == null || goods == null || client == null)
+            throw new OrderException(OrderException.NULL_FIELD);
+
         this.orderDateTime = orderDateTime;
         this.goods = goods;
         this.client = client;
     }
 
-    public void setOrderDateTime(LocalDateTime orderDateTime) throws OrderException {
-        if (orderDateTime == null) {
-            throw new OrderException("orderDateTime cannot be null.");
-        }
-        this.orderDateTime = orderDateTime;
-    }
-
-    public void setGoods(List<Good> goods) throws OrderException {
+    public void setGoods(List<Good> goods) throws OrderException { // todo try to remove this ...
         if (goods == null) {
-            throw new OrderException("goods cannot be null.");
+            throw new OrderException(OrderException.NULL_Goods);
         }
         this.goods = goods;
     }
 
     public void setClient(Client client) throws OrderException {
         if (client == null) {
-            throw new OrderException("client cannot be null.");
+            throw new OrderException(OrderException.NULL_Client);
         }
         this.client = client;
     }
 
-    public void addGood(Good good) throws OrderException {
-        if (good == null) {
-            throw new OrderException("good cannot be null");
-        }
-        this.goods.add(good);
-    }
-
-    public void removeGood(Good good) throws OrderException {
-        if (!this.goods.contains(good)) {
-            throw new OrderException("you cannot remove this good");
-        }
-        this.goods.remove(good);
-    }
-
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { // todo remember
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(uuid, order.uuid) &&
-                Objects.equals(orderDateTime, order.orderDateTime) &&
-                Objects.equals(goods, order.goods) &&
-                Objects.equals(client, order.client);
+        return uuid.equals(order.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, orderDateTime, goods, client);
+        return Objects.hash(uuid);
     }
 }

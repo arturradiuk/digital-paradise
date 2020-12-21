@@ -1,6 +1,7 @@
 package model.repositories;
 
-import controller.exceptions.RepositoryException;
+import controller.exceptions.repository.RepositoryException;
+import controller.exceptions.repository.UserRepositoryException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.entities.User;
@@ -9,7 +10,6 @@ import fillers.StaticUserFiller;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -35,7 +35,7 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
         synchronized (this.people) {
             for (User user : people) {
                 if (user.equals(element))
-                    throw new RepositoryException("This client already exists");
+                    throw new UserRepositoryException(UserRepositoryException.EXIST_USER);
             }
             this.people.add(element);
         }
@@ -47,9 +47,10 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
             for (User user : people) {
                 if (user.equals(element)) {
                     this.people.remove(element);
+                    return;
                 }
             }
-            throw new RepositoryException("This client doesn't exist");
+            throw new UserRepositoryException(UserRepositoryException.NOT_EXIST_USER);
         }
     }
 

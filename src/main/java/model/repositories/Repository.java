@@ -1,6 +1,6 @@
 package model.repositories;
 
-import controller.exceptions.RepositoryException;
+import controller.exceptions.repository.RepositoryException;
 
 import java.util.List;
 

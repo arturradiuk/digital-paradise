@@ -3,7 +3,7 @@ package model.entities;
 import java.util.Objects;
 import java.util.UUID;
 
-import controller.exceptions.GoodException;
+import controller.exceptions.good.GoodException;
 import lombok.*;
 
 @ToString(callSuper = true)
@@ -13,7 +13,7 @@ public abstract class Good {
 
     private UUID uuid = UUID.randomUUID();
 
-    private boolean sold= false;
+    private boolean sold = false;
 
 
     private String goodName;
@@ -23,9 +23,9 @@ public abstract class Good {
     private int count;
 
 
-    public Good(double basePrice, String goodName,int count) throws GoodException {
+    public Good(double basePrice, String goodName, int count) throws GoodException {
         if (basePrice < 0) {
-            throw new GoodException("Price cannot be negative number.");
+            throw new GoodException(GoodException.NEGATIVE_PRICE);
         }
         this.basePrice = basePrice;
         this.goodName = goodName;
@@ -36,4 +36,16 @@ public abstract class Good {
         return basePrice;
     }
 
+    @Override
+    public boolean equals(Object o) { // todo remember
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Good good = (Good) o;
+        return uuid.equals(good.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
+    }
 }

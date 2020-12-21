@@ -1,13 +1,12 @@
 package model.repositories;
 
-import controller.exceptions.RepositoryException;
+import controller.exceptions.repository.OrderRepositoryException;
+import controller.exceptions.repository.RepositoryException;
 import fillers.DataFiller;
-import fillers.StaticGoodFiller;
 import fillers.StaticOrderFiller;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.entities.Order;
-import model.entities.User;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -30,12 +29,6 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
         }
     }
 
-    @Override
-    public String toString() {
-        return "OrderRepository{" +
-                "orders=" + orders +
-                '}';
-    }
 
     public OrderRepository(List<Order> orders) {
         this.orders = orders;
@@ -46,7 +39,7 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
         synchronized (this.orders) {
             for (Order order : orders) {
                 if (order.equals(element))
-                    throw new RepositoryException("This order already exists");
+                    throw new OrderRepositoryException(OrderRepositoryException.EXIST_ORDER);
             }
             this.orders.add(element);
         }
@@ -57,7 +50,7 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
         synchronized (this.orders) {
             if (!this.orders.remove(element)) {
 
-                throw new RepositoryException("This order doesn't exist");
+                throw new OrderRepositoryException(OrderRepositoryException.NOT_EXIST_ORDER);
             }
         }
     }

@@ -1,13 +1,12 @@
 package fillers;
 
-import controller.exceptions.*;
+import controller.exceptions.user.*;
 import model.clients.Administrator;
 import model.clients.Client;
 import model.clients.Employee;
 import model.entities.Address;
 import model.entities.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -69,7 +68,7 @@ public class StaticUserFiller implements DataFiller { // todo rename to people f
             people.add(temp);
 
 
-        } catch (ClientException | AdminException | EmployeeException | UserException e) {
+        } catch (UserException e) {
             e.printStackTrace();
         }
         return people;

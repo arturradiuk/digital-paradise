@@ -1,7 +1,0 @@
-package controller.exceptions;
-
-public class AdminException extends Exception {
-    public AdminException(String message) {
-        super(message);
-    }
-}

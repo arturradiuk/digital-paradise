@@ -1,6 +1,6 @@
 package temp;
 
-import controller.exceptions.ClientException;
+import controller.exceptions.user.ClientException;
 
 import java.util.UUID;
 

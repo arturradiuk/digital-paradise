@@ -1,5 +1,6 @@
 package web;
 
+import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
 import lombok.Data;
 import lombok.Getter;
@@ -49,7 +50,12 @@ public class GoodController implements Serializable {
     }
 
     public String updateLaptop() {
-        this.goodManager.updateGood(this.currentLaptop.getUuid(), this.currentLaptop);
+        try {
+            this.goodManager.updateGood(this.currentLaptop.getUuid(), this.currentLaptop);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+        }
         this.initCurrentGoods();
         return "AllGoods";
     }
@@ -59,7 +65,13 @@ public class GoodController implements Serializable {
         if (null == newLaptop.getGoodName() || newLaptop.getGoodName().isEmpty()) { //todo
             throw new IllegalArgumentException("Proba zatwirdzenia NewLaptop bez goodName danych.");
         }
-        this.goodManager.addGood(this.newLaptop);
+        try {
+            this.goodManager.addGood(this.newLaptop);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+
+        }
 
         this.newLaptop = new Laptop();
 
@@ -73,7 +85,13 @@ public class GoodController implements Serializable {
     }
 
     public String updatePC() {
-        this.goodManager.updateGood(this.currentPC.getUuid(), this.currentLaptop);
+        try {
+            this.goodManager.updateGood(this.currentPC.getUuid(), this.currentLaptop);
+
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+        }
         this.initCurrentGoods();
         return "AllGoods";
     }
@@ -83,7 +101,12 @@ public class GoodController implements Serializable {
         if (null == newPC.getGoodName() || newPC.getGoodName().isEmpty()) { //todo
             throw new IllegalArgumentException("Proba zatwirdzenia NewPC bez goodName danych.");
         }
-        this.goodManager.addGood(this.newPC);
+        try {
+            this.goodManager.addGood(this.newPC);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+        }
 
         this.newPC = new PC();
 
@@ -93,7 +116,14 @@ public class GoodController implements Serializable {
 
 
     public String removeGood(Good good) {
-        this.goodManager.removeGood(good);
+        try {
+            this.goodManager.removeGood(good);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+
+        }
+
         this.initCurrentGoods();
         return "AllGoods";
     }

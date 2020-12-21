@@ -1,6 +1,6 @@
 package converters;
 
-import controller.exceptions.AddressException;
+import controller.exceptions.user.AddressException;
 import model.entities.Address;
 
 import javax.faces.component.UIComponent;

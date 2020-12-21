@@ -1,13 +1,12 @@
 package model.goods;
 
-import controller.exceptions.GoodException;
+import controller.exceptions.good.GoodException;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 public class PC extends Computer {
     public PC() {
         super();

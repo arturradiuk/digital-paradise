@@ -1,8 +1,7 @@
 package model.clients;
 
-import controller.exceptions.AdminException;
-import controller.exceptions.ClientException;
-import controller.exceptions.UserException;
+import controller.exceptions.user.AdminException;
+import controller.exceptions.user.UserException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -25,10 +24,15 @@ public class Administrator extends User {
 
     private Boolean isHeadAdmin;
 
-    public Administrator(String email, String name, Address address, Boolean isHeadAdmin) throws AdminException, UserException {
+    public Administrator(String email, String name, Address address, Boolean isHeadAdmin) throws UserException {
         super(email, name, address);
+
         if (isHeadAdmin == null)
-            throw new AdminException("HeadAdmin is not set");
+            throw new AdminException(AdminException.NULL_FIELD);
+
+        if (isHeadAdmin.equals(""))
+            throw new AdminException(AdminException.EMPTY_FIELD);
+
         this.isHeadAdmin = isHeadAdmin;
     }
 }

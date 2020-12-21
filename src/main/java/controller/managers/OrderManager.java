@@ -2,7 +2,7 @@ package controller.managers;
 
 
 import controller.exceptions.OrderException;
-import controller.exceptions.RepositoryException;
+import controller.exceptions.repository.RepositoryException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.clients.Client;
@@ -25,29 +25,24 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @NoArgsConstructor
 @Data
 public class OrderManager {
-    private UUID managerUuid = UUID.randomUUID();
 
     @Inject
     private Repository<Order, UUID> orderRepository;
 
 
-    private Order createOrder(List<Good> goods, Client client) throws OrderException {
+    private Order createOrder(List<Good> goods, Client client) throws OrderException, RepositoryException {
 
         for (Good g : goods) {
             g.setCount(g.getCount() - 1);
         }
         Order order = new Order(LocalDateTime.now(), goods, client);
-        try {
-            this.orderRepository.add(order);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-        }
+        this.orderRepository.add(order);
 
         return order;
     }
 
 
-    public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException {
+    public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException, RepositoryException {
         for (Good g : goodManager.getAllGoods()) {
 
             for (Good gs : goods) {
@@ -59,18 +54,14 @@ public class OrderManager {
         }
 
         Order order = new Order(LocalDateTime.now(), goods, client);
-        try {
-            this.orderRepository.add(order);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-        }
+        this.orderRepository.add(order);
 
         return order;
 
     }
 
 
-    private void returnOrder(Order order) {
+    private void returnOrder(Order order) throws RepositoryException {
 
         for (Good g : order.getGoods()) {
             g.setCount(g.getCount() + 1);
@@ -79,7 +70,7 @@ public class OrderManager {
 
     }
 
-    public void returnOrder(GoodManager goodManager, Order order) {
+    public void returnOrder(GoodManager goodManager, Order order) throws RepositoryException {
         this.removeOrder(order);
         for (Good g : goodManager.getAllGoods()) {
 
@@ -91,12 +82,8 @@ public class OrderManager {
         }
     }
 
-    public void removeOrder(Order order) {
-        try {
-            this.orderRepository.remove(order);
-        } catch (RepositoryException e) { // todo handle exception
-            e.printStackTrace();
-        }
+    public void removeOrder(Order order) throws RepositoryException {
+        this.orderRepository.remove(order);
     }
 
     public Order getOrderByUUID(UUID uuid) {
@@ -119,8 +106,6 @@ public class OrderManager {
     public List<Order> getAllOrdersForTheUser(User user) {
         List<Order> orders = new CopyOnWriteArrayList<>();
         for (Order order : this.orderRepository.getAll()) {
-            System.out.println(order);
-//            if (order.getClient().equals(user)) {
             if (order.getClient().getUuid().equals(user.getUuid())) {
                 orders.add(order);
                 System.out.println(order);

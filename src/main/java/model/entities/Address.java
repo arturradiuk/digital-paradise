@@ -1,12 +1,13 @@
 package model.entities;
 
-import controller.exceptions.AddressException;
-import lombok.Data;
+import controller.exceptions.user.AddressException;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Address {
 
     private String street;
@@ -17,18 +18,14 @@ public class Address {
     }
 
     public Address(String number, String street) throws AddressException {
-        if (street.equals(""))
-            throw new AddressException("Street field is not set");
-        if (number.equals(""))
-            throw new AddressException("Number field is not set");
+
+        if (street == null || number == null)
+            throw new AddressException(AddressException.NULL_FIELD);
+
+        if (street.equals("") || number.equals(""))
+            throw new AddressException(AddressException.EMPTY_FIELD);
+
         this.street = street;
         this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return
-                "street='" + street + '\'' +
-                        ", number='" + number + '\'';
     }
 }

@@ -1,6 +1,6 @@
 package controller.managers;
 
-import controller.exceptions.RepositoryException;
+import controller.exceptions.repository.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.clients.Administrator;
 import model.clients.Client;
@@ -19,28 +19,17 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 @NoArgsConstructor
 public class UserManager {
-    private UUID managerUuid = UUID.randomUUID();
 
     @Inject
     private Repository<User, UUID> userRepository;// = new PersonRepository();
 
-    public void addClient(User user) {
-        try {
-            userRepository.add(user);
-        } catch (RepositoryException e) { // todo handle exception
-            e.printStackTrace();
-        } finally {
-
-        }
+    public void addClient(User user) throws RepositoryException {
+        userRepository.add(user);
     }
 
 
-    public void removeUser(User user) {
-        try {
-            this.userRepository.remove(user);
-        } catch (RepositoryException e) { // todo handle exception
-            e.printStackTrace();
-        }
+    public void removeUser(User user) throws RepositoryException {
+        this.userRepository.remove(user);
     }
 
 
@@ -69,12 +58,8 @@ public class UserManager {
         return people;
     }
 
-    public void updateUser(UUID uuid, User user) {
-        try {
-            this.userRepository.update(uuid, user);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-        }
+    public void updateUser(UUID uuid, User user) throws RepositoryException {
+        this.userRepository.update(uuid, user);
     }
 
 }

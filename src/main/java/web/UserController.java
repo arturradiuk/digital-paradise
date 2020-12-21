@@ -1,5 +1,6 @@
 package web;
 
+import controller.exceptions.repository.RepositoryException;
 import controller.managers.UserManager;
 import lombok.Data;
 import lombok.Getter;
@@ -47,7 +48,13 @@ public class UserController implements Serializable {
         if (this.newAdministrator == null || this.newAdministrator.getName().isEmpty()) {
             throw new IllegalArgumentException("Proba zatwirdzenia NewAdministrator bez name danych.");
         }
-        this.userManager.addClient(this.newAdministrator);
+        try {
+            this.userManager.addClient(this.newAdministrator);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+
+        }
         this.newAdministrator = new Administrator();
         this.initCurrentUsers();
         return "AllUsers";
@@ -57,7 +64,13 @@ public class UserController implements Serializable {
         if (this.newEmployee == null || this.newEmployee.getName().isEmpty()) {
             throw new IllegalArgumentException("Proba zatwirdzenia NewEmployee bez name danych.");
         }
-        this.userManager.addClient(this.newEmployee);
+        try {
+            this.userManager.addClient(this.newEmployee);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+
+        }
         this.newEmployee = new Employee();
         this.initCurrentUsers();
         return "AllUsers";
@@ -67,7 +80,13 @@ public class UserController implements Serializable {
         if (this.newClient == null || this.newClient.getName().isEmpty()) {
             throw new IllegalArgumentException("Proba zatwirdzenia newClient bez name danych.");
         }
-        this.userManager.addClient(this.newClient);
+        try {
+            this.userManager.addClient(this.newClient);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+
+        }
         this.newClient = new Client();
         this.initCurrentUsers();
         return "AllUsers";
@@ -85,7 +104,7 @@ public class UserController implements Serializable {
         this.currentClients = this.userManager.getAllClients();
     }
 
-    public String removeUser(User user) {
+    public String removeUser(User user) throws RepositoryException {
         this.userManager.removeUser(user);
         this.initCurrentUsers();
         return "AllUsers";
@@ -112,19 +131,34 @@ public class UserController implements Serializable {
     }
 
     public String updateAdministrator() {
-        this.userManager.updateUser(this.currentAdministrator.getUuid(), this.currentAdministrator);
+        try {
+            this.userManager.updateUser(this.currentAdministrator.getUuid(), this.currentAdministrator);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+        }
         this.initCurrentUsers();
         return "AllUsers";
     }
 
     public String updateEmployee() {
-        this.userManager.updateUser(this.currentEmployee.getUuid(), this.currentEmployee);
+        try {
+            this.userManager.updateUser(this.currentEmployee.getUuid(), this.currentEmployee);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+        }
         this.initCurrentUsers();
         return "AllUsers";
     }
 
     public String updateClient() {
-        this.userManager.updateUser(this.currentClient.getUuid(), this.currentClient);
+        try {
+            this.userManager.updateUser(this.currentClient.getUuid(), this.currentClient);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return ""; // todo redirect to the error page
+        }
         this.initCurrentUsers();
         return "AllUsers";
     }

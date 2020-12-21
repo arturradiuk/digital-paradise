@@ -1,11 +1,10 @@
 package fillers;
 
-import controller.exceptions.GoodException;
+import controller.exceptions.good.GoodException;
 import model.entities.Good;
 import model.goods.Laptop;
 import model.goods.PC;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;

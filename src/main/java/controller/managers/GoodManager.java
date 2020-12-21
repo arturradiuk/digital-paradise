@@ -1,15 +1,13 @@
 package controller.managers;
 
-import controller.exceptions.RepositoryException;
+import controller.exceptions.repository.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.entities.Good;
 import model.goods.Laptop;
 import model.goods.PC;
 import model.repositories.Repository;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -21,34 +19,21 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 @NoArgsConstructor
 public class GoodManager implements Serializable {
-    private UUID managerUuid = UUID.randomUUID();
 
     @Inject
-    private Repository<Good,UUID> goodRepository; // = new GoodRepository();
+    private Repository<Good, UUID> goodRepository; // = new GoodRepository();
 
 
-    public void updateGood(UUID uuid,Good good){
-        try {
-            this.goodRepository.update(uuid,good);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-        }
+    public void updateGood(UUID uuid, Good good) throws RepositoryException {
+        this.goodRepository.update(uuid, good);
     }
 
-    public void addGood(Good good) {
-        try {
-            this.goodRepository.add(good);
-        } catch (RepositoryException e) { // todo handle exception
-            e.printStackTrace();
-        }
+    public void addGood(Good good) throws RepositoryException {
+        this.goodRepository.add(good);
     }
 
-    public void removeGood(Good good) { // save deleting
-        try {
-            this.goodRepository.remove(good);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-        }
+    public void removeGood(Good good) throws RepositoryException { // save deleting
+        this.goodRepository.remove(good);
     }
 
     public Good getGoodByUUID(UUID uuid) {
