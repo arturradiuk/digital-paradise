@@ -1,8 +1,10 @@
 package controller.managers;
 
+import controller.exceptions.ManagerException;
 import controller.exceptions.repository.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.entities.Good;
+import model.entities.Order;
 import model.goods.Laptop;
 import model.goods.PC;
 import model.repositories.Repository;
@@ -36,6 +38,18 @@ public class GoodManager implements IManager<Good, UUID> {
 
     @Override
     public void remove(Good good) throws RepositoryException { // save deleting
+        this.goodRepository.remove(good);
+    }
+
+    public void remove(OrderManager orderManager, Good good) throws ManagerException, RepositoryException {
+        for (Order o : orderManager.getAll()) {
+            for (Good g : o.getGoods()) {
+                if (g.getUuid().equals(good.getUuid())) {
+                    throw new ManagerException("Cannot delete the good that is a part of order.");
+                }
+
+            }
+        }
         this.goodRepository.remove(good);
     }
 

@@ -8,7 +8,10 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import controller.exceptions.ManagerException;
 import controller.exceptions.repository.RepositoryException;
+import controller.managers.OrderManager;
 import controller.managers.UserManager;
 import lombok.Data;
 import lombok.Getter;
@@ -24,6 +27,8 @@ import model.entities.User;
 public class UserController implements Serializable {
     @Inject
     private UserManager userManager;
+    @Inject
+    private OrderManager orderManager;
 
     @Setter
     @Getter
@@ -101,8 +106,9 @@ public class UserController implements Serializable {
 
     public String removeUser(User user) {
         try {
-            this.userManager.remove(user);
-        } catch (RepositoryException e) {
+//            this.userManager.remove(user);
+            this.userManager.remove(orderManager,user);
+        } catch (RepositoryException | ManagerException e) {
             e.printStackTrace();
             return "RemoveUserFailure";
         }

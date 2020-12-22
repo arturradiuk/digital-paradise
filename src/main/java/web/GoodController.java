@@ -1,7 +1,9 @@
 package web;
 
+import controller.exceptions.ManagerException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
+import controller.managers.OrderManager;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +27,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GoodController implements Serializable {
     @Inject
     private GoodManager goodManager;
+    @Inject
+    private OrderManager orderManager;
 
     @Getter
     @Setter
@@ -115,8 +119,9 @@ public class GoodController implements Serializable {
 
     public String removeGood(Good good) {
         try {
-            this.goodManager.remove(good);
-        } catch (RepositoryException e) {
+//            this.goodManager.remove(good);
+            this.goodManager.remove(this.orderManager, good);
+        } catch (RepositoryException | ManagerException e) {
             e.printStackTrace();
             return "ProductRemoveFailure";
         }
