@@ -18,7 +18,7 @@
             <div class="content-wrap">
                 <h:form>
                     Give Id: <p:inputText value="#{userController.uuid}" required="true"/>
-                    <h:commandButton value="FindById" action="#{userController.findUserById()}" />
+                    <h:commandButton value="FindById" action="#{userController.findUserById()}"/>
                 </h:form>
 
                 <h:form id="form">
@@ -69,14 +69,21 @@
                         <p:column>
                             <h:commandButton value="Delete"
                                              action="#{userController.removeUser(admin)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
                             <h:commandButton value="Update"
                                              action="#{userController.seeAdministrator(admin)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
                         </p:column>
 
                     </p:dataTable>
+                </h:form>
 
+                <h:form>
+                    <h:commandButton value="Add administrator" action="AddAdministrator"
+                                     style="background-color: #ff4d00; margin-bottom: 20px"/>
+                </h:form>
+
+                <h:form>
                     <p:dataTable id="employees" var="employee" value="#{userController.currentEmployees}"
                                  editable="false"
                                  tableStyle="table-layout: auto; align-content: center"
@@ -125,14 +132,21 @@
                         <p:column>
                             <h:commandButton value="Delete"
                                              action="#{userController.removeUser(employee)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
                             <h:commandButton value="Update"
                                              action="#{userController.seeEmployee(employee)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
                         </p:column>
 
                     </p:dataTable>
 
+                </h:form>
+
+                <h:form>
+                    <h:commandButton value="Add employee" action="AddEmployee"
+                                     style="background-color: #ff4d00; margin-bottom: 20px"/>
+                </h:form>
+                <h:form>
                     <p:dataTable id="clients" var="client" value="#{userController.currentClients}" editable="false"
                                  tableStyle="table-layout: auto; align-content: center"
                                  style="margin-bottom: 20px; font-size: 10px;">
@@ -186,17 +200,23 @@
                         <p:column>
                             <h:commandButton value="Delete"
                                              action="#{userController.removeUser(client)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
                             <h:commandButton value="Activate/Deactivate"
                                              action="#{userController.changeClientActivity(client)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
                             <h:commandButton value="Update"
                                              action="#{userController.seeClient(client)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
                         </p:column>
 
                     </p:dataTable>
                 </h:form>
+
+                <h:form>
+                    <h:commandButton value="Add client" action="AddClient"
+                                     style="background-color: #ff4d00; margin-bottom: 20px"/>
+                </h:form>
+
 
             </div>
         </ui:define>
