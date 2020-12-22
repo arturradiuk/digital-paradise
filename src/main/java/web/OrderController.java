@@ -70,10 +70,10 @@ public class OrderController implements Serializable {
             this.orderManager.createOrder(this.goodManager, goods, (Client) user);
         } catch (OrderException e) {
             e.printStackTrace();
-            return ""; // todo redirect to the error page
+            return "AddOrderFailure";
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return ""; // todo redirect to the error page
+            return "AddOrderFailure";
         }
 
 
@@ -90,7 +90,7 @@ public class OrderController implements Serializable {
             this.orderManager.returnOrder(this.goodManager, order);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return ""; // todo redirect to the error page
+            return "RemoveOrderFailure";
         }
         this.initCurrentOrders();
 //        for (Good g : order.getGoods()) {

@@ -308,5 +308,50 @@
         </navigation-case>
     </navigation-rule>
 
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <navigation-rule>
+        <from-view-id>/good/AddLaptop.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddProductsFailure</from-outcome>
+            <to-view-id>/good/add_product_failure.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/AddPC.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddProductFailure</from-outcome>
+            <to-view-id>/good/add_product_failure.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/UpdateLaptop.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>UpdateLaptop</from-outcome>
+            <to-view-id>/good/update_product_failure.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/AddPC.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddProductFailure</from-outcome>
+            <to-view-id>/order/order_add_failure.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/AddLaptop.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddProductFailure</from-outcome>
+            <to-view-id>/order/order_add_failure.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>

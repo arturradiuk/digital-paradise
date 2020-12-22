@@ -12,3 +12,7 @@
 .ui-datatable.borderless table thead tr {
     display: none;
 }
+
+.content-wrap {
+    margin:auto;
+}
