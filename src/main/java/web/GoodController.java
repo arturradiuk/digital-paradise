@@ -100,7 +100,7 @@ public class GoodController implements Serializable {
             this.goodManager.add(this.newPC);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "UpdateProductFailure";
+            return "AddProductFailure";
         }
 
         this.newPC = new PC();

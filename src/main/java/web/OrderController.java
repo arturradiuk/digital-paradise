@@ -1,5 +1,14 @@
 package web;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 import controller.exceptions.OrderException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
@@ -12,16 +21,6 @@ import model.clients.Client;
 import model.entities.Good;
 import model.entities.Order;
 import model.entities.User;
-
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @Data
 @Named
@@ -55,17 +54,17 @@ public class OrderController implements Serializable {
 
 
     public String processNewOrder() {
-//        System.out.println("hellohellohellohellohellohellohellohellohellohellohellohellohellohello");
+        //        System.out.println("hellohellohellohellohellohellohellohellohellohellohellohellohellohello");
         User user = this.userManager.getUserByUUID(clientUuid); // todo should be client
-//        System.out.println(user);
+        //        System.out.println(user);
         List<Good> goods = new ArrayList<>();
 
         for (int i = 0; i < this.goodsUuid.size(); i++) {
             goods.add(this.goodManager.getGoodByUUID(this.goodsUuid.get(i)));
-//            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
+            //            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
         }
 
-//            this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
+        //            this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
         try {
             this.orderManager.createOrder(this.goodManager, goods, (Client) user);
         } catch (OrderException e) {
@@ -85,23 +84,28 @@ public class OrderController implements Serializable {
     }
 
     public String returnOrder(Order order) {
-//        this.orderManager.returnOrder(order);
+        //        this.orderManager.returnOrder(order);
         try {
             this.orderManager.returnOrder(this.goodManager, order);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "RemoveOrderFailure";
+            return "ReturnOrderFailure";
         }
         this.initCurrentOrders();
-//        for (Good g : order.getGoods()) {
-//            this.goodManager.addGood(g);
-//        }
+        //        for (Good g : order.getGoods()) {
+        //            this.goodManager.addGood(g);
+        //        }
         return "AllOrders";
     }
 
 
-    public String removeOrder(Order order) throws RepositoryException {
-        this.orderManager.remove(order);
+    public String removeOrder(Order order) {
+        try {
+            this.orderManager.remove(order);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return "RemoveOrderFaulure";
+        }
         this.initCurrentOrders();
         return "AllOrders";
     }
@@ -142,6 +146,4 @@ public class OrderController implements Serializable {
         System.out.println(user.toString());
         this.currentOrders = this.orderManager.getAllOrdersForTheUser(user);
     }
-
-
 }

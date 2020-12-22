@@ -50,7 +50,6 @@ public class UserController implements Serializable {
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddUserFailure";
-
         }
         this.newAdministrator = new Administrator();
         this.initCurrentUsers();
@@ -82,7 +81,6 @@ public class UserController implements Serializable {
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddUserFailure";
-
         }
         this.newClient = new Client();
         this.initCurrentUsers();
@@ -101,8 +99,13 @@ public class UserController implements Serializable {
         this.currentClients = this.userManager.getAllClients();
     }
 
-    public String removeUser(User user) throws RepositoryException {
-        this.userManager.remove(user);
+    public String removeUser(User user) {
+        try {
+            this.userManager.remove(user);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return "RemoveUserFailure";
+        }
         this.initCurrentUsers();
         return "AllUsers";
     }
