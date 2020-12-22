@@ -46,12 +46,15 @@ public class GoodController implements Serializable {
 
     public String updateLaptop() {
         try {
+
             this.goodManager.update(this.currentLaptop.getUuid(), this.currentLaptop);
+
         } catch (RepositoryException e) {
             e.printStackTrace();
+            this.initCurrentGoods();
             return ""; // todo redirect to the error page
         }
-        this.initCurrentGoods();
+
         return "AllGoods";
     }
 
