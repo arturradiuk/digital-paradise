@@ -84,7 +84,7 @@
                     </p:dataTable>
 
                     <h:form>
-                        <h:commandButton value="Add Laptop" action="AddLaptop"
+                        <h:commandButton value="#{msg['add_laptop']}" action="AddLaptop"
                                          style="background-color: #ff4d00; margin-bottom:20px; display: block;"/>
                     </h:form>
                 </h:form>
@@ -108,11 +108,11 @@
                             <h:outputText value="#{pc.uuid}"/>
                         </p:column>
 
-                        <p:column headerText="Product">
+                        <p:column headerText="#{msg['product']}">
                             <h:outputText value="#{pc.goodName}"/>
                         </p:column>
 
-                        <p:column headerText="Base price">
+                        <p:column headerText="#{msg['base_price']}">
                             <h:outputText value="#{pc.basePrice}"/>
                         </p:column>
 
@@ -124,22 +124,22 @@
                             <h:outputText value="#{pc.ssdCapacity}"/>
                         </p:column>
 
-                        <p:column headerText="Sold">
+                        <p:column headerText="#{msg['sold']}">
                             <h:outputText value="#{pc.sold}"/>
                         </p:column>
 
-                        <p:column headerText="Count">
+                        <p:column headerText="#{msg['count']}">
                             <h:outputText value="#{pc.count}"/>
                         </p:column>
 
-                        <p:column headerText="Actions">
+                        <p:column headerText="#{msg['actions']}">
 
 
-                            <h:commandButton value="Delete"
+                            <h:commandButton value="#{msg['delete']}"
                                              action="#{goodController.removeGood(pc)}"
                                              style="background-color: #ff4d00"/>
 
-                            <h:commandButton value="Update"
+                            <h:commandButton value="#{msg['update']}"
                                              action="#{goodController.seePC(pc)}"
                                              style="background-color: #ff4d00"/>
 
@@ -148,7 +148,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="Add PC" action="AddPC" style="background-color: #ff4d00;"/>
+                    <h:commandButton value="#{msg['add_pc']}" action="AddPC" style="background-color: #ff4d00;"/>
                 </h:form>
             </div>
 

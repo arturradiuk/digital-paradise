@@ -21,14 +21,14 @@
                 <span>
                     <h:form>
                         #{msg['give_id_order']} <h:inputText value="#{orderController.orderUuid}" required="true"/>
-                        <h:commandButton value="FindOrderById" action="#{orderController.findOrderById()}"/>
+                        <h:commandButton value="#{msg['FindUserOrdersById']}" action="#{orderController.findOrderById()}"/>
                     </h:form>
                 </span>
 
                 <span>
                         <h:form>
                         #{msg['give_id_user']} <h:inputText value="#{orderController.userUuid}" required="true"/>
-                        <h:commandButton value="FindUserOrdersById"
+                        <h:commandButton value="#{msg['FindUserOrdersById']}"
                                          action="#{orderController.findOrdersForUserById()}"/>
                         </h:form>
                 </span>
@@ -39,18 +39,18 @@
                                  tableStyle="table-layout: auto; align-content: center"
                                  style="margin-bottom: 20px; font-size: 10px;">
 
-                        <f:facet name="header">Orders</f:facet>
+                        <f:facet name="header">#{msg['orders']}</f:facet>
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column rowspan="2" headerText="UUID"/>
-                                <p:column colspan="2" headerText="Client"/>
-                                <p:column colspan="1" rowspan="2" headerText="Goods"/>
-                                <p:column rowspan="2" headerText="Order Date"/>
-                                <p:column rowspan="2" headerText="Actions"/>
+                                <p:column colspan="2" headerText="#{msg['client']}"/>
+                                <p:column colspan="1" rowspan="2" headerText="#{msg['goods']}"/>
+                                <p:column rowspan="2" headerText="#{msg['ordD']}"/>
+                                <p:column rowspan="2" headerText="#{msg['actions']}"/>
                             </p:row>
                             <p:row>
-                                <p:column headerText="Client UUID"/>
-                                <p:column headerText="Client Name"/>
+                                <p:column headerText="#{msg['client']} UUID"/>
+                                <p:column headerText="#{msg['client']} #{msg['name_title']}"/>
                                 <!--                            <p:column headerText="Good UUID"/>-->
                                 <!--                            <p:column headerText="Good Name"/>-->
                             </p:row>
@@ -85,10 +85,10 @@
                         </p:column>
 
                         <p:column>
-                            <h:commandButton value="Delete"
+                            <h:commandButton value="#{msg['delete']}"
                                              action="#{orderController.removeOrder(order)}"
                                              style="background-color: #ff4d00"/>
-                            <h:commandButton value="Return"
+                            <h:commandButton value="#{msg['return']}"
                                              action="#{orderController.returnOrder(order)}"
                                              style="background-color: #ff4d00"/>
 
@@ -97,7 +97,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="Add order" action="AddOrder" />
+                    <h:commandButton value="#{msg['add_order']}" action="AddOrder" />
                 </h:form>
             </div>
         </ui:define>
