@@ -6,22 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Add Administrator</title>
+    <title>#{msg['add_admin']}</title>
 </h:head>
 <h:body>
     <ui:composition template="/template/common.xhtml">
 
         <ui:define name="content">
             <h:outputStylesheet name="css/user/addadministrator_content.css"/>
-            <h3 class="admin_h3">New Administrator</h3>
+            <h3 class="admin_h3">#{msg['new_admin']}</h3>
             <h:form>
                 *UUID: <h:inputText value="#{userController.newAdministrator.uuid}" required="true"
                                     converter="converters.UUIDConverter"></h:inputText> <br/>
-                *Email: <h:inputText value="#{userController.newAdministrator.email}" required="true"></h:inputText> <br/>
-                *Name: <h:inputText value="#{userController.newAdministrator.name}" required="true"></h:inputText> <br/>
-                *Address: <h:inputText value="#{userController.newAdministrator.address}" required="true"
+                #{msg['email']} <h:inputText value="#{userController.newAdministrator.email}" required="true"></h:inputText> <br/>
+                #{msg['name']} <h:inputText value="#{userController.newAdministrator.name}" required="true"></h:inputText> <br/>
+                #{msg['address']} <h:inputText value="#{userController.newAdministrator.address}" required="true"
                                        converter="converters.AddressConverter"></h:inputText> <br/>
-                *IsHeadAdmin: <h:inputText value="#{userController.newAdministrator.isHeadAdmin}" required="true"  ></h:inputText> <br/>
+                #{msg['is_head_admin']} <h:inputText value="#{userController.newAdministrator.isHeadAdmin}" required="true"  ></h:inputText> <br/>
                 <h:commandButton value="Confirm" action="#{userController.processNewAdministrator}"
                                  immediate="false"></h:commandButton>
             </h:form>        </ui:define>

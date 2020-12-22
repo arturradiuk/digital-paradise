@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Add Laptop</title>
+    <title>#{msg['add_laptop']}</title>
 </h:head>
 <h:body>
 
@@ -14,17 +14,17 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/good/addlaptop_content.css"/>
 
-            <h3 class="newlaptop_h3">New Laptop</h3> New Laptop
+            <h3 class="newlaptop_h3">#{msg['new_laptop']}</h3> #{msg['new_laptop']}
             <h:form>
                 *UUID: <h:outputText value="#{goodController.newLaptop.uuid}" required="true"
                                      converter="converters.UUIDConverter"></h:outputText> <br/>
-                *Good Name: <h:inputText value="#{goodController.newLaptop.goodName}" required="true"></h:inputText> <br/>
-                *BasePrice: <h:inputText value="#{goodController.newLaptop.basePrice}" required="true"></h:inputText> <br/>
+                *#{msg['good']} #{msg['name_title']}: <h:inputText value="#{goodController.newLaptop.goodName}" required="true"></h:inputText> <br/>
+                *#{msg['base_price']}: <h:inputText value="#{goodController.newLaptop.basePrice}" required="true"></h:inputText> <br/>
                 *RAM: <h:inputText value="#{goodController.newLaptop.ram}" required="true"></h:inputText> <br/>
                 *SSD: <h:inputText value="#{goodController.newLaptop.ssdCapacity}" required="true"></h:inputText> <br/>
-                *Screen size: <h:inputText value="#{goodController.newLaptop.screenSize}" required="true"></h:inputText> <br/>
-                *Has camera: <h:inputText value="#{goodController.newLaptop.hasCamera}" required="true"></h:inputText> <br/>
-                *USB amount: <h:inputText value="#{goodController.newLaptop.usbAmount}" required="true"></h:inputText> <br/>
+                *#{msg['screen_size']}: <h:inputText value="#{goodController.newLaptop.screenSize}" required="true"></h:inputText> <br/>
+                *#{msg['has_camera']}: <h:inputText value="#{goodController.newLaptop.hasCamera}" required="true"></h:inputText> <br/>
+                *USB #{msg['amount']}: <h:inputText value="#{goodController.newLaptop.usbAmount}" required="true"></h:inputText> <br/>
                 <h:commandButton value="Confirm" action="#{goodController.processNewLaptop}"
                                  immediate="false"></h:commandButton>
             </h:form>

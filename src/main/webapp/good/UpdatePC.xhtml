@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Update PC</title>
+    <title>#{msg['update_PC']}</title>
 </h:head>
 <h:body>
 
@@ -14,13 +14,13 @@
 
         <ui:define name="content">
             <h:outputStylesheet name="css/good/updatepc_content.css"/>
-            <h3 class="pc_h3">Your PC</h3>
+            <h3 class="pc_h3">#{msg['your_PC']}</h3>
             <h:form>
                 UUID: <h:outputText value="#{goodController.currentPC.uuid}" required="true"
                                     converter="converters.UUIDConverter"></h:outputText> <br/>
-                *Good Name: <h:inputText value="#{goodController.currentPC.goodName}" required="true"></h:inputText>
+                *#{msg['good']} #{msg['name_title']}: <h:inputText value="#{goodController.currentPC.goodName}" required="true"></h:inputText>
                 <br/>
-                *BasePrice: <h:inputText value="#{goodController.currentPC.basePrice}" required="true"></h:inputText>
+                *#{msg['base_price']}: <h:inputText value="#{goodController.currentPC.basePrice}" required="true"></h:inputText>
                 <br/>
                 *RAM: <h:inputText value="#{goodController.currentPC.ram}" required="true"></h:inputText> <br/>
                 *SSD: <h:inputText value="#{goodController.currentPC.ssdCapacity}" required="true"></h:inputText> <br/>

@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <!--    todo refresh!!!!!!!!!!!!!-->
-    <title>Add Employee</title>
+    <title>#{msg['add_employee']}</title>
 </h:head>
 <h:body>
     <ui:composition template="/template/common.xhtml">
@@ -15,15 +15,15 @@
 
         <ui:define name="content">
             <h:outputStylesheet name="css/user/addemployee_content.css"/>
-            <h3 class="employee_h3">New Employee</h3>
+            <h3 class="employee_h3">#{msg['new_employee']}New Employee</h3>
             <h:form>
                 *UUID: <h:inputText value="#{userController.newEmployee.uuid}" required="true"
                                     converter="converters.UUIDConverter"></h:inputText> <br/>
-                *Email: <h:inputText value="#{userController.newEmployee.email}" required="true"></h:inputText> <br/>
-                *Name: <h:inputText value="#{userController.newEmployee.name}" required="true"></h:inputText> <br/>
-                *Address: <h:inputText value="#{userController.newEmployee.address}" required="true"
+                #{msg['email']} <h:inputText value="#{userController.newEmployee.email}" required="true"></h:inputText> <br/>
+                #{msg['name']} <h:inputText value="#{userController.newEmployee.name}" required="true"></h:inputText> <br/>
+                #{msg['address']} <h:inputText value="#{userController.newEmployee.address}" required="true"
                                        converter="converters.AddressConverter"></h:inputText> <br/>
-                *Earnings: <h:inputText value="#{userController.newEmployee.earnings}" required="true"  ></h:inputText> <br/>
+                #{msg['earnings']} <h:inputText value="#{userController.newEmployee.earnings}" required="true"  ></h:inputText> <br/>
                 <h:commandButton value="Confirm" action="#{userController.processNewEmployee}"
                                  immediate="false"></h:commandButton>
             </h:form>

@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Update Client</title>
+    <title>#{msg['update_client']}</title>
 </h:head>
 <h:body>
     <ui:composition template="/template/common.xhtml">
@@ -14,15 +14,15 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/user/updateclient_content.css"/>
 
-            <h3 class="client_h3">Update Client</h3>
+            <h3 class="client_h3">#{msg['update_client']}</h3>
             <h:form>
                 *UUID: <h:outputText value="#{userController.currentClient.uuid}" required="true"
                                      converter="converters.UUIDConverter"></h:outputText> <br/>
-                *Email: <h:inputText value="#{userController.currentClient.email}" required="true"></h:inputText> <br/>
-                *Name: <h:inputText value="#{userController.currentClient.name}" required="true"></h:inputText> <br/>
-                *Address: <h:inputText value="#{userController.currentClient.address}" required="true"
+                #{msg['email']} <h:inputText value="#{userController.currentClient.email}" required="true"></h:inputText> <br/>
+                #{msg['name']} <h:inputText value="#{userController.currentClient.name}" required="true"></h:inputText> <br/>
+                #{msg['address']} <h:inputText value="#{userController.currentClient.address}" required="true"
                                        converter="converters.AddressConverter"></h:inputText> <br/>
-                *PhoneNumber: <h:inputText value="#{userController.currentClient.phoneNumber}" required="true"  ></h:inputText> <br/>
+                #{msg['phone_number']} <h:inputText value="#{userController.currentClient.phoneNumber}" required="true"  ></h:inputText> <br/>
                 <h:commandButton value="Update" action="#{userController.updateClient}"
                                  immediate="false"></h:commandButton>
             </h:form>        </ui:define>

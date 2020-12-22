@@ -22,7 +22,7 @@
             </h:form>
 
 
-            <h3 class="admin_h3">Administrators:</h3>
+            <h3 class="admin_h3"> #{msg['admins']}</h3>
             <h:form>
                 <h:dataTable value="#{userController.currentAdministrators}" var="adminIterator">  <!-- przeplot -->
                     <h:column>
@@ -31,31 +31,31 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Email</f:facet>
+                        <f:facet name="header">#{msg['email']}</f:facet>
                         ${adminIterator.email}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Name</f:facet>
+                        <f:facet name="header">#{msg['name']}</f:facet>
                         ${adminIterator.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Address</f:facet>
+                        <f:facet name="header">#{msg['address']}</f:facet>
                         ${adminIterator.address}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">HeadAdmin</f:facet>
+                        <f:facet name="header">#{msg['head_admin']}</f:facet>
                         ${adminIterator.isHeadAdmin}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Actions</f:facet>
+                        <f:facet name="header">#{msg['actions']}</f:facet>
                         <h:column>
-                            <f:facet name="header">Delete</f:facet>
+                            <f:facet name="header">#{msg['delete']}</f:facet>
                             <h:commandButton value="Delete"
                                              action="#{userController.removeUser(adminIterator)}"/>
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Update</f:facet>
+                            <f:facet name="header">#{msg['update']}</f:facet>
                             <h:commandButton value="Update"
                                              action="#{userController.seeAdministrator(adminIterator)}"/>
                         </h:column>
@@ -68,7 +68,7 @@
             <br/>
             <br/>
 
-            <h3 class="employee_h3">Employees:</h3>
+            <h3 class="employee_h3">#{msg['employees']}</h3>
             <h:form>
                 <h:dataTable value="#{userController.currentEmployees}" var="employeeIterator">  <!-- przeplot -->
                     <h:column>
@@ -77,31 +77,31 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Email</f:facet>
+                        <f:facet name="header">#{msg['email']}</f:facet>
                         ${employeeIterator.email}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Name</f:facet>
+                        <f:facet name="header">#{msg['name']}</f:facet>
                         ${employeeIterator.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Address</f:facet>
+                        <f:facet name="header">#{msg['address']}</f:facet>
                         ${employeeIterator.address}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Earnings</f:facet>
+                        <f:facet name="header">#{msg['earnings']}</f:facet>
                         ${employeeIterator.earnings}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Actions</f:facet>
+                        <f:facet name="header">#{msg['actions']}</f:facet>
                         <h:column>
-                            <f:facet name="header">Delete</f:facet>
+                            <f:facet name="header">#{msg['delete']}</f:facet>
                             <h:commandButton value="Delete"
                                              action="#{userController.removeUser(employeeIterator)}"/>
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Update</f:facet>
+                            <f:facet name="header">#{msg['delete']}</f:facet>
                             <h:commandButton value="Update"
                                              action="#{userController.seeEmployee(employeeIterator)}"/>
                         </h:column>
@@ -117,7 +117,7 @@
             <br/>
             <br/>
 
-            <h3 class="client_h3">Clients:</h3>
+            <h3 class="client_h3">#{msg['clients']}</h3>
             <h:form>
                 <h:dataTable value="#{userController.currentClients}" var="clientIterator">  <!-- przeplot -->
                     <h:column>
@@ -126,40 +126,40 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Email</f:facet>
+                        <f:facet name="header">#{msg['email']}</f:facet>
                         ${clientIterator.email}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Name</f:facet>
+                        <f:facet name="header">#{msg['name']}</f:facet>
                         ${clientIterator.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Address</f:facet>
+                        <f:facet name="header">#{msg['address']}</f:facet>
                         ${clientIterator.address}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">PhoneNumber</f:facet>
+                        <f:facet name="header">#{msg['phoneNumber']}</f:facet>
                         ${clientIterator.phoneNumber}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Active</f:facet>
+                        <f:facet name="header">#{msg['active']}</f:facet>
                         ${clientIterator.active}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Actions</f:facet>
+                        <f:facet name="header">#{msg['actions']}</f:facet>
                         <h:column>
-                            <f:facet name="header">Delete</f:facet>
+                            <f:facet name="header">#{msg['delete']}</f:facet>
                             <h:commandButton value="Delete"
                                              action="#{userController.removeUser(clientIterator)}"/>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Activate</f:facet>
+                            <f:facet name="header">#{msg['activate']}</f:facet>
                             <h:commandButton value="Activate/Deactivate"
                                              action="#{userController.changeClientActivity(clientIterator)}"/>
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Update</f:facet>
+                            <f:facet name="header">#{msg['update']}</f:facet>
                             <h:commandButton value="Update"
                                              action="#{userController.seeClient(clientIterator)}"/>
                         </h:column>

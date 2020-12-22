@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Good List</title>
+    <title>#{msg['good_list']}</title>
 </h:head>
 <h:body>
 
@@ -18,7 +18,7 @@
             <h:outputStylesheet name="css/good/allgoods_content.css"/>
 
             <h:form>
-                Give Id: <h:inputText value="#{goodController.uuid}" required="true"/>
+                #{msg['give_id']}: <h:inputText value="#{goodController.uuid}" required="true"/>
                 <h:commandButton value="FindById" action="#{goodController.findGoodById()}"/>
             </h:form>
 
@@ -28,18 +28,18 @@
                 <p:dataTable id="laptops" var="laptopIterator" value="#{goodController.currentLaptops}" editable="false"
                              style="margin-bottom:20px">
                     <f:facet name="header">
-                        Laptops
+                        #{msg['laptops']}
                     </f:facet>
 
                     <p:column headerText="UUID">
                         <h:outputText value="#{laptopIterator.uuid}"/>
                     </p:column>
 
-                    <p:column headerText="Product">
+                    <p:column headerText="#{msg['product']}">
                         <h:outputText value="#{laptopIterator.goodName}"/>
                     </p:column>
 
-                    <p:column headerText="Base price">
+                    <p:column headerText="#{msg['base_price']}">
                         <h:outputText value="#{laptopIterator.basePrice}"/>
                     </p:column>
 
@@ -51,11 +51,11 @@
                         <h:outputText value="#{laptopIterator.ssdCapacity}"/>
                     </p:column>
 
-                    <p:column headerText="Screen size">
+                    <p:column headerText="#{msg['screen_size']}">
                         <h:outputText value="#{laptopIterator.screenSize}"/>
                     </p:column>
 
-                    <p:column headerText="Camera">
+                    <p:column headerText="#{msg['camera']}">
                         <h:outputText value="#{laptopIterator.hasCamera}"/>
                     </p:column>
 
@@ -63,18 +63,18 @@
                         <h:outputText value="#{laptopIterator.usbAmount}"/>
                     </p:column>
 
-                    <p:column headerText="Sold">
+                    <p:column headerText="#{msg['sold']}">
                         <h:outputText value="#{laptopIterator.sold}"/>
                     </p:column>
 
-                    <p:column headerText="Count">
+                    <p:column headerText="#{msg['count']}">
                         <h:outputText value="#{laptopIterator.count}"/>
                     </p:column>
 
-                    <p:column headerText="Actions">
+                    <p:column headerText="#{msg['actions']}">
 
                         <p:column>
-                            <f:facet name="header">Delete</f:facet>
+                            <f:facet name="header">#{msg['delete']}</f:facet>
                             <h:commandButton action="#{goodController.removeGood(laptopIterator)}"
                                              rendered="true" value="Delete"/>
 

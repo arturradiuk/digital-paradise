@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Update Employee</title>
+    <title>#{msg['update_employee']}</title>
 </h:head>
 <h:body>
 
@@ -15,15 +15,15 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/user/updateemployee_content.css"/>
 
-            <h3 class="employee_h3">Update Employee</h3>
+            <h3 class="employee_h3">#{msg['update_employee']}</h3>
             <h:form>
                 *UUID: <h:outputText value="#{userController.currentEmployee.uuid}" required="true"
                                      converter="converters.UUIDConverter"></h:outputText> <br/>
-                *Email: <h:inputText value="#{userController.currentEmployee.email}" required="true"></h:inputText> <br/>
-                *Name: <h:inputText value="#{userController.currentEmployee.name}" required="true"></h:inputText> <br/>
-                *Address: <h:inputText value="#{userController.currentEmployee.address}" required="true"
+                #{msg['email']} <h:inputText value="#{userController.currentEmployee.email}" required="true"></h:inputText> <br/>
+                #{msg['name']} <h:inputText value="#{userController.currentEmployee.name}" required="true"></h:inputText> <br/>
+                #{msg['address']} <h:inputText value="#{userController.currentEmployee.address}" required="true"
                                        converter="converters.AddressConverter"></h:inputText> <br/>
-                *Earnings: <h:inputText value="#{userController.currentEmployee.earnings}" required="true"  ></h:inputText> <br/>
+                #{msg['earnings']} <h:inputText value="#{userController.currentEmployee.earnings}" required="true"  ></h:inputText> <br/>
                 <h:commandButton value="Update" action="#{userController.updateEmployee}"
                                  immediate="false"></h:commandButton>
             </h:form>        </ui:define>

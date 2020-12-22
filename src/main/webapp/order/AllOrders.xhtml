@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Order List</title>
+    <title>#{msg['order_list']}</title>
 </h:head>
 <h:body>
     <ui:composition template="/template/common.xhtml">
@@ -18,14 +18,14 @@
             <span>
                 <span>
                     <h:form>
-                        Give Id of the Order: <h:inputText value="#{orderController.orderUuid}" required="true"/>
+                        #{msg['give_id_order']} <h:inputText value="#{orderController.orderUuid}" required="true"/>
                         <h:commandButton value="FindOrderById" action="#{orderController.findOrderById()}"/>
                 </h:form>
                 </span>
 
                 <span>
                         <h:form>
-                        Give Id of the User: <h:inputText value="#{orderController.userUuid}" required="true"/>
+                        #{msg['give_id_user']} <h:inputText value="#{orderController.userUuid}" required="true"/>
                         <h:commandButton value="FindUserOrdersById"
                                          action="#{orderController.findOrdersForUserById()}"/>
                 </h:form>
@@ -33,7 +33,7 @@
             </span>
 
 
-            <h3 class="order_h3">Orders:</h3>
+            <h3 class="order_h3">#{msg['orders_title']}</h3>
             <h:form>
                 <h:dataTable value="#{orderController.currentOrders}" var="orderIterator">  <!-- przeplot -->
                     <h:column>
@@ -42,43 +42,43 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Client UUID</f:facet>
+                        <f:facet name="header">#{msg['client']} UUID</f:facet>
                         ${orderIterator.client.uuid}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Client Name</f:facet>
+                        <f:facet name="header">#{msg['client']} #{msg['name_title']}</f:facet>
                         ${orderIterator.client.name}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Goods</f:facet>
+                        <f:facet name="header">#{msg['goods_title']}</f:facet>
                         <h:dataTable value="#{orderIterator.goods}" var="goodIterator">  <!-- przeplot -->
                             <h:column>
-                                <f:facet name="header">Good UUID</f:facet>
+                                <f:facet name="header">#{msg['good']} UUID</f:facet>
                                 ${goodIterator.uuid}
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Good name</f:facet>
+                                <f:facet name="header">#{msg['good']} #{msg['name_title']}</f:facet>
                                 ${goodIterator.goodName}
                             </h:column>
                         </h:dataTable>
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">OrderDateTime</f:facet>
+                        <f:facet name="header">#{msg['order_data_time']}</f:facet>
                         ${orderIterator.orderDateTime}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Actions</f:facet>
+                        <f:facet name="header">#{msg['actions']}</f:facet>
                         <h:column>
 
-                            <f:facet name="header">Delete</f:facet>
+                            <f:facet name="header">#{msg['delete']}</f:facet>
                             <h:commandButton value="Delete" action="#{orderController.removeOrder(orderIterator)}"/>
 
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Return</f:facet>
+                            <f:facet name="header">#{msg['return']}</f:facet>
                             <h:commandButton value="Return" action="#{orderController.returnOrder(orderIterator)}"/>
                         </h:column>
 

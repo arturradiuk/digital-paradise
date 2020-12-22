@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Add Order</title>
+    <title>#{msg['add_order']}</title>
 </h:head>
 <h:body>
     <ui:composition template="/template/common.xhtml">
@@ -14,15 +14,15 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/order/addorder_content.css"/>
 
-            <h3 class="order_h3">Add Order</h3>
+            <h3 class="order_h3">#{msg['add_order']} </h3>
             <h:form>
                 *UUID: <h:inputText value="#{orderController.newOrder.uuid}" required="true"
                                     converter="converters.UUIDConverter"></h:inputText> <br/>
 
-                *Client UUID: <h:inputText value="#{orderController.clientUuid}" required="true"
+                *#{msg['client']} UUID: <h:inputText value="#{orderController.clientUuid}" required="true"
                                            converter="converters.UUIDConverter"></h:inputText> <br/>
 
-                *Goods UUID: <h:inputText value="#{orderController.goodsUuid}" required="true"
+                *#{msg['goods_title']} UUID: <h:inputText value="#{orderController.goodsUuid}" required="true"
                                           converter="converters.MultipleUUIDConverter"></h:inputText> <br/>
 
                 <h:commandButton value="Confirm" action="#{orderController.processNewOrder}"

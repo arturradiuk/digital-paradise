@@ -6,29 +6,29 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Update Laptop</title>
+    <title>#{msg['update_PC']}</title>
 </h:head>
 <h:body>
     <ui:composition template="/template/common.xhtml">
         <ui:define name="content">
             <h:outputStylesheet name="css/good/updatelaptop_content.css"/>
-            <h3 class="laptop_h3">Your Laptop</h3>
+            <h3 class="laptop_h3">#{msg['your_PC']}</h3>
             <h:form>
 
                 UUID: <h:outputText value="#{goodController.currentLaptop.uuid}" required="true"
                                     converter="converters.UUIDConverter"></h:outputText> <br/>
-                *Good Name: <h:inputText value="#{goodController.currentLaptop.goodName}" required="true"></h:inputText>
+                *#{msg['good']} Name: <h:inputText value="#{goodController.currentLaptop.goodName}" required="true"></h:inputText>
                 <br/>
-                *BasePrice: <h:inputText value="#{goodController.currentLaptop.basePrice}"
+                *#{msg['base_price']}: <h:inputText value="#{goodController.currentLaptop.basePrice}"
                                          required="true"></h:inputText> <br/>
                 *RAM: <h:inputText value="#{goodController.currentLaptop.ram}" required="true"></h:inputText> <br/>
                 *SSD: <h:inputText value="#{goodController.currentLaptop.ssdCapacity}" required="true"></h:inputText>
                 <br/>
-                *Screen size: <h:inputText value="#{goodController.currentLaptop.screenSize}"
+                *#{msg['screen_size']}: <h:inputText value="#{goodController.currentLaptop.screenSize}"
                                            required="true"></h:inputText> <br/>
-                *Has camera: <h:inputText value="#{goodController.currentLaptop.hasCamera}"
+                *#{msg['has_camera']}: <h:inputText value="#{goodController.currentLaptop.hasCamera}"
                                           required="true"></h:inputText> <br/>
-                *USB amount: <h:inputText value="#{goodController.currentLaptop.usbAmount}"
+                *USB #{msg['amount']}: <h:inputText value="#{goodController.currentLaptop.usbAmount}"
                                           required="true"></h:inputText> <br/>
                 <h:commandButton value="Confirm" action="#{goodController.updateLaptop}"
                                  immediate="false"></h:commandButton>
