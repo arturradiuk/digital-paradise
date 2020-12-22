@@ -29,6 +29,16 @@
 
 
     <navigation-rule>
+        <from-view-id>/user/UpdateEmployee.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+
+    <navigation-rule>
         <from-view-id>/good/AddLaptop.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
