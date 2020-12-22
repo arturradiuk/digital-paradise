@@ -104,7 +104,7 @@ public class OrderController implements Serializable {
             this.orderManager.remove(order);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "RemoveOrderFaulure";
+            return "RemoveOrderFailure";
         }
         this.initCurrentOrders();
         return "AllOrders";
