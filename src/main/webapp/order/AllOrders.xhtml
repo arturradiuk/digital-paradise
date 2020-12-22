@@ -21,7 +21,7 @@
                 <span>
                     <h:form>
                         #{msg['give_id_order']} <h:inputText value="#{orderController.orderUuid}" required="true"/>
-                        <h:commandButton value="FindOrderById" action="#{orderController.findOrderById()}"/>
+                        <h:commandButton value="#{msg['FindUserOrdersById']}" action="#{orderController.findOrderById()}"/>
                     </h:form>
                 </span>
 
