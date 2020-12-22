@@ -45,8 +45,14 @@ public class GoodManager implements IManager<Good, UUID> {
     }
 
     public Good getGoodByUUID(UUID uuid) {
-        Good good = this.goodRepository.getAll().stream()
-                .filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
+
+//        Good good = this.goodRepository.getAll().stream().filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
+        Good good = null;
+        for (Good g : this.goodRepository.getAll()) {
+            if (g.getUuid().equals(uuid)) {
+                good = g;
+            }
+        }
         return good;
     }
 

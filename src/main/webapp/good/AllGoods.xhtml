@@ -21,7 +21,7 @@
 
                 <h:form>
                     Give Id: <p:inputText value="#{goodController.uuid}" required="true"/>
-                    <h:commandButton value="FindById" action="#{goodController.findGoodById()}" />
+                    <h:commandButton value="FindById" action="#{goodController.findGoodById()}"/>
                 </h:form>
 
                 <h:form id="form">
@@ -73,27 +73,30 @@
                         </p:column>
 
                         <p:column headerText="#{msg['actions']}">
-
                             <h:commandButton value="#{msg['delete']}"
                                              action="#{goodController.removeGood(laptop)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
 
                             <h:commandButton value="#{msg['update']}"
                                              action="#{goodController.seeLaptop(laptop)}"
-                                             style="background-color: #ff4d00" />
-
+                                             style="background-color: #ff4d00"/>
                         </p:column>
                     </p:dataTable>
 
                     <h:form>
                         <h:commandButton value="Add Laptop" action="AddLaptop"
-                                         style="background-color: #ff4d00; margin-bottom:20px; display: block;" />
+                                         style="background-color: #ff4d00; margin-bottom:20px; display: block;"/>
                     </h:form>
+                </h:form>
 
-                    <h:form>
-                        Give Id: <p:inputText value="#{goodController.uuid}" required="true"/>
-                        <h:commandButton value="FindById" action="#{goodController.findGoodById()}" />
-                    </h:form>
+                <h:form>
+                    Give Id: <p:inputText value="#{goodController.uuid}" required="true"/>
+                    <h:commandButton value="FindById" action="#{goodController.findGoodById()}"/>
+                </h:form>
+
+                <h:form id="form2">
+
+
 
                     <p:dataTable id="pcs" var="pc" value="#{goodController.currentPCs}" editable="false"
                                  style="margin-bottom:20px; font-size: 10px"
@@ -131,19 +134,21 @@
 
                         <p:column headerText="Actions">
 
+
                             <h:commandButton value="Delete"
                                              action="#{goodController.removeGood(pc)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
 
                             <h:commandButton value="Update"
                                              action="#{goodController.seePC(pc)}"
-                                             style="background-color: #ff4d00" />
+                                             style="background-color: #ff4d00"/>
 
                         </p:column>
                     </p:dataTable>
                 </h:form>
+
                 <h:form>
-                <h:commandButton value="Add PC" action="AddPC" style="background-color: #ff4d00;" />
+                    <h:commandButton value="Add PC" action="AddPC" style="background-color: #ff4d00;"/>
                 </h:form>
             </div>
 

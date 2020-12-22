@@ -149,16 +149,20 @@ public class GoodController implements Serializable {
     }
 
     private void initCurrentGoodsById() {
-//        User u = this.userManager.getUserByUUID(UUID.fromString(this.uuid));
         Good g = this.goodManager.getGoodByUUID(UUID.fromString(this.uuid));
+
         if (g instanceof Laptop) {
             this.currentLaptops = new CopyOnWriteArrayList<>();
             this.currentLaptops.add(g);
+            return;
         }
+
         if (g instanceof PC) {
             this.currentPCs = new CopyOnWriteArrayList<>();
             this.currentPCs.add(g);
+            return;
         }
+
 
     }
 
