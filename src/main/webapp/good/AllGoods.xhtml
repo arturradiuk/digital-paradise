@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title>Good List</title>
+    <title>#{msg['good_list']}</title>
 </h:head>
 <h:body>
 
@@ -30,17 +30,17 @@
                                  style="margin-bottom:20px; font-size: 12px"
                                  tableStyle="table-layout: auto; align-content: center;">
 
-                        <f:facet name="header">Laptops</f:facet>
+                        <f:facet name="header">#{msg['laptops']}</f:facet>
 
                         <p:column headerText="UUID">
                             <h:outputText value="#{laptop.uuid}"/>
                         </p:column>
 
-                        <p:column headerText="Product">
+                        <p:column headerText="#{msg['product']}">
                             <h:outputText value="#{laptop.goodName}"/>
                         </p:column>
 
-                        <p:column headerText="Base price">
+                        <p:column headerText="#{msg['base_price']}">
                             <h:outputText value="#{laptop.basePrice}"/>
                         </p:column>
 
@@ -52,11 +52,11 @@
                             <h:outputText value="#{laptop.ssdCapacity}"/>
                         </p:column>
 
-                        <p:column headerText="Screen size">
+                        <p:column headerText="#{msg['screen_size']}">
                             <h:outputText value="#{laptop.screenSize}"/>
                         </p:column>
 
-                        <p:column headerText="Camera">
+                        <p:column headerText="#{msg['camera']}">
                             <h:outputText value="#{laptop.hasCamera}"/>
                         </p:column>
 
@@ -64,29 +64,31 @@
                             <h:outputText value="#{laptop.usbAmount}"/>
                         </p:column>
 
-                        <p:column headerText="Sold">
+                        <p:column headerText="#{msg['sold']}">
                             <h:outputText value="#{laptop.sold}"/>
                         </p:column>
 
-                        <p:column headerText="Count">
+                        <p:column headerText="#{msg['count']}">
                             <h:outputText value="#{laptop.count}"/>
                         </p:column>
 
-                        <p:column headerText="Actions">
+                        <p:column headerText="#{msg['actions']}">
 
-                            <h:commandButton value="Delete"
+                            <h:commandButton value="#{msg['delete']}"
                                              action="#{goodController.removeGood(laptop)}"
                                              style="background-color: #ff4d00" />
 
-                            <h:commandButton value="Update"
+                            <h:commandButton value="#{msg['update']}"
                                              action="#{goodController.seeLaptop(laptop)}"
                                              style="background-color: #ff4d00" />
 
                         </p:column>
                     </p:dataTable>
-                    <h:commandButton value="Add Laptop" action="AddLaptop"
-                                     style="background-color: #ff4d00; margin-bottom:20px; display: block;" />
-                    <!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
+
+                    <h:form>
+                        <h:commandButton value="Add Laptop" action="AddLaptop"
+                                         style="background-color: #ff4d00; margin-bottom:20px; display: block;" />
+                    </h:form>
 
                     <h:form>
                         Give Id: <p:inputText value="#{goodController.uuid}" required="true"/>
@@ -140,8 +142,9 @@
                         </p:column>
                     </p:dataTable>
                 </h:form>
+                <h:form>
                 <h:commandButton value="Add PC" action="AddPC" style="background-color: #ff4d00;" />
-
+                </h:form>
             </div>
 
         </ui:define>

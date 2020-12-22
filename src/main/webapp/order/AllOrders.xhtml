@@ -4,13 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Order List</title>
+    <title>#{msg['order_list']}</title>
 </h:head>
 <h:body>
     <ui:composition template="/template/common.xhtml">
+
 
         <ui:define name="content">
             <h:outputStylesheet name="css/order/allorders_content.css"/>
@@ -19,14 +20,14 @@
             <span>
                 <span>
                     <h:form>
-                        Give Id of the Order: <p:inputText value="#{orderController.orderUuid}" required="true"/>
+                        #{msg['give_id_order']} <h:inputText value="#{orderController.orderUuid}" required="true"/>
                         <h:commandButton value="FindOrderById" action="#{orderController.findOrderById()}"/>
                     </h:form>
                 </span>
 
                 <span>
                         <h:form>
-                        Give Id of the User: <p:inputText value="#{orderController.userUuid}" required="true"/>
+                        #{msg['give_id_user']} <h:inputText value="#{orderController.userUuid}" required="true"/>
                         <h:commandButton value="FindUserOrdersById"
                                          action="#{orderController.findOrdersForUserById()}"/>
                         </h:form>

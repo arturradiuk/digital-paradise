@@ -162,4 +162,5 @@ public class GoodController implements Serializable {
 
     }
 
+
 }

@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
 >
 <h:head>
-    <title>Add Client</title>
+    <title>#{msg['add_client']}</title>
 </h:head>
 <h:body>
 
@@ -16,19 +16,22 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/user/addclient_content.css"/>
             <div class="content-wrap">
-                <h3 class="client_h3">New Client</h3>
+
+                <h3 class="client_h3">#{msg['new_client']}</h3>
                 <h:form>
                     *UUID: <h:inputText value="#{userController.newClient.uuid}" required="true"
-                                        converter="converters.UUIDConverter"/> <br/>
-                    *Email: <h:inputText value="#{userController.newClient.email}" required="true"/> <br/>
-                    *Name: <h:inputText value="#{userController.newClient.name}" required="true"/> <br/>
-                    *Address: <h:inputText value="#{userController.newClient.address}" required="true"
-                                           converter="converters.AddressConverter"/> <br/>
-                    *PhoneNumber: <h:inputText value="#{userController.newClient.phoneNumber}"
-                                               required="true"/> <br/>
+                                        converter="converters.UUIDConverter"></h:inputText> <br/>
+                    #{msg['email']} <h:inputText value="#{userController.newClient.email}"
+                                                 required="true"></h:inputText> <br/>
+                    #{msg['name']} <h:inputText value="#{userController.newClient.name}" required="true"></h:inputText>
+                    <br/>
+                    #{msg['address']} <h:inputText value="#{userController.newClient.address}" required="true"
+                                                   converter="converters.AddressConverter"></h:inputText> <br/>
+                    #{msg['phone_number']} <h:inputText value="#{userController.newClient.phoneNumber}"
+                                                        required="true"></h:inputText> <br/>
 
                     <h:commandButton value="Confirm" action="#{userController.processNewClient}"
-                                     immediate="false" />
+                                     immediate="false"/>
                 </h:form>
             </div>
         </ui:define>
