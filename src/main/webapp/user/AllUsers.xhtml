@@ -79,7 +79,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="#{msg['add_admin']}" action="AddAdministrator"
+                    <h:commandButton value="#{msg['add_admin']}" action="#{userController.addAdministrator}"
                                      style="background-color: #ff4d00; margin-bottom: 20px"/>
                 </h:form>
 
@@ -143,7 +143,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="#{msg['add_employee']}" action="AddEmployee"
+                    <h:commandButton value="#{msg['add_employee']}" action="#{userController.addEmployee}"
                                      style="background-color: #ff4d00; margin-bottom: 20px"/>
                 </h:form>
                 <h:form>
@@ -213,7 +213,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="#{msg['add_client']}" action="AddClient"
+                    <h:commandButton value="#{msg['add_client']}" action="#{userController.addClient}"
                                      style="background-color: #ff4d00; margin-bottom: 20px"/>
                 </h:form>
 

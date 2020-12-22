@@ -84,7 +84,7 @@
                     </p:dataTable>
 
                     <h:form>
-                        <h:commandButton value="#{msg['add_laptop']}" action="AddLaptop"
+                        <h:commandButton value="#{msg['add_laptop']}" action="#{goodController.addLaptop}"
                                          style="background-color: #ff4d00; margin-bottom:20px; display: block;"/>
                     </h:form>
                 </h:form>
@@ -148,7 +148,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="#{msg['add_pc']}" action="AddPC" style="background-color: #ff4d00;"/>
+                    <h:commandButton value="#{msg['add_pc']}" action="#{goodController.addPC}" style="background-color: #ff4d00;"/>
                 </h:form>
             </div>
 

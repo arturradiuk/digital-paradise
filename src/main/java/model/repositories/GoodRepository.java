@@ -33,7 +33,7 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
     @Override
     public void remove(Good element) throws RepositoryException {
         synchronized (this.goods) {
-
+            
             if (!this.goods.remove(element))
             {
                 throw new GoodRepositoryException(GoodRepositoryException.NOT_EXIST_GOOD);

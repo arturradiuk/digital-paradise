@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import controller.exceptions.ManagerException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.OrderManager;
@@ -34,9 +33,7 @@ public class UserController implements Serializable {
     @Getter
     private String uuid = new String();
 
-    private User newAdministrator = new Administrator();
-    private User newEmployee = new Employee();
-    private User newClient = new Client();
+    private User newUser;
 
     private User currentAdministrator = new Administrator();
     private User currentEmployee = new Employee();
@@ -47,47 +44,53 @@ public class UserController implements Serializable {
     private List<User> currentClients;
 
     public String processNewAdministrator() {
-        if (this.newAdministrator == null || this.newAdministrator.getName().isEmpty()) {
+        if (this.newUser == null) {
+            this.addAdministrator();
+        } else if (this.newUser.getName().isEmpty()) {
             throw new IllegalArgumentException("Proba zatwierdzenia NewAdministrator bez name danych.");
         }
         try {
-            this.userManager.add(this.newAdministrator);
+            this.userManager.add(this.newUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddUserFailure";
         }
-        this.newAdministrator = new Administrator();
+        //this.newAdministrator = new Administrator();
         this.initCurrentUsers();
         return "AllUsers";
     }
 
     public String processNewEmployee() {
-        if (this.newEmployee == null || this.newEmployee.getName().isEmpty()) {
+        if (this.newUser == null) {
+            this.addEmployee();
+        } else if (this.newUser.getName().isEmpty()) {
             throw new IllegalArgumentException("Proba zatwirdzenia NewEmployee bez name danych.");
         }
         try {
-            this.userManager.add(this.newEmployee);
+            this.userManager.add(this.newUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddUserFailure";
 
         }
-        this.newEmployee = new Employee();
+        //this.newUser = new Employee();
         this.initCurrentUsers();
         return "AllUsers";
     }
 
     public String processNewClient() {
-        if (this.newClient == null || this.newClient.getName().isEmpty()) {
+        if (this.newUser == null) {
+            this.addClient();
+        } else if (this.newUser.getName().isEmpty()) {
             throw new IllegalArgumentException("Proba zatwierdzenia newClient bez name danych.");
         }
         try {
-            this.userManager.add(this.newClient);
+            this.userManager.add(this.newUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddUserFailure";
         }
-        this.newClient = new Client();
+        //        this.newUser = new Client();
         this.initCurrentUsers();
         return "AllUsers";
     }
@@ -106,8 +109,8 @@ public class UserController implements Serializable {
 
     public String removeUser(User user) {
         try {
-//            this.userManager.remove(user);
-            this.userManager.remove(orderManager,user);
+            //            this.userManager.remove(user);
+            this.userManager.remove(orderManager, user);
         } catch (RepositoryException | ManagerException e) {
             e.printStackTrace();
             return "RemoveUserFailure";
@@ -134,6 +137,33 @@ public class UserController implements Serializable {
     public String seeClient(Client client) {
         this.currentClient = client;
         return "UpdateClient";
+    }
+
+    public String addClient() {
+        this.newUser = new Client();
+        return "AddUser";
+    }
+
+    public String addEmployee() {
+        this.newUser = new Employee();
+        return "AddUser";
+    }
+
+    public String addAdministrator() {
+        this.newUser = new Administrator();
+        return "AddUser";
+    }
+
+    public boolean isNewUserClient() {
+        return this.newUser.getClass().equals(Client.class);
+    }
+
+    public boolean isNewUserEmployee() {
+        return this.newUser.getClass().equals(Employee.class);
+    }
+
+    public boolean isNewUserAdministrator() {
+        return this.newUser.getClass().equals(Administrator.class);
     }
 
     public String updateAdministrator() {
