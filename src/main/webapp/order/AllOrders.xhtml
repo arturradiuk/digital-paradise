@@ -14,90 +14,87 @@
 
         <ui:define name="content">
             <h:outputStylesheet name="css/order/allorders_content.css"/>
+            <div class="content-wrap">
 
             <span>
                 <span>
                     <h:form>
                         Give Id of the Order: <p:inputText value="#{orderController.orderUuid}" required="true"/>
-                        <p:commandButton value="FindOrderById" action="#{orderController.findOrderById()}"/>
-                </h:form>
+                        <h:commandButton value="FindOrderById" action="#{orderController.findOrderById()}"/>
+                    </h:form>
                 </span>
 
                 <span>
                         <h:form>
                         Give Id of the User: <p:inputText value="#{orderController.userUuid}" required="true"/>
-                        <p:commandButton value="FindUserOrdersById"
+                        <h:commandButton value="FindUserOrdersById"
                                          action="#{orderController.findOrdersForUserById()}"/>
-                </h:form>
+                        </h:form>
                 </span>
             </span>
 
-            <h:form id="form">
-                <p:dataTable id="orders" var="order" value="#{orderController.currentOrders}" editable="false"
-                             tableStyle="table-layout: auto; align-content: center"
-                             style="margin-bottom: 20px; font-size: 10px;">
+                <h:form id="form">
+                    <p:dataTable id="orders" var="order" value="#{orderController.currentOrders}" editable="false"
+                                 tableStyle="table-layout: auto; align-content: center"
+                                 style="margin-bottom: 20px; font-size: 10px;">
 
-                    <f:facet name="header">Orders</f:facet>
-                    <p:columnGroup type="header">
-                        <p:row>
-                            <p:column rowspan="2" headerText="UUID"/>
-                            <p:column colspan="2" headerText="Client"/>
-                            <p:column colspan="1" rowspan="2" headerText="Goods"/>
-                            <p:column rowspan="2" headerText="Order Date"/>
-                            <p:column rowspan="2" headerText="Actions"/>
-                        </p:row>
-                        <p:row>
-                            <p:column headerText="Client UUID"/>
-                            <p:column headerText="Client Name"/>
-                            <!--                            <p:column headerText="Good UUID"/>-->
-                            <!--                            <p:column headerText="Good Name"/>-->
-                        </p:row>
-                    </p:columnGroup>
+                        <f:facet name="header">Orders</f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column rowspan="2" headerText="UUID"/>
+                                <p:column colspan="2" headerText="Client"/>
+                                <p:column colspan="1" rowspan="2" headerText="Goods"/>
+                                <p:column rowspan="2" headerText="Order Date"/>
+                                <p:column rowspan="2" headerText="Actions"/>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Client UUID"/>
+                                <p:column headerText="Client Name"/>
+                                <!--                            <p:column headerText="Good UUID"/>-->
+                                <!--                            <p:column headerText="Good Name"/>-->
+                            </p:row>
+                        </p:columnGroup>
 
-                    <p:column>
-                        <h:outputText value="#{order.uuid}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{order.uuid}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{order.client.uuid}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{order.client.uuid}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{order.client.name}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{order.client.name}"/>
+                        </p:column>
 
-                    <p:column>
-                        <p:dataTable var="good" value="#{order.goods}" styleClass="fixed-size borderless"
-                                     tableStyle="table-layout: auto; align-content: center;">
-                            <p:column>
-                                <h:outputText value="#{good.uuid}"/>
-                            </p:column>
-                            <p:column>
-                                <h:outputText value="#{good.goodName}"/>
-                            </p:column>
-                        </p:dataTable>
-                    </p:column>
+                        <p:column>
+                            <p:dataTable var="good" value="#{order.goods}" styleClass="fixed-size borderless"
+                                         tableStyle="table-layout: auto; align-content: center;">
+                                <p:column>
+                                    <h:outputText value="#{good.uuid}"/>
+                                </p:column>
+                                <p:column>
+                                    <h:outputText value="#{good.goodName}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{order.orderDateTime}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{order.orderDateTime}"/>
+                        </p:column>
 
-                    <p:column>
-                        <p:commandButton value="Delete"
-                                         action="#{orderController.removeOrder(order)}" style="background-color: #ff4d00"/>
-                        <p:commandButton value="Return"
-                                         action="#{orderController.returnOrder(order)}" style="background-color: #ff4d00"/>
+                        <p:column>
+                            <h:commandButton value="Delete"
+                                             action="#{orderController.removeOrder(order)}"
+                                             style="background-color: #ff4d00"/>
+                            <h:commandButton value="Return"
+                                             action="#{orderController.returnOrder(order)}"
+                                             style="background-color: #ff4d00"/>
 
-                        <!--                todo should be implemented-->
-                        <!--                <h:column>-->
-                        <!--                    <f:facet name="header">Update</f:facet>-->
-                        <!--                    <h:commandButton value="Update"-->
-                        <!--                                     action="#{userController.seeEmployee(employeeIterator)}"></h:commandButton>-->
-                        <!--                </h:column>-->
-
-                    </p:column>
-                </p:dataTable>
-            </h:form>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
         </ui:define>
     </ui:composition>
 

@@ -52,7 +52,7 @@ public class GoodController implements Serializable {
         } catch (RepositoryException e) {
             e.printStackTrace();
             this.initCurrentGoods();
-            return ""; // todo redirect to the error page
+            return "UpdateProductFailure";
         }
 
         return "AllGoods";
@@ -67,7 +67,7 @@ public class GoodController implements Serializable {
             this.goodManager.add(this.newLaptop);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return ""; // todo redirect to the error page
+            return "AddProductFailure";
 
         }
 
@@ -84,11 +84,11 @@ public class GoodController implements Serializable {
 
     public String updatePC() {
         try {
-            this.goodManager.update(this.currentPC.getUuid(), this.currentLaptop);
+            this.goodManager.update(this.currentPC.getUuid(), this.currentPC);
 
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return ""; // todo redirect to the error page
+            return "UpdateProductFailure";
         }
         this.initCurrentGoods();
         return "AllGoods";
@@ -103,7 +103,7 @@ public class GoodController implements Serializable {
             this.goodManager.add(this.newPC);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return ""; // todo redirect to the error page
+            return "AddProductFailure";
         }
 
         this.newPC = new PC();
@@ -113,8 +113,13 @@ public class GoodController implements Serializable {
     }
 
 
-    public String removeGood(Good good) throws RepositoryException {
-        this.goodManager.remove(good);
+    public String removeGood(Good good) {
+        try {
+            this.goodManager.remove(good);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            return "ProductRemoveFailure";
+        }
         this.initCurrentGoods();
         return "AllGoods";
     }

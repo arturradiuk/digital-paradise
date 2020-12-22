@@ -15,182 +15,190 @@
 
         <ui:define name="content">
             <h:outputStylesheet name="css/user/allusers_content.css"/>
+            <div class="content-wrap">
+                <h:form>
+                    Give Id: <p:inputText value="#{userController.uuid}" required="true"/>
+                    <h:commandButton value="FindById" action="#{userController.findUserById()}" />
+                </h:form>
 
-            <h:form>
-                Give Id: <p:inputText value="#{userController.uuid}" required="true"/>
-                <p:commandButton value="FindById" action="#{userController.findUserById()}"/>
-            </h:form>
+                <h:form id="form">
+                    <p:dataTable id="administrators" var="admin" value="#{userController.currentAdministrators}"
+                                 editable="false" tableStyle="table-layout: auto; align-content: center"
+                                 style="margin-bottom: 20px; font-size: 10px;">
+                        <f:facet name="header">Administrators</f:facet>
 
-            <h:form id="form">
-                <p:dataTable id="administrators" var="admin" value="#{userController.currentAdministrators}"
-                             editable="false" tableStyle="table-layout: auto; align-content: center"
-                             style="margin-bottom: 20px; font-size: 10px;">
-                    <f:facet name="header">Administrators</f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column rowspan="2" headerText="UUID"/>
+                                <p:column rowspan="2" headerText="Email"/>
+                                <p:column rowspan="2" headerText="Name"/>
+                                <p:column colspan="2" headerText="Address"/>
+                                <p:column rowspan="2" headerText="Head Admin"/>
+                                <p:column rowspan="2" headerText="Actions"/>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Street"/>
+                                <p:column headerText="Number"/>
+                            </p:row>
+                        </p:columnGroup>
 
-                    <p:columnGroup type="header">
-                        <p:row>
-                            <p:column rowspan="2" headerText="UUID"/>
-                            <p:column rowspan="2" headerText="Email"/>
-                            <p:column rowspan="2" headerText="Name"/>
-                            <p:column colspan="2" headerText="Address"/>
-                            <p:column rowspan="2" headerText="Head Admin"/>
-                            <p:column rowspan="2" headerText="Actions"/>
-                        </p:row>
-                        <p:row>
-                            <p:column headerText="Street"/>
-                            <p:column headerText="Number"/>
-                        </p:row>
-                    </p:columnGroup>
+                        <p:column>
+                            <h:outputText value="#{admin.uuid}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{admin.uuid}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{admin.email}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{admin.email}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{admin.name}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{admin.name}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{admin.address.street}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{admin.address.street}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{admin.address.number}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{admin.address.number}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{admin.isHeadAdmin}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{admin.isHeadAdmin}"/>
-                    </p:column>
+                        <p:column>
+                            <h:commandButton value="Delete"
+                                             action="#{userController.removeUser(admin)}"
+                                             style="background-color: #ff4d00" />
+                            <h:commandButton value="Update"
+                                             action="#{userController.seeAdministrator(admin)}"
+                                             style="background-color: #ff4d00" />
+                        </p:column>
 
-                    <p:column>
-                        <p:commandButton value="Delete"
-                                         action="#{userController.removeUser(admin)}" style="background-color: #ff4d00"/>
-                        <p:commandButton value="Update"
-                                         action="#{userController.seeAdministrator(admin)}" style="background-color: #ff4d00"/>
-                    </p:column>
+                    </p:dataTable>
 
-                </p:dataTable>
+                    <p:dataTable id="employees" var="employee" value="#{userController.currentEmployees}"
+                                 editable="false"
+                                 tableStyle="table-layout: auto; align-content: center"
+                                 style="margin-bottom: 20px; font-size: 10px;">
+                        <f:facet name="header">Employees</f:facet>
 
-                <p:dataTable id="employees" var="employee" value="#{userController.currentEmployees}" editable="false"
-                             tableStyle="table-layout: auto; align-content: center"
-                             style="margin-bottom: 20px; font-size: 10px;">
-                    <f:facet name="header">Employees</f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column rowspan="2" headerText="UUID"/>
+                                <p:column rowspan="2" headerText="Email"/>
+                                <p:column rowspan="2" headerText="Name"/>
+                                <p:column colspan="2" headerText="Address"/>
+                                <p:column rowspan="2" headerText="Earnings"/>
+                                <p:column rowspan="2" headerText="Actions"/>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Street"/>
+                                <p:column headerText="Number"/>
+                            </p:row>
+                        </p:columnGroup>
 
-                    <p:columnGroup type="header">
-                        <p:row>
-                            <p:column rowspan="2" headerText="UUID"/>
-                            <p:column rowspan="2" headerText="Email"/>
-                            <p:column rowspan="2" headerText="Name"/>
-                            <p:column colspan="2" headerText="Address"/>
-                            <p:column rowspan="2" headerText="Earnings"/>
-                            <p:column rowspan="2" headerText="Actions"/>
-                        </p:row>
-                        <p:row>
-                            <p:column headerText="Street"/>
-                            <p:column headerText="Number"/>
-                        </p:row>
-                    </p:columnGroup>
+                        <p:column>
+                            <h:outputText value="#{employee.uuid}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{employee.uuid}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{employee.email}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{employee.email}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{employee.name}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{employee.name}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{employee.address.street}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{employee.address.street}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{employee.address.number}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{employee.address.number}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{employee.earnings}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{employee.earnings}"/>
-                    </p:column>
+                        <p:column>
+                            <h:commandButton value="Delete"
+                                             action="#{userController.removeUser(employee)}"
+                                             style="background-color: #ff4d00" />
+                            <h:commandButton value="Update"
+                                             action="#{userController.seeEmployee(employee)}"
+                                             style="background-color: #ff4d00" />
+                        </p:column>
 
-                    <p:column>
-                        <p:commandButton value="Delete"
-                                         action="#{userController.removeUser(employee)}"
-                                         style="background-color: #ff4d00"/>
-                        <p:commandButton value="Update"
-                                         action="#{userController.seeEmployee(employee)}" style="background-color: #ff4d00"/>
-                    </p:column>
+                    </p:dataTable>
 
-                </p:dataTable>
+                    <p:dataTable id="clients" var="client" value="#{userController.currentClients}" editable="false"
+                                 tableStyle="table-layout: auto; align-content: center"
+                                 style="margin-bottom: 20px; font-size: 10px;">
 
-                <p:dataTable id="clients" var="client" value="#{userController.currentClients}" editable="false"
-                             tableStyle="table-layout: auto; align-content: center"
-                             style="margin-bottom: 20px; font-size: 10px;">
+                        <f:facet name="header">Clients</f:facet>
 
-                    <f:facet name="header">Clients</f:facet>
+                        <p:columnGroup type="header">
+                            <p:row>
+                                <p:column rowspan="2" headerText="UUID"/>
+                                <p:column rowspan="2" headerText="Email"/>
+                                <p:column rowspan="2" headerText="Name"/>
+                                <p:column colspan="2" headerText="Address"/>
+                                <p:column rowspan="2" headerText="Phone number"/>
+                                <p:column rowspan="2" headerText="Active"/>
+                                <p:column rowspan="2" headerText="Actions"/>
+                            </p:row>
+                            <p:row>
+                                <p:column headerText="Street"/>
+                                <p:column headerText="Number"/>
+                            </p:row>
+                        </p:columnGroup>
 
-                    <p:columnGroup type="header">
-                        <p:row>
-                            <p:column rowspan="2" headerText="UUID"/>
-                            <p:column rowspan="2" headerText="Email"/>
-                            <p:column rowspan="2" headerText="Name"/>
-                            <p:column colspan="2" headerText="Address"/>
-                            <p:column rowspan="2" headerText="Phone number"/>
-                            <p:column rowspan="2" headerText="Active"/>
-                            <p:column rowspan="2" headerText="Actions"/>
-                        </p:row>
-                        <p:row>
-                            <p:column headerText="Street"/>
-                            <p:column headerText="Number"/>
-                        </p:row>
-                    </p:columnGroup>
+                        <p:column>
+                            <h:outputText value="#{client.uuid}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{client.uuid}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{client.email}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{client.email}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{client.name}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{client.name}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{client.address.street}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{client.address.street}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{client.address.number}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{client.address.number}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{client.phoneNumber}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{client.phoneNumber}"/>
-                    </p:column>
+                        <p:column>
+                            <h:outputText value="#{client.active}"/>
+                        </p:column>
 
-                    <p:column>
-                        <h:outputText value="#{client.active}"/>
-                    </p:column>
+                        <p:column>
+                            <h:commandButton value="Delete"
+                                             action="#{userController.removeUser(client)}"
+                                             style="background-color: #ff4d00" />
+                            <h:commandButton value="Activate/Deactivate"
+                                             action="#{userController.changeClientActivity(client)}"
+                                             style="background-color: #ff4d00" />
+                            <h:commandButton value="Update"
+                                             action="#{userController.seeClient(client)}"
+                                             style="background-color: #ff4d00" />
+                        </p:column>
 
-                    <p:column>
-                        <p:commandButton value="Delete"
-                                         action="#{userController.removeUser(client)}" style="background-color: #ff4d00"/>
-                        <p:commandButton value="Activate/Deactivate"
-                                         action="#{userController.changeClientActivity(client)}" style="background-color: #ff4d00"/>
-                        <p:commandButton value="Update"
-                                         action="#{userController.seeClient(client)}" style="background-color: #ff4d00"/>
-                    </p:column>
+                    </p:dataTable>
+                </h:form>
 
-                </p:dataTable>
-            </h:form>
-
+            </div>
         </ui:define>
 
     </ui:composition>

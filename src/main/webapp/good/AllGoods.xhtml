@@ -17,74 +17,132 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/good/allgoods_content.css"/>
 
-            <h:form>
-                Give Id: <p:inputText value="#{goodController.uuid}" required="true"/>
-                <p:commandButton value="FindById" action="#{goodController.findGoodById()}"/>
-            </h:form>
+            <div class="content-wrap">
 
-            <h:form id="form">
+                <h:form>
+                    Give Id: <p:inputText value="#{goodController.uuid}" required="true"/>
+                    <h:commandButton value="FindById" action="#{goodController.findGoodById()}" />
+                </h:form>
 
-                <p:dataTable id="laptops" var="laptop" value="#{goodController.currentLaptops}" editable="false"
-                             style="margin-bottom:20px; font-size: 10px"
-                             tableStyle="table-layout: auto; align-content: center;">
+                <h:form id="form">
 
-                    <f:facet name="header">Laptops</f:facet>
+                    <p:dataTable id="laptops" var="laptop" value="#{goodController.currentLaptops}" editable="false"
+                                 style="margin-bottom:20px; font-size: 12px"
+                                 tableStyle="table-layout: auto; align-content: center;">
 
-                    <p:column headerText="UUID">
-                        <h:outputText value="#{laptop.uuid}"/>
-                    </p:column>
+                        <f:facet name="header">Laptops</f:facet>
 
-                    <p:column headerText="Product">
-                        <h:outputText value="#{laptop.goodName}"/>
-                    </p:column>
+                        <p:column headerText="UUID">
+                            <h:outputText value="#{laptop.uuid}"/>
+                        </p:column>
 
-                    <p:column headerText="Base price">
-                        <h:outputText value="#{laptop.basePrice}"/>
-                    </p:column>
+                        <p:column headerText="Product">
+                            <h:outputText value="#{laptop.goodName}"/>
+                        </p:column>
 
-                    <p:column headerText="RAM">
-                        <h:outputText value="#{laptop.ram}"/>
-                    </p:column>
+                        <p:column headerText="Base price">
+                            <h:outputText value="#{laptop.basePrice}"/>
+                        </p:column>
 
-                    <p:column headerText="SSD">
-                        <h:outputText value="#{laptop.ssdCapacity}"/>
-                    </p:column>
+                        <p:column headerText="RAM">
+                            <h:outputText value="#{laptop.ram}"/>
+                        </p:column>
 
-                    <p:column headerText="Screen size">
-                        <h:outputText value="#{laptop.screenSize}"/>
-                    </p:column>
+                        <p:column headerText="SSD">
+                            <h:outputText value="#{laptop.ssdCapacity}"/>
+                        </p:column>
 
-                    <p:column headerText="Camera">
-                        <h:outputText value="#{laptop.hasCamera}"/>
-                    </p:column>
+                        <p:column headerText="Screen size">
+                            <h:outputText value="#{laptop.screenSize}"/>
+                        </p:column>
 
-                    <p:column headerText="USB">
-                        <h:outputText value="#{laptop.usbAmount}"/>
-                    </p:column>
+                        <p:column headerText="Camera">
+                            <h:outputText value="#{laptop.hasCamera}"/>
+                        </p:column>
 
-                    <p:column headerText="Sold">
-                        <h:outputText value="#{laptop.sold}"/>
-                    </p:column>
+                        <p:column headerText="USB">
+                            <h:outputText value="#{laptop.usbAmount}"/>
+                        </p:column>
 
-                    <p:column headerText="Count">
-                        <h:outputText value="#{laptop.count}"/>
-                    </p:column>
+                        <p:column headerText="Sold">
+                            <h:outputText value="#{laptop.sold}"/>
+                        </p:column>
 
-                    <p:column headerText="Actions">
+                        <p:column headerText="Count">
+                            <h:outputText value="#{laptop.count}"/>
+                        </p:column>
 
-                        <p:commandButton value="Delete"
-                                         action="#{goodController.removeGood(laptop)}"
-                                         style="background-color: #ff4d00"/>
+                        <p:column headerText="Actions">
 
-                        <h:commandButton value="Update"
-                                         action="#{goodController.seeLaptop(laptop)}"
-                                         style="background-color: #ff4d00"/>
+                            <h:commandButton value="Delete"
+                                             action="#{goodController.removeGood(laptop)}"
+                                             style="background-color: #ff4d00" />
 
-                    </p:column>
-                </p:dataTable>
-                <p:commandButton value="Add Laptop" action="AddLaptop" style="background-color: #ff4d00;"/>
-                <!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
-            </h:form>
+                            <h:commandButton value="Update"
+                                             action="#{goodController.seeLaptop(laptop)}"
+                                             style="background-color: #ff4d00" />
+
+                        </p:column>
+                    </p:dataTable>
+                    <h:commandButton value="Add Laptop" action="AddLaptop"
+                                     style="background-color: #ff4d00; margin-bottom:20px; display: block;" />
+                    <!--                <h:commandButton value="Refresh" action="#{goodController.refresh()}"></h:commandButton>-->
+
+                    <h:form>
+                        Give Id: <p:inputText value="#{goodController.uuid}" required="true"/>
+                        <h:commandButton value="FindById" action="#{goodController.findGoodById()}" />
+                    </h:form>
+
+                    <p:dataTable id="pcs" var="pc" value="#{goodController.currentPCs}" editable="false"
+                                 style="margin-bottom:20px; font-size: 10px"
+                                 tableStyle="table-layout: auto; align-content: center;">
+
+                        <f:facet name="header">PCs</f:facet>
+
+                        <p:column headerText="UUID">
+                            <h:outputText value="#{pc.uuid}"/>
+                        </p:column>
+
+                        <p:column headerText="Product">
+                            <h:outputText value="#{pc.goodName}"/>
+                        </p:column>
+
+                        <p:column headerText="Base price">
+                            <h:outputText value="#{pc.basePrice}"/>
+                        </p:column>
+
+                        <p:column headerText="RAM">
+                            <h:outputText value="#{pc.ram}"/>
+                        </p:column>
+
+                        <p:column headerText="SSD">
+                            <h:outputText value="#{pc.ssdCapacity}"/>
+                        </p:column>
+
+                        <p:column headerText="Sold">
+                            <h:outputText value="#{pc.sold}"/>
+                        </p:column>
+
+                        <p:column headerText="Count">
+                            <h:outputText value="#{pc.count}"/>
+                        </p:column>
+
+                        <p:column headerText="Actions">
+
+                            <h:commandButton value="Delete"
+                                             action="#{goodController.removeGood(pc)}"
+                                             style="background-color: #ff4d00" />
+
+                            <h:commandButton value="Update"
+                                             action="#{goodController.seePC(pc)}"
+                                             style="background-color: #ff4d00" />
+
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <h:commandButton value="Add PC" action="AddPC" style="background-color: #ff4d00;" />
+
+            </div>
 
         </ui:define>
     </ui:composition>
