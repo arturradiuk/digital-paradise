@@ -120,7 +120,6 @@ public class GoodController implements Serializable {
             return "GoodError";
         }
 
-        //        this.newGood = new PC();
 
         this.initCurrentGoods();
         return "AllGoods";
@@ -129,7 +128,6 @@ public class GoodController implements Serializable {
 
     public String removeGood(Good good) {
         try {
-            //            this.goodManager.remove(good);
             this.goodManager.remove(this.orderManager, good);
         } catch (RepositoryException | ManagerException e) {
             e.printStackTrace();

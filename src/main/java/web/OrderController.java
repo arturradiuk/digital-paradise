@@ -80,7 +80,12 @@ public class OrderController implements Serializable {
         }
 
         try {
-            this.orderManager.createOrder(this.goodManager, goods, (Client) user);
+            if (user instanceof Client) {
+                this.orderManager.createOrder(this.goodManager, goods, (Client) user);
+            }else {
+                this.errorMessage = "This user is not Client";
+                return "OrderError";
+            }
         } catch (OrderException | ManagerException | RepositoryException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
