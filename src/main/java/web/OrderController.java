@@ -45,6 +45,10 @@ public class OrderController implements Serializable {
     @Setter
     private String userUuid = new String();
 
+    @Getter
+    @Setter
+    private String errorMessage = new String();
+
 
     private Order newOrder = new Order();
     private Order currentOrder = new Order();
@@ -62,22 +66,21 @@ public class OrderController implements Serializable {
         List<Good> goods = new ArrayList<>();
 
         for (int i = 0; i < this.goodsUuid.size(); i++) {
-            goods.add(this.goodManager.getGoodByUUID(this.goodsUuid.get(i)));
+            try {
+                goods.add(this.goodManager.getGoodByUUID(this.goodsUuid.get(i)));
+            } catch (ManagerException e) {
+                e.printStackTrace();
+            }
             //            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
         }
 
         //            this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
         try {
             this.orderManager.createOrder(this.goodManager, goods, (Client) user);
-        } catch (OrderException e) {
+        } catch (OrderException | ManagerException | RepositoryException e) {
             e.printStackTrace();
-            return "AddOrderFailure";
-        } catch (ManagerException e) {
-            e.printStackTrace();
-            return "AddOrderFailure";
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-            return "AddOrderFailure";
+            this.errorMessage = e.getMessage();
+            return "OrderError";
         }
 
 
@@ -94,12 +97,12 @@ public class OrderController implements Serializable {
             this.orderManager.returnOrder(this.goodManager, order);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "ReturnOrderFailure";
+            this.errorMessage = e.getMessage();
+
+            return "OrderError";
         }
         this.initCurrentOrders();
-        //        for (Good g : order.getGoods()) {
-        //            this.goodManager.addGood(g);
-        //        }
+
         return "AllOrders";
     }
 
@@ -109,7 +112,9 @@ public class OrderController implements Serializable {
             this.orderManager.remove(order);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "RemoveOrderFailure";
+            this.errorMessage = e.getMessage();
+
+            return "OrderError";
         }
         this.initCurrentOrders();
         return "AllOrders";

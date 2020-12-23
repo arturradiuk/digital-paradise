@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 import controller.exceptions.ManagerException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
@@ -35,6 +36,10 @@ public class GoodController implements Serializable {
 
     private Good newGood;
 
+    @Getter
+    @Setter
+    private String errorMessage = new String();
+
     private Good currentLaptop;
     private Good currentPC;
 
@@ -54,7 +59,9 @@ public class GoodController implements Serializable {
         } catch (RepositoryException e) {
             e.printStackTrace();
             this.initCurrentGoods();
-            return "UpdateProductFailure";
+            this.errorMessage = e.getMessage();
+
+            return "GoodError";
         }
 
         return "AllGoods";
@@ -70,11 +77,10 @@ public class GoodController implements Serializable {
             this.goodManager.add(this.newGood);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "AddProductFailure";
+            this.errorMessage = e.getMessage();
+            return "GoodError";
 
         }
-
-        //        this.newGood = new Laptop();
 
         this.initCurrentGoods();
         return "AllGoods";
@@ -91,7 +97,9 @@ public class GoodController implements Serializable {
 
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "UpdateProductFailure";
+            this.errorMessage = e.getMessage();
+
+            return "GoodError";
         }
         this.initCurrentGoods();
         return "AllGoods";
@@ -107,7 +115,9 @@ public class GoodController implements Serializable {
             this.goodManager.add(this.newGood);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "AddProductFailure";
+            this.errorMessage = e.getMessage();
+
+            return "GoodError";
         }
 
         //        this.newGood = new PC();
@@ -123,7 +133,9 @@ public class GoodController implements Serializable {
             this.goodManager.remove(this.orderManager, good);
         } catch (RepositoryException | ManagerException e) {
             e.printStackTrace();
-            return "ProductRemoveFailure";
+            this.errorMessage = e.getMessage();
+
+            return "GoodError";
         }
         this.initCurrentGoods();
         return "AllGoods";
@@ -172,7 +184,12 @@ public class GoodController implements Serializable {
     }
 
     private void initCurrentGoodsById() {
-        Good g = this.goodManager.getGoodByUUID(UUID.fromString(this.uuid));
+        Good g = null;
+        try {
+            g = this.goodManager.getGoodByUUID(UUID.fromString(this.uuid));
+        } catch (ManagerException e) {
+            e.printStackTrace();
+        }
 
         if (g instanceof Laptop) {
             this.currentLaptops = new CopyOnWriteArrayList<>();

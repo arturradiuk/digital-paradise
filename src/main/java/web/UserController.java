@@ -33,6 +33,10 @@ public class UserController implements Serializable {
     @Getter
     private String uuid = "";
 
+    @Setter
+    @Getter
+    private String errorMessage = "";
+
     private User newUser;
 
     private User currentUser;
@@ -51,7 +55,7 @@ public class UserController implements Serializable {
             this.userManager.add(this.newUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "AddUserFailure";
+            return "UserError";
         }
         //this.newAdministrator = new Administrator();
         this.initCurrentUsers();
@@ -68,7 +72,7 @@ public class UserController implements Serializable {
             this.userManager.add(this.newUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "AddUserFailure";
+            return "UserError";
 
         }
         //this.newUser = new Employee();
@@ -86,7 +90,7 @@ public class UserController implements Serializable {
             this.userManager.add(this.newUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "AddUserFailure";
+            return "UserError";
         }
         //        this.newUser = new Client();
         this.initCurrentUsers();
@@ -111,7 +115,8 @@ public class UserController implements Serializable {
             this.userManager.remove(orderManager, user);
         } catch (RepositoryException | ManagerException e) {
             e.printStackTrace();
-            return "RemoveUserFailure";
+            this.errorMessage = e.getMessage();
+            return "UserError";
         }
         this.initCurrentUsers();
         return "AllUsers";
@@ -210,7 +215,9 @@ public class UserController implements Serializable {
             this.userManager.update(this.currentUser.getUuid(), this.currentUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
-            return "UserUpdateFailure";
+            this.errorMessage = e.getMessage();
+
+            return "UserError";
         }
         this.initCurrentUsers();
         return "AllUsers";

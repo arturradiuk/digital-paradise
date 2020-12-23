@@ -58,16 +58,18 @@ public class GoodManager implements IManager<Good, UUID> {
         return this.goodRepository.getAll();
     }
 
-    public Good getGoodByUUID(UUID uuid) {
+    public Good getGoodByUUID(UUID uuid) throws ManagerException {
 
 //        Good good = this.goodRepository.getAll().stream().filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
         Good good = null;
         for (Good g : this.goodRepository.getAll()) {
             if (g.getUuid().equals(uuid)) {
                 good = g;
+                return g;
             }
         }
-        return good;
+        throw new ManagerException("");// move this to the repository
+//        return good;
     }
 
     public List<Good> getAllCurrentLaptops() {

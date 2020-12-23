@@ -186,8 +186,7 @@
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
-    
-    
+
 
     <navigation-rule>
         <from-view-id>/good/AllGoods.xhtml</from-view-id>
@@ -386,12 +385,31 @@
         </navigation-case>
     </navigation-rule>
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <navigation-rule>
+        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>GoodError</from-outcome>
+            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/add_product.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>GoodError</from-outcome>
+            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/good/AddLaptop.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>AddProductFailure</from-outcome>
-            <to-view-id>/good/add_product_failure.xhtml</to-view-id>
+            <from-outcome>GoodError</from-outcome>
+            <to-view-id>/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -399,8 +417,17 @@
     <navigation-rule>
         <from-view-id>/good/AddPC.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>AddProductFailure</from-outcome>
-            <to-view-id>/good/add_product_failure.xhtml</to-view-id>
+            <from-outcome>GoodError</from-outcome>
+            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/update_product.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>GoodError</from-outcome>
+            <to-view-id>/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -408,8 +435,8 @@
     <navigation-rule>
         <from-view-id>/good/UpdateLaptop.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>UpdateProductFailure</from-outcome>
-            <to-view-id>/good/update_product_failure.xhtml</to-view-id>
+            <from-outcome>GoodError</from-outcome>
+            <to-view-id>/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -417,17 +444,18 @@
     <navigation-rule>
         <from-view-id>/good/UpdatePC.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>UpdateProductFailure</from-outcome>
-            <to-view-id>/good/update_product_failure.xhtml</to-view-id>
+            <from-outcome>GoodError</from-outcome>
+            <to-view-id>/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <navigation-rule>
         <from-view-id>/order/AddOrder.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>AddOrderFailure</from-outcome>
-            <to-view-id>/order/order_add_failure.xhtml</to-view-id>
+            <from-outcome>OrderError</from-outcome>
+            <to-view-id>/order/order_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -435,17 +463,19 @@
     <navigation-rule>
         <from-view-id>/order/AllOrders.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>ReturnOrderFailure</from-outcome>
-            <to-view-id>/order/return_order_failure.xhtml</to-view-id>
+            <from-outcome>OrderError</from-outcome>
+            <to-view-id>/order/order_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <navigation-rule>
-        <from-view-id>/order/AllOrders.xhtml</from-view-id>
+        <from-view-id>/user/add_user.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>RemoveOrderFailure</from-outcome>
-            <to-view-id>/order/remove_order_failure.xhtml</to-view-id>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -453,17 +483,8 @@
     <navigation-rule>
         <from-view-id>/user/AddAdministrator.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>AddUserFailure</from-outcome>
-            <to-view-id>/user/add_user_failure.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-
-    <navigation-rule>
-        <from-view-id>/user/AddEmployee.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>AddUserFailure</from-outcome>
-            <to-view-id>/user/add_user_failure.xhtml</to-view-id>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -471,8 +492,17 @@
     <navigation-rule>
         <from-view-id>/user/AddClient.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>AddUserFailure</from-outcome>
-            <to-view-id>/user/add_user_failure.xhtml</to-view-id>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/AddEmployee.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -480,8 +510,17 @@
     <navigation-rule>
         <from-view-id>/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>RemoveUserFailure</from-outcome>
-            <to-view-id>/user/add_user_failure.xhtml</to-view-id>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/update_user.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -489,17 +528,8 @@
     <navigation-rule>
         <from-view-id>/user/UpdateAdministrator.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>UserUpdateFailure</from-outcome>
-            <to-view-id>/user/update_user_failure.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-
-    <navigation-rule>
-        <from-view-id>/user/UpdateEmployee.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>UserUpdateFailure</from-outcome>
-            <to-view-id>/user/update_user_failure.xhtml</to-view-id>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -507,32 +537,23 @@
     <navigation-rule>
         <from-view-id>/user/UpdateClient.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>UserUpdateFailure</from-outcome>
-            <to-view-id>/user/update_user_failure.xhtml</to-view-id>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/user/UpdateEmployee.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>ProductRemoveFailure</from-outcome>
-            <to-view-id>/good/remove_product_failure.xhtml</to-view-id>
+            <from-outcome>UserError</from-outcome>
+            <to-view-id>/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
-    
-<!--  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  -->
 
-    <navigation-rule>
-        <from-view-id>/good/add_product_failure.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>ProductRemoveFailure</from-outcome>
-            <to-view-id>/good/remove_product_failure.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-    
-    
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
 
 </faces-config>
