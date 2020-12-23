@@ -48,4 +48,8 @@ public abstract class User {
     public int hashCode() {
         return Objects.hash(uuid);
     }
+
+    public boolean isEmailEquals(String email) {
+        return this.email.equals(email);
+    }
 }
