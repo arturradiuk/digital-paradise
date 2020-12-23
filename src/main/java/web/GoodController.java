@@ -15,6 +15,7 @@ import controller.managers.OrderManager;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import model.clients.Client;
 import model.entities.Good;
 import model.goods.Laptop;
 import model.goods.PC;
@@ -35,21 +36,22 @@ public class GoodController implements Serializable {
 
     private Good newGood;
 
-    private Good currentLaptop;
-    private Good currentPC;
+//    private Good currentLaptop;
+//    private Good currentPC;
+    
+    private Good currentGood;
 
     private List<Good> currentLaptops;
     private List<Good> currentPCs;
 
     public String seeLaptop(Laptop laptop) {
-        this.currentLaptop = laptop;
-        return "UpdateLaptop";
+        this.currentGood = laptop;
+        return "UpdateGood";
     }
 
     public String updateLaptop() {
         try {
-
-            this.goodManager.update(this.currentLaptop.getUuid(), this.currentLaptop);
+            this.goodManager.update(this.currentGood.getUuid(), this.currentGood);
 
         } catch (RepositoryException e) {
             e.printStackTrace();
@@ -81,13 +83,13 @@ public class GoodController implements Serializable {
     }
 
     public String seePC(PC pc) {
-        this.currentPC = pc;
-        return "UpdatePC";
+        this.currentGood = pc;
+        return "UpdateGood";
     }
 
     public String updatePC() {
         try {
-            this.goodManager.update(this.currentPC.getUuid(), this.currentPC);
+            this.goodManager.update(this.currentGood.getUuid(), this.currentGood);
 
         } catch (RepositoryException e) {
             e.printStackTrace();
@@ -151,11 +153,35 @@ public class GoodController implements Serializable {
     }
 
     public boolean isNewGoodLaptop() {
+        if (this.newGood == null) {
+//            goToAllUsers();
+            return false;
+        }
         return this.newGood.getClass().equals(Laptop.class);
     }
 
     public boolean isNewGoodPC() {
+        if (this.newGood == null) {
+//            goToAllUsers();
+            return false;
+        }
         return this.newGood.getClass().equals(PC.class);
+    }
+    
+    public boolean isCurrentGoodLaptop() {
+        if (this.currentGood == null) {
+//            goToAllUsers();
+            return false;
+        }
+        return this.currentGood.getClass().equals(Laptop.class);
+    }
+
+    public boolean isCurrentGoodPC() {
+        if (this.currentGood == null) {
+            //            goToAllUsers();
+            return false;
+        }
+        return this.currentGood.getClass().equals(PC.class);
     }
 
     public List<Good> getCurrentLaptops() {

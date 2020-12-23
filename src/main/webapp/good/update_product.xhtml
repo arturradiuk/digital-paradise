@@ -1,12 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+    <title>#{msg['update_PC']}</title>
+</h:head>
+<h:body>
+    <ui:composition template="/template/common.xhtml">
 
-</body>
+        <ui:define name="content">
+            <h:outputStylesheet name="css/good/update_product_content.css"/>
+            <div class="content-wrap">
+                <h:form>
+                    <h:panelGrid columns="1">
+                        <h:panelGroup rendered="#{goodController.isCurrentGoodPC()}">
+                            <h3 class="product-title">#{msg['your_PC']}</h3>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{goodController.isCurrentGoodLaptop()}">
+                            <h3 class="product-title">#{msg['your_laptop']}</h3>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="true">
+                            UUID: <h:outputText value="#{goodController.currentGood.uuid}" required="true"
+                                                converter="converters.UUIDConverter"/> <br/>
+                            *#{msg['good']} Name: <h:inputText value="#{goodController.currentGood.goodName}"
+                                                               required="true"/>
+                            <br/>
+                            *#{msg['base_price']}: <h:inputText value="#{goodController.currentGood.basePrice}"
+                                                                required="true"/> <br/>
+                            *RAM: <h:inputText value="#{goodController.currentGood.ram}" required="true"/> <br/>
+                            *SSD: <h:inputText value="#{goodController.currentGood.ssdCapacity}" required="true"/>
+                            <br/>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{goodController.isCurrentGoodLaptop()}">
+                            *#{msg['screen_size']}: <h:inputText value="#{goodController.currentGood.screenSize}"
+                                                                 required="true"/> <br/>
+                            *#{msg['has_camera']}: <h:inputText value="#{goodController.currentGood.hasCamera}"
+                                                                required="true"/> <br/>
+                            *USB #{msg['amount']}: <h:inputText value="#{goodController.currentGood.usbAmount}"
+                                                                required="true"/> <br/>
+                            <h:commandButton value="#{msg['confirm']}" action="#{goodController.updateLaptop}"
+                                             immediate="false"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup rendered="#{goodController.isCurrentGoodPC()}">
+                            <h:commandButton value="#{msg['confirm']}" action="#{goodController.updatePC}"
+                                             immediate="false"/>
+                        </h:panelGroup>
+
+                    </h:panelGrid>
+
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+
+</h:body>
 </html>

@@ -97,7 +97,6 @@
                 <h:form id="form2">
 
 
-
                     <p:dataTable id="pcs" var="pc" value="#{goodController.currentPCs}" editable="false"
                                  style="margin-bottom:20px; font-size: 10px"
                                  tableStyle="table-layout: auto; align-content: center;">
@@ -148,7 +147,8 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="#{msg['add_pc']}" action="#{goodController.addPC}" style="background-color: #ff4d00;"/>
+                    <h:commandButton value="#{msg['add_pc']}" action="#{goodController.addPC}"
+                                     style="background-color: #ff4d00;"/>
                 </h:form>
             </div>
 
