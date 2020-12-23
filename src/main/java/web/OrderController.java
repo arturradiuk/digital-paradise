@@ -60,21 +60,25 @@ public class OrderController implements Serializable {
 
 
     public String processNewOrder() {
-        //        System.out.println("hellohellohellohellohellohellohellohellohellohellohellohellohellohello");
-        User user = this.userManager.getUserByUUID(clientUuid); // todo should be client
-        //        System.out.println(user);
+        User user = null; // todo should be client
+        try {
+            user = this.userManager.getUserByUUID(clientUuid);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            this.errorMessage = e.getMessage();
+            return "OrderError";
+        }
         List<Good> goods = new ArrayList<>();
 
         for (int i = 0; i < this.goodsUuid.size(); i++) {
             try {
                 goods.add(this.goodManager.getGoodByUUID(this.goodsUuid.get(i)));
-            } catch (ManagerException e) {
-                e.printStackTrace();
+            } catch (IllegalArgumentException | RepositoryException e) {
+                this.errorMessage = e.getMessage();
+                return "OrderError";
             }
-            //            this.goodManager.removeGood((this.goodManager.getGoodByUUID(this.goodsUuid.get(i))));
         }
 
-        //            this.orderManager.addOrder(new Order(LocalDateTime.now(), goods, (Client) user));
         try {
             this.orderManager.createOrder(this.goodManager, goods, (Client) user);
         } catch (OrderException | ManagerException | RepositoryException e) {
@@ -92,7 +96,6 @@ public class OrderController implements Serializable {
     }
 
     public String returnOrder(Order order) {
-        //        this.orderManager.returnOrder(order);
         try {
             this.orderManager.returnOrder(this.goodManager, order);
         } catch (RepositoryException e) {
@@ -132,27 +135,42 @@ public class OrderController implements Serializable {
         this.currentOrders = orderManager.getAll();
     }
 
-    // todo implement update
-
     public String findOrderById() {
-        this.initCurrentOrdersById();
+
+        try {
+            this.initCurrentOrdersById();
+        } catch (RepositoryException | IllegalArgumentException e) {
+            e.printStackTrace();
+            this.errorMessage = e.getMessage();
+            return "OrderError";
+        }
+
         return "FindById";
     }
 
 
-    private void initCurrentOrdersById() {
-        Order o = this.orderManager.getOrderByUUID(UUID.fromString(this.orderUuid));
+    private void initCurrentOrdersById() throws RepositoryException {
+
+        Order o = null;
+        o = this.orderManager.getOrderByUUID(UUID.fromString(this.orderUuid));
         this.currentOrders = new CopyOnWriteArrayList<>();
         this.currentOrders.add(o);
     }
 
     public String findOrdersForUserById() {
-        this.initCurrentOrdersByUserId();
+        try {
+            this.initCurrentOrdersByUserId();
+        } catch (RepositoryException | IllegalArgumentException e) {
+            e.printStackTrace();
+            this.errorMessage = e.getMessage();
+            return "OrderError";
+        }
         return "FindById";
     }
 
-    private void initCurrentOrdersByUserId() {
+    private void initCurrentOrdersByUserId() throws RepositoryException {
         User user = this.userManager.getUserByUUID(UUID.fromString(userUuid));
+
         System.out.println(user.toString());
         this.currentOrders = this.orderManager.getAllOrdersForTheUser(user);
     }

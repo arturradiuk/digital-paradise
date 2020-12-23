@@ -26,6 +26,11 @@ public class GoodManager implements IManager<Good, UUID> {
     private Repository<Good, UUID> goodRepository; // = new GoodRepository();
 
 
+    public Good getGoodByUUID(UUID uuid) throws RepositoryException {
+        return this.goodRepository.getResourceByUUID(uuid);
+    }
+
+
     @Override
     public void update(UUID uuid, Good good) throws RepositoryException {
         this.goodRepository.update(uuid, good);
@@ -58,19 +63,6 @@ public class GoodManager implements IManager<Good, UUID> {
         return this.goodRepository.getAll();
     }
 
-    public Good getGoodByUUID(UUID uuid) throws ManagerException {
-
-//        Good good = this.goodRepository.getAll().stream().filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
-        Good good = null;
-        for (Good g : this.goodRepository.getAll()) {
-            if (g.getUuid().equals(uuid)) {
-                good = g;
-                return g;
-            }
-        }
-        throw new ManagerException("");// move this to the repository
-//        return good;
-    }
 
     public List<Good> getAllCurrentLaptops() {
         List<Good> laptops = this.getAll().stream().filter(lapop -> lapop instanceof Laptop).collect(Collectors.toList());

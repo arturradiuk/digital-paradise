@@ -18,8 +18,11 @@ public class MultipleUUIDConverter implements Converter {
         String[] uuids = s.split(", ");
         List<UUID> uuidsList = new ArrayList<>();
         for (int i = 0; i < uuids.length; i++) {
-
-            uuidsList.add(UUID.fromString(uuids[i].trim()));
+            try {
+                uuidsList.add(UUID.fromString(uuids[i].trim()));
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
         }
         return uuidsList;
     }

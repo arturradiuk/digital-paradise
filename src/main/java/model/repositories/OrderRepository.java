@@ -18,6 +18,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class OrderRepository implements Repository<Order, UUID> {// todo write methods getBy...
     private List<Order> orders;
 
+
+    @Override
+    public Order getResourceByUUID(UUID uuid) throws RepositoryException {
+        for (Order o : orders) {
+            if (o.getUuid().equals(uuid)) {
+                return o;
+            }
+        }
+        throw new OrderRepositoryException("There is no order with such uuid in the repository.");
+    }
+
     @Override
     public void update(UUID id, Order element) {
         synchronized (this.orders) {

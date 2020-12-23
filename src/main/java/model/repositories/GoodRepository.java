@@ -21,6 +21,16 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
     private List<Good> goods;
 
     @Override
+    public Good getResourceByUUID(UUID uuid) throws RepositoryException {
+        for (Good g : this.goods) {
+            if (g.getUuid().equals(uuid)) {
+                return g;
+            }
+        }
+        throw new GoodRepositoryException("There is no good with such uuid in the GoodRepository");
+    }
+
+    @Override
     public void add(Good element) throws RepositoryException {
         synchronized (this.goods) {
             if (this.goods.contains(element))
@@ -33,9 +43,8 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
     @Override
     public void remove(Good element) throws RepositoryException {
         synchronized (this.goods) {
-            
-            if (!this.goods.remove(element))
-            {
+
+            if (!this.goods.remove(element)) {
                 throw new GoodRepositoryException(GoodRepositoryException.NOT_EXIST_GOOD);
             }
 
@@ -65,5 +74,6 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
         DataFiller dataFiller = new StaticGoodFiller();
         this.goods = dataFiller.Fill();
     }
+
 
 }

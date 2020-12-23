@@ -20,19 +20,30 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
     private List<User> people;
 
     @Override
+    public User getResourceByUUID(UUID uuid) throws RepositoryException {
+        for (User u :
+                people) {
+            if (u.getUuid().equals(uuid)) {
+                return u;
+            }
+
+        }
+        throw new UserRepositoryException("There is no user with such uuid");
+    }
+
+    @Override
     public void update(UUID id, User element) throws RepositoryException {
         synchronized (this.people) {
             boolean exists = false;
             for (User user : people) {
-                if(user.isEmailEquals(element.getEmail()) && !user.equals(element))
+                if (user.isEmailEquals(element.getEmail()) && !user.equals(element))
                     throw new UserRepositoryException("This email is already taken");
             }
             for (int i = 0; i < people.size(); i++) {
                 if (id.equals(people.get(i).getUuid())) {
                     this.people.set(i, element);
                     exists = true;
-                }
-                else if ((i == (people.size() - 1)) && !exists){
+                } else if ((i == (people.size() - 1)) && !exists) {
                     throw new UserRepositoryException(UserRepositoryException.EXIST_USER);
                 }
             }
@@ -45,7 +56,7 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
             for (User user : people) {
                 if (user.equals(element))
                     throw new UserRepositoryException(UserRepositoryException.EXIST_USER);
-                if(user.isEmailEquals(element.getEmail()))
+                if (user.isEmailEquals(element.getEmail()))
                     throw new UserRepositoryException("This email is already taken");
             }
             this.people.add(element);

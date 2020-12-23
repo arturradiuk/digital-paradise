@@ -8,15 +8,19 @@ import java.util.UUID;
 
 //@FacesConverter(forClass = java.util.UUID.class)
 @FacesConverter("converters.UUIDConverter")
-public class UUIDConverter  implements Converter {
+public class UUIDConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        return UUID.fromString(s);
+        try {
+            return UUID.fromString(s);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-        UUID uuid = (UUID)o;
+        UUID uuid = (UUID) o;
         return uuid.toString();
     }
 }

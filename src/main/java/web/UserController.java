@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+
 import controller.exceptions.ManagerException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.OrderManager;
@@ -97,8 +98,17 @@ public class UserController implements Serializable {
         return "AllUsers";
     }
 
-    public void changeClientActivity(User user) {
-        this.userManager.getUserByUUID(user.getUuid()).changeActivity();
+    public String changeClientActivity(User user) {
+
+        try {
+            this.userManager.getUserByUUID(user.getUuid()).changeActivity();
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+            this.errorMessage = e.getMessage();
+            return "UserError";
+        }
+
+        return "AllUsers";
     }
 
 
@@ -144,8 +154,7 @@ public class UserController implements Serializable {
 //        return "UpdateClient";
         return "UpdateUser";
     }
-    
-    
+
 
     public String addClient() {
         this.newUser = new Client();
@@ -257,15 +266,24 @@ public class UserController implements Serializable {
 //    }
 
     public String findUserById() {
-        this.initCurrentUsersById();
+
+        try {
+            this.initCurrentUsersById();
+        } catch (RepositoryException | IllegalArgumentException e) {
+            e.printStackTrace();
+            this.errorMessage = e.getMessage();
+            return "UserError";
+        }
+
+
         return "FindById";
     }
-    
+
     public String goToAllUsers() {
         return "AllUsers";
     }
 
-    private void initCurrentUsersById() {
+    private void initCurrentUsersById() throws RepositoryException {
         User u = this.userManager.getUserByUUID(UUID.fromString(this.uuid));
 
         if (u instanceof Administrator) {

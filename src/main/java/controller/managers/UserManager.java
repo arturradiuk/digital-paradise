@@ -56,10 +56,8 @@ public class UserManager implements IManager<User, UUID> {
     }
 
 
-    public User getUserByUUID(UUID uuid) {
-        User user = this.userRepository.getAll().stream()
-                .filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
-        return user;
+    public User getUserByUUID(UUID uuid) throws RepositoryException {
+       return this.userRepository.getResourceByUUID(uuid);
     }
 
 

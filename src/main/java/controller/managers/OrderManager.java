@@ -17,7 +17,9 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -53,23 +55,35 @@ public class OrderManager implements IManager<Order, UUID> {
 
     public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException, RepositoryException, ManagerException {
         boolean exists = false;
-        for (Good g : goodManager.getAll()) {
-            for (Good gs : goods) {
-                if(gs == null )
-                    throw new ManagerException("This good does not exists"); // todo add static string in ManagerException
-                if (g.getUuid().equals(gs.getUuid())) {
-                    if((g.getCount() - 1) < 0 )
-                        throw new ManagerException("There are not enough goods in magazine"); // todo add static string in ManagerException
-                    g.setCount(g.getCount() - 1);
-                    if(g.getCount() == 0)
-                        g.setSold(true);
 
-                    exists = true;
+        Map<Good, Integer> tempMap = new HashMap<Good, Integer>();
+
+        for (int i = 0; i < goods.size(); i++) {
+            if (tempMap.containsKey(goods.get(i))) {
+
+                int tempInt = tempMap.get(goods.get(i));
+                tempInt++;
+                tempMap.remove(goods.get(i));
+                tempMap.put(goods.get(i), tempInt);
+
+            } else {
+                tempMap.put(goods.get(i), 1);
+            }
+        }
+        for (Good g :
+                goodManager.getAll()) {
+            if(tempMap.containsKey(g)){
+                if( (g.getCount() - tempMap.get(g)) < 0){
+                    throw new ManagerException("There are not enough goods in magazine"); // todo add static string in ManagerException
+                }
+                else{
+                    g.setCount(g.getCount()-tempMap.get(g));
+                    if (g.getCount() == 0)
+                        g.setSold(true);
                 }
             }
         }
-        if(!exists)
-            throw new ManagerException("This good does not exists");
+
 
         Order order = new Order(LocalDateTime.now(), goods, client);
         this.orderRepository.add(order);
@@ -90,10 +104,8 @@ public class OrderManager implements IManager<Order, UUID> {
         }
     }
 
-    public Order getOrderByUUID(UUID uuid) {
-        Order order = this.orderRepository.getAll().stream()
-                .filter(c -> c.getUuid().equals(uuid)).findFirst().orElse(null);
-        return order;
+    public Order getOrderByUUID(UUID uuid) throws RepositoryException {
+        return this.orderRepository.getResourceByUUID(uuid);
     }
 
     public List<Order> getAllOrdersForTheUser(User user) {

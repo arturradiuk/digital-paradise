@@ -179,31 +179,27 @@ public class GoodController implements Serializable {
     }
 
     public String findGoodById() {
-        this.initCurrentGoodsById();
-        return "FindById";
-    }
 
-    private void initCurrentGoodsById() {
         Good g = null;
         try {
             g = this.goodManager.getGoodByUUID(UUID.fromString(this.uuid));
-        } catch (ManagerException e) {
-            e.printStackTrace();
+        } catch (IllegalArgumentException | RepositoryException e) {
+            this.errorMessage = e.getMessage();
+            return "GoodError";
+
         }
 
         if (g instanceof Laptop) {
             this.currentLaptops = new CopyOnWriteArrayList<>();
             this.currentLaptops.add(g);
-            return;
         }
 
         if (g instanceof PC) {
             this.currentPCs = new CopyOnWriteArrayList<>();
             this.currentPCs.add(g);
-            return;
         }
 
-
+        return "FindById";
     }
 
 
