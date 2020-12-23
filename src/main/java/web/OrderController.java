@@ -78,8 +78,6 @@ public class OrderController implements Serializable {
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddOrderFailure";
-        } catch (ClassCastException e){
-            e.printStackTrace();
         }
 
 
