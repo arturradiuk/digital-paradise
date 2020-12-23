@@ -1,5 +1,6 @@
 package model.clients;
 
+import java.util.UUID;
 import controller.exceptions.user.AdminException;
 import controller.exceptions.user.UserException;
 import lombok.Data;
@@ -26,8 +27,20 @@ public class Administrator extends User {
         if (isHeadAdmin == null)
             throw new AdminException(AdminException.NULL_FIELD);
 
-        if (isHeadAdmin.equals(""))
-            throw new AdminException(AdminException.EMPTY_FIELD);
+        //        if (isHeadAdmin.equals(""))
+        //            throw new AdminException(AdminException.EMPTY_FIELD);
+
+        this.isHeadAdmin = isHeadAdmin;
+    }
+    
+    public Administrator(UUID uuid, String email, String name, Address address, Boolean isHeadAdmin) throws UserException {
+        super(uuid, email, name, address);
+
+        if (isHeadAdmin == null)
+            throw new AdminException(AdminException.NULL_FIELD);
+
+//        if (isHeadAdmin.equals(""))
+//            throw new AdminException(AdminException.EMPTY_FIELD);
 
         this.isHeadAdmin = isHeadAdmin;
     }

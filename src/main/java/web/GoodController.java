@@ -15,7 +15,6 @@ import controller.managers.OrderManager;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import model.clients.Client;
 import model.entities.Good;
 import model.goods.Laptop;
 import model.goods.PC;
@@ -36,9 +35,9 @@ public class GoodController implements Serializable {
 
     private Good newGood;
 
-//    private Good currentLaptop;
-//    private Good currentPC;
-    
+    //    private Good currentLaptop;
+    //    private Good currentPC;
+
     private Good currentGood;
 
     private List<Good> currentLaptops;
@@ -65,7 +64,7 @@ public class GoodController implements Serializable {
     public String processNewLaptop() {
         if (null == newGood) {
             this.addLaptop();
-        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty()) { //todo
+        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty() || newGood.getCount() < 0) { //todo
             throw new IllegalArgumentException("Proba zatwirdzenia NewLaptop bez goodName danych.");
         }
         try {
@@ -102,7 +101,7 @@ public class GoodController implements Serializable {
     public String processNewPC() {
         if (null == newGood) {
             this.addPC();
-        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty()) { //todo
+        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty() || newGood.getCount() < 0) { //todo
             throw new IllegalArgumentException("Proba zatwierdzenia NewPC bez goodName danych.");
         }
         try {
@@ -154,7 +153,7 @@ public class GoodController implements Serializable {
 
     public boolean isNewGoodLaptop() {
         if (this.newGood == null) {
-//            goToAllUsers();
+            //            goToAllUsers();
             return false;
         }
         return this.newGood.getClass().equals(Laptop.class);
@@ -162,15 +161,15 @@ public class GoodController implements Serializable {
 
     public boolean isNewGoodPC() {
         if (this.newGood == null) {
-//            goToAllUsers();
+            //            goToAllUsers();
             return false;
         }
         return this.newGood.getClass().equals(PC.class);
     }
-    
+
     public boolean isCurrentGoodLaptop() {
         if (this.currentGood == null) {
-//            goToAllUsers();
+            //            goToAllUsers();
             return false;
         }
         return this.currentGood.getClass().equals(Laptop.class);

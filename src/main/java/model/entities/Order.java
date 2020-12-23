@@ -17,7 +17,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 public class Order {
-    private UUID uuid = UUID.randomUUID();
+    private UUID uuid;
     private LocalDateTime orderDateTime;
     private List<Good> goods = new ArrayList<Good>();
     private Client client;
@@ -26,6 +26,16 @@ public class Order {
         if (orderDateTime == null || goods == null || client == null)
             throw new OrderException(OrderException.NULL_FIELD);
 
+        this.orderDateTime = orderDateTime;
+        this.goods = goods;
+        this.client = client;
+    }
+
+    public Order(UUID uuid, LocalDateTime orderDateTime, List<Good> goods, Client client) throws OrderException {
+        if (uuid == null || orderDateTime == null || goods == null || client == null)
+            throw new OrderException(OrderException.NULL_FIELD);
+
+        this.uuid = uuid;
         this.orderDateTime = orderDateTime;
         this.goods = goods;
         this.client = client;

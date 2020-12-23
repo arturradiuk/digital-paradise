@@ -42,6 +42,7 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
     @Override
     public void add(User element) throws RepositoryException {
         synchronized (this.people) {
+            element.setUuid(UUID.randomUUID());
             for (User user : people) {
                 if (user.equals(element))
                     throw new UserRepositoryException(UserRepositoryException.EXIST_USER);

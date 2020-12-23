@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 public abstract class Good {
 
-    private UUID uuid = UUID.randomUUID();
+    private UUID uuid;
 
     private boolean sold = false;
 
@@ -27,9 +27,30 @@ public abstract class Good {
     }
 
     public Good(double basePrice, String goodName, int count) throws GoodException {
-        if (basePrice < 0) {
-            throw new GoodException(GoodException.NEGATIVE_PRICE);
+        if (goodName == null) {
+            throw new GoodException(GoodException.NULL_ARGUMENT);
         }
+        else if (basePrice < 0) {
+            throw new GoodException(GoodException.NEGATIVE_PRICE);
+        } else if (count < 0) {
+            throw new GoodException(GoodException.NEGATIVE_AMOUNT);
+        }
+        
+        this.basePrice = basePrice;
+        this.goodName = goodName;
+        this.count = count;
+    }
+
+    public Good(UUID uuid, double basePrice, String goodName, int count) throws GoodException {
+        if (uuid == null || goodName == null) {
+            throw new GoodException(GoodException.NULL_ARGUMENT);
+        }
+        else if (basePrice < 0) {
+            throw new GoodException(GoodException.NEGATIVE_PRICE);
+        } else if (count < 0) {
+            throw new GoodException(GoodException.NEGATIVE_AMOUNT);
+        }
+        
         this.basePrice = basePrice;
         this.goodName = goodName;
         this.count = count;

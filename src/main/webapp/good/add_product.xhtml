@@ -26,14 +26,13 @@
                         <h3 class="product-title">#{msg['new_pc']}</h3>
                     </h:panelGroup>
                     <h:panelGroup rendered="true">
-                        *UUID: <h:outputText value="#{goodController.newGood.uuid}" required="true"
-                                             converter="converters.UUIDConverter"/> <br/>
                         *#{msg['good']} #{msg['name_title']}: <h:inputText value="#{goodController.newGood.goodName}"
                                                                            required="true"/> <br/>
                         *#{msg['base_price']}: <h:inputText value="#{goodController.newGood.basePrice}"
                                                             required="true"/> <br/>
                         *RAM: <h:inputText value="#{goodController.newGood.ram}" required="true"/> <br/>
                         *SSD: <h:inputText value="#{goodController.newGood.ssdCapacity}" required="true"/> <br/>
+                        *#{msg['count']}: <h:inputText value="#{goodController.newGood.count}" required="true"/> <br/>
                     </h:panelGroup>
                     <h:panelGroup rendered="#{goodController.isNewGoodLaptop()}">
                         *#{msg['screen_size']}: <h:inputText value="#{goodController.newGood.screenSize}"

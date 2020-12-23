@@ -1,5 +1,6 @@
 package model.clients;
 
+import java.util.UUID;
 import controller.exceptions.user.EmployeeException;
 import controller.exceptions.user.UserException;
 import lombok.Data;
@@ -17,15 +18,26 @@ public class Employee extends User {
 
     private Float earnings;
 
-
     public Employee(String email, String name, Address address, Float earnings) throws  UserException {
         super(email, name, address);
 
         if (earnings == null)
             throw new EmployeeException(EmployeeException.NULL_FIELD);
 
-        if (earnings.equals(""))
-            throw new EmployeeException(EmployeeException.EMPTY_FIELD);
+        //        if (earnings.equals(""))
+        //            throw new EmployeeException(EmployeeException.EMPTY_FIELD);
+
+        this.earnings = earnings;
+    }
+    
+    public Employee(UUID uuid, String email, String name, Address address, Float earnings) throws  UserException {
+        super(uuid, email, name, address);
+
+        if (earnings == null)
+            throw new EmployeeException(EmployeeException.NULL_FIELD);
+
+//        if (earnings.equals(""))
+//            throw new EmployeeException(EmployeeException.EMPTY_FIELD);
 
         this.earnings = earnings;
     }

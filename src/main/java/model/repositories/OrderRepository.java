@@ -37,6 +37,7 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
     @Override
     public void add(Order element) throws RepositoryException {
         synchronized (this.orders) {
+            element.setUuid(UUID.randomUUID());
             for (Order order : orders) {
                 if (order.equals(element))
                     throw new OrderRepositoryException(OrderRepositoryException.EXIST_ORDER);
@@ -62,7 +63,7 @@ public class OrderRepository implements Repository<Order, UUID> {// todo write m
     }
 
     @PostConstruct
-    private void initOrders() {
+    public void initOrders() {
         DataFiller dataFiller = new StaticOrderFiller();
         this.orders = dataFiller.Fill();
     }

@@ -17,17 +17,14 @@
             <div class="content-wrap">
                 <h3 class="order_h3">#{msg['add_order']}</h3>
                 <h:form>
-                    *UUID: <h:inputText value="#{orderController.newOrder.uuid}" required="true"
-                                        converter="converters.UUIDConverter"/> <br/>
-
                 *#{msg['client']} UUID: <h:inputText value="#{orderController.clientUuid}" required="true"
-                                           converter="converters.UUIDConverter"></h:inputText> <br/>
+                                           converter="converters.UUIDConverter"/> <br/>
 
                 *#{msg['goods_title']} UUID: <h:inputText value="#{orderController.goodsUuid}" required="true"
-                                          converter="converters.MultipleUUIDConverter"></h:inputText> <br/>
+                                          converter="converters.MultipleUUIDConverter"/> <br/>
 
                 <h:commandButton value="Confirm" action="#{orderController.processNewOrder}"
-                                 immediate="false"></h:commandButton>
+                                 immediate="false"/>
 
                 </h:form>
             </div>
