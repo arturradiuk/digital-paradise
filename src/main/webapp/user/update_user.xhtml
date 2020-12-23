@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+    <title>#{msg['update_admin']}</title>
+</h:head>
+<h:body>
+    <ui:composition template="/template/common.xhtml">
+
+
+        <ui:define name="content">
+            <h:outputStylesheet name="css/user/updateadministrator_content.css"/>
+            <div class="content-wrap">
+
+                <h:form>
+                    <h:panelGrid columns="1">
+                        <h:panelGroup rendered="#{userController.isCurrentUserClient()}">
+                            <h3 class="user-title">#{msg['update_client']}</h3>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{userController.isCurrentUserEmployee()}">
+                            <h3 class="user-title">#{msg['update_employee']}</h3>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{userController.isCurrentUserAdministrator()}">
+                            <h3 class="user-title">#{msg['update_admin']}</h3>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="true">
+                            *UUID: <h:outputText value="#{userController.currentUser.uuid}" required="true"
+                                                 converter="converters.UUIDConverter"/> <br/>
+                            #{msg['email']} <h:inputText value="#{userController.currentUser.email}"
+                                                         required="true"/>
+                            <br/>
+                            #{msg['name']} <h:inputText value="#{userController.currentUser.name}"
+                                                        required="true"/>
+                            <br/>
+                            #{msg['address']} <h:inputText value="#{userController.currentUser.address}"
+                                                           required="true"
+                                                           converter="converters.AddressConverter"/> <br/>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{userController.isCurrentUserClient()}">
+                            #{msg['phone_number']} <h:inputText value="#{userController.currentUser.phoneNumber}"
+                                                                required="true"/> <br/>
+                            <h:commandButton value="Update" action="#{userController.updateUser()}"
+                                             immediate="false"/>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{userController.isCurrentUserEmployee()}">
+                            #{msg['earnings']} <h:inputText value="#{userController.currentUser.earnings}"
+                                                            required="true"/> <br/>
+                            <h:commandButton value="Update" action="#{userController.updateUser()}"
+                                             immediate="false"/>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{userController.isCurrentUserAdministrator()}">
+                            #{msg['is_head_admin']} <h:inputText
+                                value="#{userController.currentUser.isHeadAdmin}"
+                                required="true"/> <br/>
+                            <h:commandButton value="Update" action="#{userController.updateUser()}"
+                                             immediate="false"/>
+                        </h:panelGroup>
+
+
+                    </h:panelGrid>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+
+</h:body>
+</html>

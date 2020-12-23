@@ -31,13 +31,11 @@ public class UserController implements Serializable {
 
     @Setter
     @Getter
-    private String uuid = new String();
+    private String uuid = "";
 
     private User newUser;
 
-    private User currentAdministrator = new Administrator();
-    private User currentEmployee = new Employee();
-    private User currentClient = new Client();
+    private User currentUser;
 
     private List<User> currentAdministrators;
     private List<User> currentEmployees;
@@ -125,19 +123,24 @@ public class UserController implements Serializable {
     }
 
     public String seeAdministrator(Administrator administrator) {
-        this.currentAdministrator = administrator;
-        return "UpdateAdministrator";
+        this.currentUser = administrator;
+//        return "UpdateAdministrator";
+        return "UpdateUser";
     }
 
     public String seeEmployee(Employee employee) {
-        this.currentEmployee = employee;
-        return "UpdateEmployee";
+        this.currentUser = employee;
+//        return "UpdateEmployee";
+        return "UpdateUser";
     }
 
     public String seeClient(Client client) {
-        this.currentClient = client;
-        return "UpdateClient";
+        this.currentUser = client;
+//        return "UpdateClient";
+        return "UpdateUser";
     }
+    
+    
 
     public String addClient() {
         this.newUser = new Client();
@@ -155,20 +158,56 @@ public class UserController implements Serializable {
     }
 
     public boolean isNewUserClient() {
+        if (this.newUser == null) {
+            goToAllUsers();
+            return false;
+        }
         return this.newUser.getClass().equals(Client.class);
     }
 
     public boolean isNewUserEmployee() {
+        if (this.newUser == null) {
+            goToAllUsers();
+            return false;
+        }
         return this.newUser.getClass().equals(Employee.class);
     }
 
     public boolean isNewUserAdministrator() {
+        if (this.newUser == null) {
+            goToAllUsers();
+            return false;
+        }
         return this.newUser.getClass().equals(Administrator.class);
     }
 
-    public String updateAdministrator() {
+    public boolean isCurrentUserClient() {
+        if (this.currentUser == null) {
+            goToAllUsers();
+            return false;
+        }
+        return this.currentUser.getClass().equals(Client.class);
+    }
+
+    public boolean isCurrentUserEmployee() {
+        if (this.currentUser == null) {
+            goToAllUsers();
+            return false;
+        }
+        return this.currentUser.getClass().equals(Employee.class);
+    }
+
+    public boolean isCurrentUserAdministrator() {
+        if (this.currentUser == null) {
+            goToAllUsers();
+            return false;
+        }
+        return this.currentUser.getClass().equals(Administrator.class);
+    }
+
+    public String updateUser() {
         try {
-            this.userManager.update(this.currentAdministrator.getUuid(), this.currentAdministrator);
+            this.userManager.update(this.currentUser.getUuid(), this.currentUser);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "UserUpdateFailure";
@@ -177,31 +216,46 @@ public class UserController implements Serializable {
         return "AllUsers";
     }
 
-    public String updateEmployee() {
-        try {
-            this.userManager.update(this.currentEmployee.getUuid(), this.currentEmployee);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-            return "UserUpdateFailure";
-        }
-        this.initCurrentUsers();
-        return "AllUsers";
-    }
-
-    public String updateClient() {
-        try {
-            this.userManager.update(this.currentClient.getUuid(), this.currentClient);
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-            return "UserUpdateFailure";
-        }
-        this.initCurrentUsers();
-        return "AllUsers";
-    }
+//    public String updateAdministrator() {
+//        try {
+//            this.userManager.update(this.currentAdministrator.getUuid(), this.currentAdministrator);
+//        } catch (RepositoryException e) {
+//            e.printStackTrace();
+//            return "UserUpdateFailure";
+//        }
+//        this.initCurrentUsers();
+//        return "AllUsers";
+//    }
+//
+//    public String updateEmployee() {
+//        try {
+//            this.userManager.update(this.currentEmployee.getUuid(), this.currentEmployee);
+//        } catch (RepositoryException e) {
+//            e.printStackTrace();
+//            return "UserUpdateFailure";
+//        }
+//        this.initCurrentUsers();
+//        return "AllUsers";
+//    }
+//
+//    public String updateClient() {
+//        try {
+//            this.userManager.update(this.currentClient.getUuid(), this.currentClient);
+//        } catch (RepositoryException e) {
+//            e.printStackTrace();
+//            return "UserUpdateFailure";
+//        }
+//        this.initCurrentUsers();
+//        return "AllUsers";
+//    }
 
     public String findUserById() {
         this.initCurrentUsersById();
         return "FindById";
+    }
+    
+    public String goToAllUsers() {
+        return "AllUsers";
     }
 
     private void initCurrentUsersById() {

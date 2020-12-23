@@ -19,16 +19,16 @@
             <h3 class="admin_h3">#{msg['update_admin']}</h3>
             <h:form>
                 *UUID: <h:outputText value="#{userController.currentAdministrator.uuid}" required="true"
-                                     converter="converters.UUIDConverter"></h:outputText> <br/>
-                #{msg['email']} <h:inputText value="#{userController.currentAdministrator.email}" required="true"></h:inputText>
+                                     converter="converters.UUIDConverter"/> <br/>
+                #{msg['email']} <h:inputText value="#{userController.currentAdministrator.email}" required="true"/>
                 <br/>
-                #{msg['name']} <h:inputText value="#{userController.currentAdministrator.name}" required="true"></h:inputText>
+                #{msg['name']} <h:inputText value="#{userController.currentAdministrator.name}" required="true"/>
                 <br/>
                 #{msg['address']} <h:inputText value="#{userController.currentAdministrator.address}" required="true"
-                                       converter="converters.AddressConverter"></h:inputText> <br/>
-                #{msg['is_head_admin']} <h:inputText value="#{userController.currentAdministrator.isHeadAdmin}" required="true"  ></h:inputText> <br/>
+                                       converter="converters.AddressConverter"/> <br/>
+                #{msg['is_head_admin']} <h:inputText value="#{userController.currentAdministrator.isHeadAdmin}" required="true"/> <br/>
                 <h:commandButton value="Update" action="#{userController.updateAdministrator}"
-                                 immediate="false"></h:commandButton>
+                                 immediate="false"/>
             </h:form>
             </div>
         </ui:define>
