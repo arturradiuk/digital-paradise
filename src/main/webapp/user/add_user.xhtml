@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <title>#{msg['new_user']}</title>
+</head>
+<body>
+
+<ui:composition template="/template/common.xhtml">
+
+    <ui:define name="content">
+        <h:outputStylesheet name="css/user/add_user_content.css"/>
+        <div class="content-wrap">
+
+            <h:form>
+                <h:panelGrid columns="1">
+                    <h:panelGroup rendered="#{userController.isNewUserClient()}">
+                        <h3 class="user-title">#{msg['new_client']}</h3>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{userController.isNewUserEmployee()}">
+                        <h3 class="user-title">#{msg['new_employee']}</h3>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{userController.isNewUserAdministrator()}">
+                        <h3 class="user-title">#{msg['new_admin']}</h3>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="true">
+                        *UUID: <h:inputText value="#{userController.newUser.uuid}" required="true"
+                                            converter="converters.UUIDConverter"/> <br/>
+                        #{msg['email']} <h:inputText value="#{userController.newUser.email}"
+                                                     required="true"/> <br/>
+                        #{msg['name']} <h:inputText value="#{userController.newUser.name}"
+                                                    required="true"/> <br/>
+                        #{msg['address']} <h:inputText value="#{userController.newUser.address}"
+                                                       required="true"
+                                                       converter="converters.AddressConverter"/> <br/>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{userController.isNewUserClient()}">
+                        #{msg['phone_number']} <h:inputText value="#{userController.newUser.phoneNumber}"
+                                                            required="true"/>
+                        <h:commandButton value="Confirm" action="#{userController.processNewClient}"
+                                         immediate="false"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{userController.isNewUserEmployee()}">
+                        #{msg['earnings']} <h:inputText value="#{userController.newUser.earnings}" required="true"/>
+                        <h:commandButton value="Confirm" action="#{userController.processNewEmployee}"
+                                         immediate="false"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{userController.isNewUserAdministrator()}">
+                        #{msg['is_head_admin']} <h:inputText value="#{userController.newUser.isHeadAdmin}"
+                                                             required="true"/>
+                        <h:commandButton value="Confirm" action="#{userController.processNewAdministrator}"
+                                         immediate="false"/>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</body>
+</html>

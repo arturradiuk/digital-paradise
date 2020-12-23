@@ -16,9 +16,9 @@ import model.entities.User;
 public class Client extends User {
 
     private String phoneNumber;
-    private Boolean active;
+    private Boolean active = true;
 
-    public Client(String email, String name, Address address, String phoneNumber) throws  UserException {
+    public Client(String email, String name, Address address, String phoneNumber) throws UserException {
         super(email, name, address);
 
         if (phoneNumber == null)

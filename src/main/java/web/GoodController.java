@@ -1,14 +1,5 @@
 package web;
 
-import controller.exceptions.repository.RepositoryException;
-import controller.managers.GoodManager;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import model.entities.Good;
-import model.goods.Laptop;
-import model.goods.PC;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -17,6 +8,16 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+import controller.exceptions.ManagerException;
+import controller.exceptions.repository.RepositoryException;
+import controller.managers.GoodManager;
+import controller.managers.OrderManager;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import model.entities.Good;
+import model.goods.Laptop;
+import model.goods.PC;
 
 
 @Data
@@ -25,13 +26,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class GoodController implements Serializable {
     @Inject
     private GoodManager goodManager;
+    @Inject
+    private OrderManager orderManager;
 
     @Getter
     @Setter
     private String uuid;
 
-    private Good newLaptop = new Laptop();
-    private Good newPC = new PC();
+    private Good newGood;
 
     private Good currentLaptop;
     private Good currentPC;
@@ -59,19 +61,20 @@ public class GoodController implements Serializable {
     }
 
     public String processNewLaptop() {
-
-        if (null == newLaptop.getGoodName() || newLaptop.getGoodName().isEmpty()) { //todo
+        if (null == newGood) {
+            this.addLaptop();
+        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty()) { //todo
             throw new IllegalArgumentException("Proba zatwirdzenia NewLaptop bez goodName danych.");
         }
         try {
-            this.goodManager.add(this.newLaptop);
+            this.goodManager.add(this.newGood);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddProductFailure";
 
         }
 
-        this.newLaptop = new Laptop();
+        //        this.newGood = new Laptop();
 
         this.initCurrentGoods();
         return "AllGoods";
@@ -95,18 +98,19 @@ public class GoodController implements Serializable {
     }
 
     public String processNewPC() {
-
-        if (null == newPC.getGoodName() || newPC.getGoodName().isEmpty()) { //todo
-            throw new IllegalArgumentException("Proba zatwirdzenia NewPC bez goodName danych.");
+        if (null == newGood) {
+            this.addPC();
+        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty()) { //todo
+            throw new IllegalArgumentException("Proba zatwierdzenia NewPC bez goodName danych.");
         }
         try {
-            this.goodManager.add(this.newPC);
+            this.goodManager.add(this.newGood);
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddProductFailure";
         }
 
-        this.newPC = new PC();
+        //        this.newGood = new PC();
 
         this.initCurrentGoods();
         return "AllGoods";
@@ -115,8 +119,9 @@ public class GoodController implements Serializable {
 
     public String removeGood(Good good) {
         try {
-            this.goodManager.remove(good);
-        } catch (RepositoryException e) {
+            //            this.goodManager.remove(good);
+            this.goodManager.remove(this.orderManager, good);
+        } catch (RepositoryException | ManagerException e) {
             e.printStackTrace();
             return "ProductRemoveFailure";
         }
@@ -133,6 +138,24 @@ public class GoodController implements Serializable {
     public String refresh() {
         this.initCurrentGoods();
         return "AllGoods";
+    }
+
+    public String addLaptop() {
+        this.newGood = new Laptop();
+        return "AddGood";
+    }
+
+    public String addPC() {
+        this.newGood = new PC();
+        return "AddGood";
+    }
+
+    public boolean isNewGoodLaptop() {
+        return this.newGood.getClass().equals(Laptop.class);
+    }
+
+    public boolean isNewGoodPC() {
+        return this.newGood.getClass().equals(PC.class);
     }
 
     public List<Good> getCurrentLaptops() {

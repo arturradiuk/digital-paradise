@@ -181,6 +181,24 @@
     <navigation-rule>
         <from-view-id>/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>AddUser</from-outcome>
+            <to-view-id>/user/add_user.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddGood</from-outcome>
+            <to-view-id>/good/add_product.xhtml</to-view-id>
+            <redirect/> <!-- to make browser change the url "post redirect get" -->
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <navigation-case>
             <from-outcome>AllUsers</from-outcome>
             <to-view-id>/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->

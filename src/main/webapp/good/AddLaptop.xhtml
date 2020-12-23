@@ -13,9 +13,9 @@
     <ui:composition template="/template/common.xhtml">
 
         <ui:define name="content">
-            <h:outputStylesheet name="css/good/addlaptop_content.css"/>
+            <h:outputStylesheet name="css/good/add_product_content.css"/>
 
-            <h3 class="newlaptop_h3">#{msg['new_laptop']}</h3> #{msg['new_laptop']}
+            <h3 class="newlaptop_h3">#{msg['new_laptop']}</h3>
             <h:form>
                 *UUID: <h:outputText value="#{goodController.newLaptop.uuid}" required="true"
                                      converter="converters.UUIDConverter"></h:outputText> <br/>

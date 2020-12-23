@@ -1,10 +1,13 @@
 package controller.managers;
 
+import controller.exceptions.ManagerException;
 import controller.exceptions.repository.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.clients.Administrator;
 import model.clients.Client;
 import model.clients.Employee;
+import model.entities.Good;
+import model.entities.Order;
 import model.entities.User;
 import model.repositories.Repository;
 
@@ -31,6 +34,15 @@ public class UserManager implements IManager<User, UUID> {
     @Override
     public void remove(User user) throws RepositoryException {
         this.userRepository.remove(user);
+    }
+
+    public void remove(OrderManager orderManager, User user) throws ManagerException, RepositoryException {
+        for (Order o : orderManager.getAll()) {
+            if (o.getClient().getUuid().equals(user.getUuid()))
+                throw new ManagerException("Cannot delete the user that is a part of the order");
+        }
+        this.userRepository.remove(user);
+
     }
 
     @Override

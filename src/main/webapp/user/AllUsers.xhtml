@@ -18,27 +18,27 @@
             <div class="content-wrap">
                 <h:form>
                     Give Id: <p:inputText value="#{userController.uuid}" required="true"/>
-                    <h:commandButton value="FindById" action="#{userController.findUserById()}"/>
+                    <h:commandButton value="#{msg['FindById']}" action="#{userController.findUserById()}"/>
                 </h:form>
 
                 <h:form id="form">
                     <p:dataTable id="administrators" var="admin" value="#{userController.currentAdministrators}"
                                  editable="false" tableStyle="table-layout: auto; align-content: center"
                                  style="margin-bottom: 20px; font-size: 10px;">
-                        <f:facet name="header">Administrators</f:facet>
+                        <f:facet name="header">#{msg['Administrators']}</f:facet>
 
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column rowspan="2" headerText="UUID"/>
-                                <p:column rowspan="2" headerText="Email"/>
-                                <p:column rowspan="2" headerText="Name"/>
-                                <p:column colspan="2" headerText="Address"/>
-                                <p:column rowspan="2" headerText="Head Admin"/>
-                                <p:column rowspan="2" headerText="Actions"/>
+                                <p:column rowspan="2" headerText="#{msg['email']}"/>
+                                <p:column rowspan="2" headerText="#{msg['name']}"/>
+                                <p:column colspan="2" headerText="#{msg['address']}"/>
+                                <p:column rowspan="2" headerText="#{msg['head_admin']}"/>
+                                <p:column rowspan="2" headerText="#{msg['Administrators']}"/>
                             </p:row>
                             <p:row>
-                                <p:column headerText="Street"/>
-                                <p:column headerText="Number"/>
+                                <p:column headerText="#{msg['Street']}"/>
+                                <p:column headerText="#{msg['Number']}"/>
                             </p:row>
                         </p:columnGroup>
 
@@ -67,10 +67,10 @@
                         </p:column>
 
                         <p:column>
-                            <h:commandButton value="Delete"
+                            <h:commandButton value="#{msg['delete']}"
                                              action="#{userController.removeUser(admin)}"
                                              style="background-color: #ff4d00"/>
-                            <h:commandButton value="Update"
+                            <h:commandButton value="#{msg['update']}"
                                              action="#{userController.seeAdministrator(admin)}"
                                              style="background-color: #ff4d00"/>
                         </p:column>
@@ -79,7 +79,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="Add administrator" action="AddAdministrator"
+                    <h:commandButton value="#{msg['add_admin']}" action="#{userController.addAdministrator}"
                                      style="background-color: #ff4d00; margin-bottom: 20px"/>
                 </h:form>
 
@@ -93,15 +93,15 @@
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column rowspan="2" headerText="UUID"/>
-                                <p:column rowspan="2" headerText="Email"/>
-                                <p:column rowspan="2" headerText="Name"/>
-                                <p:column colspan="2" headerText="Address"/>
-                                <p:column rowspan="2" headerText="Earnings"/>
-                                <p:column rowspan="2" headerText="Actions"/>
+                                <p:column rowspan="2" headerText="#{msg['email']}"/>
+                                <p:column rowspan="2" headerText="#{msg['name']}"/>
+                                <p:column colspan="2" headerText="#{msg['address']}"/>
+                                <p:column rowspan="2" headerText="#{msg['earnings']}"/>
+                                <p:column rowspan="2" headerText="#{msg['actions']}"/>
                             </p:row>
                             <p:row>
-                                <p:column headerText="Street"/>
-                                <p:column headerText="Number"/>
+                                <p:column headerText="#{msg['Street']}"/>
+                                <p:column headerText="#{msg['Number']}"/>
                             </p:row>
                         </p:columnGroup>
 
@@ -130,10 +130,10 @@
                         </p:column>
 
                         <p:column>
-                            <h:commandButton value="Delete"
+                            <h:commandButton value="#{msg['delete']}"
                                              action="#{userController.removeUser(employee)}"
                                              style="background-color: #ff4d00"/>
-                            <h:commandButton value="Update"
+                            <h:commandButton value="#{msg['update']}"
                                              action="#{userController.seeEmployee(employee)}"
                                              style="background-color: #ff4d00"/>
                         </p:column>
@@ -143,7 +143,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="Add employee" action="AddEmployee"
+                    <h:commandButton value="#{msg['add_employee']}" action="#{userController.addEmployee}"
                                      style="background-color: #ff4d00; margin-bottom: 20px"/>
                 </h:form>
                 <h:form>
@@ -151,21 +151,21 @@
                                  tableStyle="table-layout: auto; align-content: center"
                                  style="margin-bottom: 20px; font-size: 10px;">
 
-                        <f:facet name="header">Clients</f:facet>
+                        <f:facet name="header">#{msg['clients']}</f:facet>
 
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column rowspan="2" headerText="UUID"/>
-                                <p:column rowspan="2" headerText="Email"/>
-                                <p:column rowspan="2" headerText="Name"/>
-                                <p:column colspan="2" headerText="Address"/>
-                                <p:column rowspan="2" headerText="Phone number"/>
-                                <p:column rowspan="2" headerText="Active"/>
-                                <p:column rowspan="2" headerText="Actions"/>
+                                <p:column rowspan="2" headerText="#{msg['email']}"/>
+                                <p:column rowspan="2" headerText="#{msg['name']}"/>
+                                <p:column colspan="2" headerText="#{msg['address']}"/>
+                                <p:column rowspan="2" headerText="#{msg['phone_number']}"/>
+                                <p:column rowspan="2" headerText="#{msg['active']}"/>
+                                <p:column rowspan="2" headerText="#{msg['actions']}"/>
                             </p:row>
                             <p:row>
-                                <p:column headerText="Street"/>
-                                <p:column headerText="Number"/>
+                                <p:column headerText="#{msg['Street']}"/>
+                                <p:column headerText="#{msg['Number']}"/>
                             </p:row>
                         </p:columnGroup>
 
@@ -198,13 +198,13 @@
                         </p:column>
 
                         <p:column>
-                            <h:commandButton value="Delete"
+                            <h:commandButton value="#{msg['delete']}"
                                              action="#{userController.removeUser(client)}"
                                              style="background-color: #ff4d00"/>
-                            <h:commandButton value="Activate/Deactivate"
+                            <h:commandButton value="#{msg['Activate/Deactivate']}"
                                              action="#{userController.changeClientActivity(client)}"
                                              style="background-color: #ff4d00"/>
-                            <h:commandButton value="Update"
+                            <h:commandButton value="#{msg['update']}"
                                              action="#{userController.seeClient(client)}"
                                              style="background-color: #ff4d00"/>
                         </p:column>
@@ -213,7 +213,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="Add client" action="AddClient"
+                    <h:commandButton value="#{msg['add_client']}" action="#{userController.addClient}"
                                      style="background-color: #ff4d00; margin-bottom: 20px"/>
                 </h:form>
 
