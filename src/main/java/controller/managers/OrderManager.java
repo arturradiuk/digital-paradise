@@ -1,7 +1,9 @@
 package controller.managers;
 
 
+import controller.exceptions.ManagerException;
 import controller.exceptions.OrderException;
+import controller.exceptions.repository.OrderRepositoryException;
 import controller.exceptions.repository.RepositoryException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,16 +51,25 @@ public class OrderManager implements IManager<Order, UUID> {
         return orders;
     }
 
-    public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException, RepositoryException {
+    public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException, RepositoryException, ManagerException {
+        boolean exists = false;
         for (Good g : goodManager.getAll()) {
-
             for (Good gs : goods) {
+                if(gs == null )
+                    throw new ManagerException("This good does not exists");
                 if (g.getUuid().equals(gs.getUuid())) {
+                    if((g.getCount() - 1) < 0 )
+                        throw new ManagerException("There are not enough goods in magazine");
                     g.setCount(g.getCount() - 1);
+                    if(g.getCount() == 0)
+                        g.setSold(true);
+
+                    exists = true;
                 }
             }
-
         }
+        if(!exists)
+            throw new ManagerException("This good does not exists");
 
         Order order = new Order(LocalDateTime.now(), goods, client);
         this.orderRepository.add(order);

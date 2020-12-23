@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import controller.exceptions.ManagerException;
 import controller.exceptions.OrderException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
@@ -70,9 +72,14 @@ public class OrderController implements Serializable {
         } catch (OrderException e) {
             e.printStackTrace();
             return "AddOrderFailure";
+        } catch (ManagerException e) {
+            e.printStackTrace();
+            return "AddOrderFailure";
         } catch (RepositoryException e) {
             e.printStackTrace();
             return "AddOrderFailure";
+        } catch (ClassCastException e){
+            e.printStackTrace();
         }
 
 
