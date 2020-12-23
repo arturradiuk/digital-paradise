@@ -56,10 +56,10 @@ public class OrderManager implements IManager<Order, UUID> {
         for (Good g : goodManager.getAll()) {
             for (Good gs : goods) {
                 if(gs == null )
-                    throw new ManagerException("This good does not exists");
+                    throw new ManagerException("This good does not exists"); // todo add static string in ManagerException
                 if (g.getUuid().equals(gs.getUuid())) {
                     if((g.getCount() - 1) < 0 )
-                        throw new ManagerException("There are not enough goods in magazine");
+                        throw new ManagerException("There are not enough goods in magazine"); // todo add static string in ManagerException
                     g.setCount(g.getCount() - 1);
                     if(g.getCount() == 0)
                         g.setSold(true);
