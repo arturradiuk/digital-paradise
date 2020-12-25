@@ -155,7 +155,6 @@ public class UserController implements Serializable {
         return "UpdateUser";
     }
 
-
     public String addClient() {
         this.newUser = new Client();
         return "AddUser";

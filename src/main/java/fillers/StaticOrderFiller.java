@@ -58,7 +58,7 @@ public class StaticOrderFiller implements DataFiller {
 
         User tola = null;
         for (User u : userRepository.getAll()) {
-            if (u.getUuid().equals(UUID.fromString("4d6b6bd5-be82-3a41-87ac-5cd1b3b24756"))) {
+            if (u.getUuid().equals(UUID.fromString("1d6b6bd5-be82-3a41-87ac-5cd1b3b24756"))) {
                 tola = u;
             }
 
@@ -66,11 +66,11 @@ public class StaticOrderFiller implements DataFiller {
 //        Optional<User> tola = userRepository.getAll().stream().findAny().filter(good -> good.getUuid().equals(UUID.fromString("4d6b6bd5-be82-3a41-87ac-5cd1b3b24756")));
 
         try {
-            orders.add(new Order(LocalDateTime.now(), laptopLenovo, (Client) tola));
-            orders.add(new Order(LocalDateTime.now(), tolaGoods, (Client) tola));
+            orders.add(new Order(UUID.randomUUID(), LocalDateTime.now(), laptopLenovo, (Client) tola));
+            orders.add(new Order(UUID.randomUUID(), LocalDateTime.now(), tolaGoods, (Client) tola));
             tolaGoods = new ArrayList<>();
             tolaGoods.add(laptopHP);
-            orders.add(new Order(LocalDateTime.now(), tolaGoods, (Client) tola));
+            orders.add(new Order(UUID.randomUUID(), LocalDateTime.now(), tolaGoods, (Client) tola));
         } catch (OrderException e) {
             e.printStackTrace();
         }

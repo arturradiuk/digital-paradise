@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import model.entities.Good;
 import fillers.DataFiller;
 import fillers.StaticGoodFiller;
+import model.entities.User;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -33,6 +34,7 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
     @Override
     public void add(Good element) throws RepositoryException {
         synchronized (this.goods) {
+            element.setUuid(UUID.randomUUID());
             if (this.goods.contains(element))
                 throw new GoodRepositoryException(GoodRepositoryException.EXIST_GOOD);
 

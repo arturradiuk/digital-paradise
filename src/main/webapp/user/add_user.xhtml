@@ -28,8 +28,6 @@
                         <h3 class="user-title">#{msg['new_admin']}</h3>
                     </h:panelGroup>
                     <h:panelGroup rendered="true">
-                        *UUID: <h:inputText value="#{userController.newUser.uuid}" required="true"
-                                            converter="converters.UUIDConverter"/> <br/>
                         #{msg['email']} <h:inputText value="#{userController.newUser.email}"
                                                      required="true"/> <br/>
                         #{msg['name']} <h:inputText value="#{userController.newUser.name}"

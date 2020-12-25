@@ -10,7 +10,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public abstract class User {
-    private UUID uuid = UUID.randomUUID();
+    private UUID uuid;
 
     private String email;
 
@@ -21,16 +21,29 @@ public abstract class User {
     public void changeActivity() {
 
     }
-
-
+    
     public User(String email, String name, Address address) throws UserException {
+        if (email == null || address == null)
+            throw new UserException(UserException.NULL_FIELD);
 
-        if (address == null || email == null || address == null)
+        if (email.equals("") || name.equals(""))
+            throw new UserException(UserException.EMPTY_FIELD);
+        
+        this.email = email;
+        this.name = name;
+        this.address = address;
+    }
+
+
+    public User(UUID uuid, String email, String name, Address address) throws UserException {
+
+        if (uuid == null || email == null || address == null)
             throw new UserException(UserException.NULL_FIELD);
 
         if (email.equals("") || name.equals(""))
             throw new UserException(UserException.EMPTY_FIELD);
 
+        this.uuid = uuid;
         this.email = email;
         this.name = name;
         this.address = address;
