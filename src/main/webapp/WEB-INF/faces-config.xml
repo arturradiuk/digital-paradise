@@ -22,14 +22,14 @@
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
 
     <navigation-rule>
-        <from-view-id>/user/UpdateEmployee.xhtml</from-view-id>
+        <from-view-id>/admin/user/UpdateEmployee.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>Index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
@@ -39,139 +39,139 @@
 
 
     <navigation-rule>
-        <from-view-id>/good/AddLaptop.xhtml</from-view-id>
+        <from-view-id>/employee/good/AddLaptop.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/UpdateLaptop.xhtml</from-view-id>
+        <from-view-id>/employee/good/UpdateLaptop.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UpdatePC</from-outcome>
-            <to-view-id>/good/UpdatePC.xhtml</to-view-id>
+            <to-view-id>/employee/good/UpdatePC.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
 
     <navigation-rule>
-        <from-view-id>/good/UpdatePC.xhtml</from-view-id>
+        <from-view-id>/employee/good/UpdatePC.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddPC</from-outcome>
-            <to-view-id>/good/AddPC.xhtml</to-view-id>
+            <to-view-id>/employee/good/AddPC.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddLaptop</from-outcome>
-            <to-view-id>/good/AddLaptop.xhtml</to-view-id>
+            <to-view-id>/employee/good/AddLaptop.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UpdateLaptop</from-outcome>
-            <to-view-id>/good/UpdateLaptop.xhtml</to-view-id>
+            <to-view-id>/employee/good/UpdateLaptop.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UpdateGood</from-outcome>
-            <to-view-id>/good/update_product.xhtml</to-view-id>
+            <to-view-id>/employee/good/update_product.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/update_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/update_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/update_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/update_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/update_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/update_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>FindById</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/order/AllOrders.xhtml</from-view-id>
+        <from-view-id>/client/order/AllOrders.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>FindById</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
 
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>FindById</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
@@ -181,137 +181,137 @@
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddAdministrator</from-outcome>
-            <to-view-id>/user/AddAdministrator.xhtml</to-view-id>
+            <to-view-id>/admin/user/AddAdministrator.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddEmployee</from-outcome>
-            <to-view-id>/user/AddEmployee.xhtml</to-view-id>
+            <to-view-id>/admin/user/AddEmployee.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddClient</from-outcome>
-            <to-view-id>/user/AddClient.xhtml</to-view-id>
+            <to-view-id>/admin/user/AddClient.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddUser</from-outcome>
-            <to-view-id>/user/add_user.xhtml</to-view-id>
+            <to-view-id>/admin/user/add_user.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddGood</from-outcome>
-            <to-view-id>/good/add_product.xhtml</to-view-id>
+            <to-view-id>/employee/good/add_product.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/good/add_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/add_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/good/add_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/add_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/good/add_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/add_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>#{userController.goToAllUsers}</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UpdateAdministrator</from-outcome>
-            <to-view-id>/user/UpdateAdministrator.xhtml</to-view-id>
+            <to-view-id>/admin/user/UpdateAdministrator.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/user/UpdateAdministrator.xhtml</from-view-id>
+        <from-view-id>/admin/user/UpdateAdministrator.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UpdateUser</from-outcome>
-            <to-view-id>/user/update_user.xhtml</to-view-id>
+            <to-view-id>/admin/user/update_user.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/user/update_user.xhtml</from-view-id>
+        <from-view-id>/admin/user/update_user.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/user/update_user.xhtml</from-view-id>
+        <from-view-id>/admin/user/update_user.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/user/update_user.xhtml</from-view-id>
+        <from-view-id>/admin/user/update_user.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
@@ -323,16 +323,16 @@
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/order/AllOrders.xhtml</from-view-id>
+        <from-view-id>/client/order/AllOrders.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
@@ -340,62 +340,62 @@
 
     <!--        -->
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
 
     <navigation-rule>
-        <from-view-id>/order/AllOrders.xhtml</from-view-id>
+        <from-view-id>/client/order/AllOrders.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllUsers</from-outcome>
-            <to-view-id>/user/AllUsers.xhtml</to-view-id>
+            <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/order/AllOrders.xhtml</from-view-id>
+        <from-view-id>/client/order/AllOrders.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllGoods</from-outcome>
-            <to-view-id>/good/AllGoods.xhtml</to-view-id>
+            <to-view-id>/employee/good/AllGoods.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AllOrders</from-outcome>
-            <to-view-id>/order/AllOrders.xhtml</to-view-id>
+            <to-view-id>/client/order/AllOrders.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>Index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
@@ -404,7 +404,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>Index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
@@ -413,7 +413,7 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/order/AllOrders.xhtml</from-view-id>
+        <from-view-id>/client/order/AllOrders.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>Index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
@@ -424,83 +424,83 @@
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
     <navigation-rule>
-        <from-view-id>/good/AllGoods.xhtml</from-view-id>
+        <from-view-id>/employee/good/AllGoods.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>GoodError</from-outcome>
-            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <to-view-id>/employee/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/add_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/add_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>GoodError</from-outcome>
-            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <to-view-id>/employee/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AddLaptop.xhtml</from-view-id>
+        <from-view-id>/employee/good/AddLaptop.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>GoodError</from-outcome>
-            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <to-view-id>/employee/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/AddPC.xhtml</from-view-id>
+        <from-view-id>/employee/good/AddPC.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>GoodError</from-outcome>
-            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <to-view-id>/employee/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/update_product.xhtml</from-view-id>
+        <from-view-id>/employee/good/update_product.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>GoodError</from-outcome>
-            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <to-view-id>/employee/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/UpdateLaptop.xhtml</from-view-id>
+        <from-view-id>/employee/good/UpdateLaptop.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>GoodError</from-outcome>
-            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <to-view-id>/employee/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/good/UpdatePC.xhtml</from-view-id>
+        <from-view-id>/employee/good/UpdatePC.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>GoodError</from-outcome>
-            <to-view-id>/good/good_errors.xhtml</to-view-id>
+            <to-view-id>/employee/good/good_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <navigation-rule>
-        <from-view-id>/order/AddOrder.xhtml</from-view-id>
+        <from-view-id>/client/order/AddOrder.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>OrderError</from-outcome>
-            <to-view-id>/order/order_errors.xhtml</to-view-id>
+            <to-view-id>/client/order/order_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/order/AllOrders.xhtml</from-view-id>
+        <from-view-id>/client/order/AllOrders.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>OrderError</from-outcome>
-            <to-view-id>/order/order_errors.xhtml</to-view-id>
+            <to-view-id>/client/order/order_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -508,82 +508,82 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <navigation-rule>
-        <from-view-id>/user/add_user.xhtml</from-view-id>
+        <from-view-id>/admin/user/add_user.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AddAdministrator.xhtml</from-view-id>
+        <from-view-id>/admin/user/AddAdministrator.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AddClient.xhtml</from-view-id>
+        <from-view-id>/admin/user/AddClient.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AddEmployee.xhtml</from-view-id>
+        <from-view-id>/admin/user/AddEmployee.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/AllUsers.xhtml</from-view-id>
+        <from-view-id>/admin/user/AllUsers.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/update_user.xhtml</from-view-id>
+        <from-view-id>/admin/user/update_user.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/UpdateAdministrator.xhtml</from-view-id>
+        <from-view-id>/admin/user/UpdateAdministrator.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/UpdateClient.xhtml</from-view-id>
+        <from-view-id>/admin/user/UpdateClient.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/user/UpdateEmployee.xhtml</from-view-id>
+        <from-view-id>/admin/user/UpdateEmployee.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>UserError</from-outcome>
-            <to-view-id>/user/user_errors.xhtml</to-view-id>
+            <to-view-id>/admin/user/user_errors.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

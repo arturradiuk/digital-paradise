@@ -5,7 +5,7 @@
          version="4.0">
     <default-context-path>/digital-paradise</default-context-path>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>/auth/login.html</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -72,7 +72,7 @@
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
         <form-login-config>
-            <form-login-page>/auth/auth.html</form-login-page>
+            <form-login-page>/auth/login.html</form-login-page>
             <form-error-page>/auth/error.html</form-error-page>
         </form-login-config>
     </login-config>
