@@ -15,6 +15,13 @@
         <ui:define name="content">
             <h:outputStylesheet name="css/common/index_content.css"/>
             <p class="temp_content">Content: </p>
+
+
+            Welcome, #{identityUtils.myLogin} <br/>
+            <h:outputText value="ADMINS: " rendered="#{request.isUserInRole('ADMINS')}"/>
+            <h:outputText value="EMPLOYEES: " rendered="#{request.isUserInRole('EMPLOYEES')}"/>
+            <h:outputText value="CLIENTS: " rendered="#{request.isUserInRole('CLIENTS')}"/>
+
         </ui:define>
     </ui:composition>
 
