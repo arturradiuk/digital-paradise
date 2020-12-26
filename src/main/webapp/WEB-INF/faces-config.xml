@@ -251,7 +251,8 @@
     <navigation-rule>
         <from-view-id>/employee/good/add_product.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>#{userController.goToAllUsers}</from-outcome>
+<!--            <from-outcome>#{userController.goToAllUsers}</from-outcome>-->
+            <from-outcome>AllUsers</from-outcome>
             <to-view-id>/admin/user/AllUsers.xhtml</to-view-id>
             <redirect/> <!-- to make browser change the url "post redirect get" -->
         </navigation-case>
