@@ -5,7 +5,7 @@
          version="4.0">
     <default-context-path>/digital-paradise</default-context-path>
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
 
     <servlet>
