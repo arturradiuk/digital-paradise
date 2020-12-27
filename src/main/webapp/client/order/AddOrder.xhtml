@@ -17,8 +17,8 @@
             <div class="content-wrap">
                 <h3 class="order_h3">#{msg['add_order']}</h3>
                 <h:form>
-                *#{msg['client']} UUID: <h:inputText value="#{orderController.clientUuid}" required="true"
-                                           converter="converters.UUIDConverter"/> <br/>
+                *#{msg['client']} UUID: <h:outputText value="#{identityUtils.myLogin}" required="true"
+                                           /> <br/>
 
                 *#{msg['goods_title']} UUID: <h:inputText value="#{orderController.goodsUuid}" required="true"
                                           converter="converters.MultipleUUIDConverter"/> <br/>

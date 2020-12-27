@@ -5,6 +5,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -45,6 +46,7 @@ public class OrderController implements Serializable {
     @Setter
     private String userUuid = new String();
 
+
     @Getter
     @Setter
     private String errorMessage = new String();
@@ -58,12 +60,40 @@ public class OrderController implements Serializable {
 
     private List<Order> currentOrders;
 
+    @Inject
+    IdentityUtils identityUtils;
+
+    public List<Order> currentOrders() {
+        String id = identityUtils.getMyLogin();
+        List<Order> list = new ArrayList<>();
+
+        boolean isClient = false;
+
+        for (Order o: currentOrders) {
+            if(o.getClient().getUuid().toString().equals(id)) {
+                list.add(o);
+                isClient = true;
+            }
+
+
+        }
+
+        if(!isClient){
+            list = currentOrders;
+        } else {
+            currentOrders = list;
+        }
+        
+
+        return list;
+    }
+
 
     public String processNewOrder() {
         User user = null; // todo should be client
         try {
-            user = this.userManager.getUserByUUID(clientUuid);
-        } catch (RepositoryException e) {
+        user = this.userManager.getUserByUUID(UUID.fromString(identityUtils.getMyLogin()));
+        } catch (RepositoryException | ClassCastException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
             return "OrderError";

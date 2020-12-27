@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
     <title>#{msg['order_list']}</title>
 </h:head>
@@ -19,14 +19,14 @@
 
             <span>
                 <span>
-                    <h:form>
+                    <h:form >
                         #{msg['give_id_order']} <h:inputText value="#{orderController.orderUuid}" required="true"/>
                         <h:commandButton value="#{msg['FindUserOrdersById']}" action="#{orderController.findOrderById()}"/>
                     </h:form>
                 </span>
 
                 <span>
-                        <h:form>
+                        <h:form rendered="#{request.isUserInRole('EMPLOYEES')}">
                         #{msg['give_id_user']} <h:inputText value="#{orderController.userUuid}" required="true"/>
                         <h:commandButton value="#{msg['FindUserOrdersById']}"
                                          action="#{orderController.findOrdersForUserById()}"/>
@@ -34,10 +34,10 @@
                 </span>
             </span>
 
-                <h:form id="form">
-                    <p:dataTable id="orders" var="order" value="#{orderController.currentOrders}" editable="false"
+                <h:form id="form" >
+                    <p:dataTable id="orders" var="order" value="#{orderController.currentOrders()}" editable="false"
                                  tableStyle="table-layout: auto; align-content: center"
-                                 style="margin-bottom: 20px; font-size: 10px;">
+                                 style="margin-bottom: 20px; font-size: 10px;" >
 
                         <f:facet name="header">#{msg['orders']}</f:facet>
                         <p:columnGroup type="header">
