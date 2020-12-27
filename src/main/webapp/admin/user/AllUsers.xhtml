@@ -24,7 +24,8 @@
                 <h:form id="form">
                     <p:dataTable id="administrators" var="admin" value="#{userController.currentAdministrators}"
                                  editable="false" tableStyle="table-layout: auto; align-content: center"
-                                 style="margin-bottom: 20px; font-size: 10px;">
+                                 style="margin-bottom: 20px; font-size: 10px;"
+                                 rendered="#{request.isUserInRole('ADMINS')}">
                         <f:facet name="header">#{msg['Administrators']}</f:facet>
 
                         <p:columnGroup type="header">
@@ -80,14 +81,16 @@
 
                 <h:form>
                     <h:commandButton value="#{msg['add_admin']}" action="#{userController.addAdministrator}"
-                                     style="background-color: #ff4d00; margin-bottom: 20px"/>
+                                     style="background-color: #ff4d00; margin-bottom: 20px"
+                                     rendered="#{request.isUserInRole('ADMINS')}"/>
                 </h:form>
 
                 <h:form>
                     <p:dataTable id="employees" var="employee" value="#{userController.currentEmployees}"
                                  editable="false"
                                  tableStyle="table-layout: auto; align-content: center"
-                                 style="margin-bottom: 20px; font-size: 10px;">
+                                 style="margin-bottom: 20px; font-size: 10px;"
+                                 rendered="#{request.isUserInRole('ADMINS')}">
                         <f:facet name="header">Employees</f:facet>
 
                         <p:columnGroup type="header">
@@ -144,7 +147,8 @@
 
                 <h:form>
                     <h:commandButton value="#{msg['add_employee']}" action="#{userController.addEmployee}"
-                                     style="background-color: #ff4d00; margin-bottom: 20px"/>
+                                     style="background-color: #ff4d00; margin-bottom: 20px"
+                                     rendered="#{request.isUserInRole('ADMINS')}"/>
                 </h:form>
                 <h:form>
                     <p:dataTable id="clients" var="client" value="#{userController.currentClients}" editable="false"
@@ -161,7 +165,8 @@
                                 <p:column colspan="2" headerText="#{msg['address']}"/>
                                 <p:column rowspan="2" headerText="#{msg['phone_number']}"/>
                                 <p:column rowspan="2" headerText="#{msg['active']}"/>
-                                <p:column rowspan="2" headerText="#{msg['actions']}"/>
+                                <p:column rowspan="2" headerText="#{msg['actions']}"
+                                          rendered="#{request.isUserInRole('ADMINS')}"/>
                             </p:row>
                             <p:row>
                                 <p:column headerText="#{msg['Street']}"/>
@@ -197,16 +202,19 @@
                             <h:outputText value="#{client.active}"/>
                         </p:column>
 
-                        <p:column>
+                        <p:column rendered="#{request.isUserInRole('ADMINS')}">
                             <h:commandButton value="#{msg['delete']}"
                                              action="#{userController.removeUser(client)}"
-                                             style="background-color: #ff4d00"/>
+                                             style="background-color: #ff4d00"
+                                             rendered="#{request.isUserInRole('ADMINS')}"/>
                             <h:commandButton value="#{msg['Activate/Deactivate']}"
                                              action="#{userController.changeClientActivity(client)}"
-                                             style="background-color: #ff4d00"/>
+                                             style="background-color: #ff4d00"
+                                             rendered="#{request.isUserInRole('ADMINS')}"/>
                             <h:commandButton value="#{msg['update']}"
                                              action="#{userController.seeClient(client)}"
-                                             style="background-color: #ff4d00"/>
+                                             style="background-color: #ff4d00"
+                                             rendered="#{request.isUserInRole('ADMINS')}"/>
                         </p:column>
 
                     </p:dataTable>
@@ -214,7 +222,8 @@
 
                 <h:form>
                     <h:commandButton value="#{msg['add_client']}" action="#{userController.addClient}"
-                                     style="background-color: #ff4d00; margin-bottom: 20px"/>
+                                     style="background-color: #ff4d00; margin-bottom: 20px"
+                                     rendered="#{request.isUserInRole('ADMINS')}"/>
                 </h:form>
 
 

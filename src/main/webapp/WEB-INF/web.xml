@@ -17,7 +17,6 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
-<!--        <url-pattern>/faces/*</url-pattern>-->
     </servlet-mapping>
 
 
@@ -27,8 +26,16 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Administrators pages</web-resource-name>
-            <url-pattern>/faces/admin/*</url-pattern> <!-- url in the app context pas/... -->
-            <url-pattern>/admin/*</url-pattern> <!-- url in the app context pas/... -->
+            <url-pattern>/faces/admin/user/add_user.xhtml</url-pattern> <!-- url in the app context pas/... -->
+            <url-pattern>/faces/admin/user/AddAdministrator.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/AddClient.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/AddEmployee.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/AllUsers.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/update_user.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/UpdateAdministrator.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/UpdateClient.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/UpdateEmployee.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/user_errors.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMINS</role-name>
@@ -41,8 +48,17 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Employees pages</web-resource-name>
-            <url-pattern>/faces/employee/*</url-pattern> <!-- url in the app context pas/... -->
-            <url-pattern>/employee/*</url-pattern> <!-- url in the app context pas/... -->
+            <url-pattern>/faces/employee/good/AllGoods.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/add_product.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/AddLaptop.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/AddPC.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/good_errors.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/update_product.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/UpdateLaptop.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/UpdatePC.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/AllUsers.xhtml</url-pattern>
+            <url-pattern>/faces/client/order/AllOrders.xhtml</url-pattern>
+            <url-pattern>/faces/client/order/order_errors.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>EMPLOYEES</role-name>
@@ -55,11 +71,10 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Clients pages</web-resource-name>
-            <url-pattern>/faces/client/order/*</url-pattern> <!-- url in the app context pas/...   -->
-            <url-pattern>/client/*</url-pattern> <!-- url in the app context pas/... -->
-            <url-pattern>/faces/employee/good/AllGoods.xhtml</url-pattern> <!-- url in the app context pas/... -->
-            <url-pattern>/faces/employee/good/good_errors.xhtml</url-pattern>
-            <url-pattern>/faces/admin/user/AllUsers.xhtml</url-pattern>
+            <url-pattern>/faces/client/order/AddOrder.xhtml</url-pattern>
+            <url-pattern>/faces/client/order/AllOrders.xhtml</url-pattern>
+            <url-pattern>/faces/client/order/order_errors.xhtml</url-pattern>
+            <url-pattern>/faces/employee/good/AllGoods.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>CLIENTS</role-name>
@@ -70,7 +85,7 @@
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
         <form-login-config>
-            <form-login-page>/auth/login.html</form-login-page>
+            <form-login-page>/auth/auth.html</form-login-page>
             <form-error-page>/auth/error.html</form-error-page>
         </form-login-config>
     </login-config>
