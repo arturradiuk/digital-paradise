@@ -18,7 +18,6 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
 <!--        <url-pattern>/faces/*</url-pattern>-->
-<!--        <url-pattern>/faces/order/*</url-pattern>-->
     </servlet-mapping>
 
 
@@ -36,17 +35,14 @@
         </auth-constraint>
     </security-constraint>
 
-
     <security-role>
         <role-name>EMPLOYEES</role-name>
     </security-role>
     <security-constraint>
         <web-resource-collection>
-
             <web-resource-name>Employees pages</web-resource-name>
             <url-pattern>/faces/employee/*</url-pattern> <!-- url in the app context pas/... -->
             <url-pattern>/employee/*</url-pattern> <!-- url in the app context pas/... -->
-
         </web-resource-collection>
         <auth-constraint>
             <role-name>EMPLOYEES</role-name>
@@ -59,16 +55,16 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Clients pages</web-resource-name>
-            <url-pattern>/faces/client/order/*</url-pattern> <!-- url in the app context pas/... -->
+            <url-pattern>/faces/client/order/*</url-pattern> <!-- url in the app context pas/...   -->
             <url-pattern>/client/*</url-pattern> <!-- url in the app context pas/... -->
+            <url-pattern>/faces/employee/good/AllGoods.xhtml</url-pattern> <!-- url in the app context pas/... -->
+            <url-pattern>/faces/employee/good/good_errors.xhtml</url-pattern>
+            <url-pattern>/faces/admin/user/AllUsers.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>CLIENTS</role-name>
         </auth-constraint>
     </security-constraint>
-
-
-
 
     <login-config>
         <auth-method>FORM</auth-method>
