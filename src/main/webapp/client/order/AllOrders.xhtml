@@ -87,17 +87,19 @@
                         <p:column>
                             <h:commandButton value="#{msg['delete']}"
                                              action="#{orderController.removeOrder(order)}"
-                                             style="background-color: #ff4d00"/>
+                                             style="background-color: #ff4d00"
+                                             rendered="#{request.isUserInRole('EMPLOYEES')}"/>
                             <h:commandButton value="#{msg['return']}"
                                              action="#{orderController.returnOrder(order)}"
-                                             style="background-color: #ff4d00"/>
+                                             style="background-color: #ff4d00"
+                                             rendered="#{request.isUserInRole('CLIENTS')}"/>
 
                         </p:column>
                     </p:dataTable>
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="#{msg['add_order']}" action="AddOrder" />
+                    <h:commandButton value="#{msg['add_order']}" action="AddOrder" rendered="#{request.isUserInRole('CLIENTS')}"/>
                 </h:form>
             </div>
         </ui:define>

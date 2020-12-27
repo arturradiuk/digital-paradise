@@ -18,21 +18,23 @@
                     <li class="menu-item">
                         <h:link outcome="/faces/index.xhtml" value="#{msg['main_page']}"/>
                     </li>
+                    <h:form rendered="#{request.isUserInRole('CLIENTS') or request.isUserInRole('EMPLOYEES')}">
                     <li class="menu-item">
-                        <h:form>
-                            <h:commandLink action="#{goodController.refresh()}" value="#{msg['goods']}"/>
-                        </h:form>
+
+                            <h:commandLink action="#{goodController.refresh()}" value="#{msg['goods']}" />
+
                     </li>
-                    <li class="menu-item">
-                        <h:form>
-                            <h:commandLink action="#{orderController.refresh()}" value="#{msg['orders']}"/>
-                        </h:form>
-                    </li>
-                    <li class="menu-item">
-                        <h:form>
-                            <h:commandLink action="#{userController.refresh()}" value="#{msg['users']}"/>
-                        </h:form>
-                    </li>
+                    </h:form>
+                    <h:form rendered="#{request.isUserInRole('CLIENTS') or request.isUserInRole('EMPLOYEES')}">
+                        <li class="menu-item">
+                            <h:commandLink action="#{orderController.refresh()}" value="#{msg['orders']}" />
+                        </li>
+                    </h:form>
+                    <h:form rendered="#{(request.isUserInRole('ADMINS') or request.isUserInRole('EMPLOYEES'))}">
+                        <li class="menu-item">
+                            <h:commandLink action="#{userController.refresh()}" value="#{msg['users']}"  />
+                        </li>
+                    </h:form>
                     <li class="menu-item">
                         <h:link outcome="#" value="#{msg['login']}"/>
                     </li>
