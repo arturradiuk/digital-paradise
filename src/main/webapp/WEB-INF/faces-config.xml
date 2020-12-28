@@ -589,7 +589,14 @@
         </navigation-case>
     </navigation-rule>
 
-
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Login</from-outcome>
+            <to-view-id>/auth/auth.html</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

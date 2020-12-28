@@ -15,8 +15,8 @@
                 
                 <ul class="navigation">
                     <li class="header-item">
-                        <h:form>
-                            <h:commandButton value="#{msg['logout']}" action="#{identityUtils.logOut()}"/>
+                        <h:form rendered="#{identityUtils.userLogged}">
+                            <h:commandButton value="#{msg['logout']}" action="#{identityUtils.logOut()}" styleClass="logout-btn"/>
                         </h:form>
                     </li>
                 </ul>

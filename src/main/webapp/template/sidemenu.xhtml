@@ -35,9 +35,11 @@
                             <h:commandLink action="#{userController.refresh()}" value="#{msg['users']}"  />
                         </li>
                     </h:form>
-                    <li class="menu-item">
-                        <h:link outcome="#" value="#{msg['login']}"/>
-                    </li>
+                    <h:form rendered="#{not (identityUtils.userLogged)}">
+                        <li class="menu-item">
+                            <h:link outcome="Login" value="#{msg['login']}"/>
+                        </li>
+                    </h:form>
                 </ul>
 
                 <h:form>

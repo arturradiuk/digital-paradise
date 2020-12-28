@@ -15,7 +15,7 @@ public class IdentityUtils {
 
     public String getMyLogin() {
         return ((null == request.getUserPrincipal()) ? "" : request.getUserPrincipal().getName());
-//        return request.isUserInRole("ADMINS")+"";
+        //        return request.isUserInRole("ADMINS")+"";
     }
 
     public void logOut() {
@@ -26,5 +26,9 @@ public class IdentityUtils {
         }
         request.getSession().invalidate();
 
+    }
+
+    public boolean isUserLogged() {
+        return null != request.getUserPrincipal();
     }
 }
