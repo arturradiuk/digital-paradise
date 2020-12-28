@@ -593,7 +593,26 @@
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>Login</from-outcome>
-            <to-view-id>/auth/auth.html</to-view-id>
+<!--            <to-view-id>/auth/auth.html</to-view-id>-->
+            <to-view-id>/auth/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/auth/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>LoginErrorPage</from-outcome>
+            <to-view-id>/auth/error.html</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/auth/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
