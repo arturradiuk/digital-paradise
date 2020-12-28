@@ -35,10 +35,16 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
     public void update(UUID id, User element) throws RepositoryException {
         synchronized (this.people) {
             boolean exists = false;
+
+
             for (User user : people) {
                 if (user.isEmailEquals(element.getEmail()) && !user.equals(element))
+
                     throw new UserRepositoryException("This email is already taken");
+
             }
+
+
             for (int i = 0; i < people.size(); i++) {
                 if (id.equals(people.get(i).getUuid())) {
                     this.people.set(i, element);

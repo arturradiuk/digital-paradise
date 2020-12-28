@@ -69,21 +69,28 @@ public class OrderController implements Serializable {
 
         boolean isClient = false;
 
-        for (Order o: currentOrders) {
-            if(o.getClient().getUuid().toString().equals(id)) {
-                list.add(o);
+
+        try {
+
+            User user = this.userManager.getUserByUUID(UUID.fromString(id));
+            if (user instanceof Client)
                 isClient = true;
-            }
 
-
+        } catch (RepositoryException e) {
+            e.printStackTrace();
         }
 
-        if(!isClient){
+        for (Order o : currentOrders) {
+            if (o.getClient().getUuid().toString().equals(id)) {
+                list.add(o);
+            }
+        }
+
+        if (!isClient) {
             list = currentOrders;
         } else {
             currentOrders = list;
         }
-        
 
         return list;
     }
@@ -92,7 +99,7 @@ public class OrderController implements Serializable {
     public String processNewOrder() {
         User user = null; // todo should be client
         try {
-        user = this.userManager.getUserByUUID(UUID.fromString(identityUtils.getMyLogin()));
+            user = this.userManager.getUserByUUID(UUID.fromString(identityUtils.getMyLogin()));
         } catch (RepositoryException | ClassCastException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
@@ -112,7 +119,7 @@ public class OrderController implements Serializable {
         try {
             if (user instanceof Client) {
                 this.orderManager.createOrder(this.goodManager, goods, (Client) user);
-            }else {
+            } else {
                 this.errorMessage = "This user is not Client";
                 return "OrderError";
             }
