@@ -25,6 +25,7 @@ import model.goods.PC;
 @Named
 @SessionScoped
 public class GoodController implements Serializable {
+
     @Inject
     private GoodManager goodManager;
     @Inject
