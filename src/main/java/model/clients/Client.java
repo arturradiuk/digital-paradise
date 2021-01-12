@@ -19,6 +19,14 @@ public class Client extends User {
     private String phoneNumber;
     private Boolean active = true;
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber +"";
+    }
+
     public Client(String email, String name, Address address, String phoneNumber) throws UserException {
         super(email, name, address);
 
