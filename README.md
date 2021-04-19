@@ -11,6 +11,13 @@ Roles descriptions:
 2. Employee - 
 3. Administrator -
 
+
+Anonymous user view:
+
+![image](https://user-images.githubusercontent.com/62100174/115258196-70a4fa00-a139-11eb-96ee-67e0081487dc.png)
+![image](https://user-images.githubusercontent.com/62100174/115258222-77cc0800-a139-11eb-8619-0b25d02a8604.png)
+
+
 Client view: 
 
 ![image](https://user-images.githubusercontent.com/62100174/115256689-22432b80-a138-11eb-9e7a-98f5edc2a5c0.png)
