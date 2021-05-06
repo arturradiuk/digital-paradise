@@ -29,7 +29,6 @@ public class Client extends User {
 
     public Client(String email, String name, Address address, String phoneNumber) throws UserException {
         super(email, name, address);
-
         if (phoneNumber == null)
             throw new ClientException(ClientException.NULL_FIELD);
         if (phoneNumber.equals(""))

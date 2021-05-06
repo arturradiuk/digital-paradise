@@ -43,7 +43,6 @@ public class IdentityUtils implements Serializable {
 
     public String getMyLogin() {
         return ((null == request.getUserPrincipal()) ? "" : request.getUserPrincipal().getName());
-        //        return request.isUserInRole("ADMINS")+"";
     }
 
     public void logOut() {

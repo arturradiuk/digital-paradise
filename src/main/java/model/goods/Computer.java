@@ -7,8 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import model.entities.Good;
 
-import java.util.Objects;
-
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)

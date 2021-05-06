@@ -15,7 +15,6 @@ public abstract class Good {
 
     private boolean sold = false;
 
-
     private String goodName;
 
     private double basePrice;
@@ -61,7 +60,7 @@ public abstract class Good {
     }
 
     @Override
-    public boolean equals(Object o) { // todo remember
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Good good = (Good) o;

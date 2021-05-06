@@ -12,7 +12,6 @@ import model.repositories.UserRepository;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
 
 public class StaticOrderFiller implements DataFiller {
     @Override
@@ -46,12 +45,6 @@ public class StaticOrderFiller implements DataFiller {
 
         }
 
-
-//        List<Good> laptopLenovo = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("14a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList());
-//        Good laptopApple = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("24a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
-//        Good laptopDell = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("34a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
-//        Good laptopHP = goodRepository.getAll().stream().filter(good -> good.getUuid().equals(UUID.fromString("44a6b7cc-bd4c-3022-83d0-d2af506bfb2b"))).collect(Collectors.toList()).get(0);
-
         List<Good> tolaGoods = new ArrayList<>();
         tolaGoods.add(laptopApple);
         tolaGoods.add(laptopDell);
@@ -63,8 +56,6 @@ public class StaticOrderFiller implements DataFiller {
             }
 
         }
-//        Optional<User> tola = userRepository.getAll().stream().findAny().filter(good -> good.getUuid().equals(UUID.fromString("4d6b6bd5-be82-3a41-87ac-5cd1b3b24756")));
-
         try {
             orders.add(new Order(UUID.randomUUID(), LocalDateTime.now(), laptopLenovo, (Client) tola));
             orders.add(new Order(UUID.randomUUID(), LocalDateTime.now(), tolaGoods, (Client) tola));

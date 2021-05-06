@@ -1,12 +1,11 @@
 package controller.managers;
 
-import controller.exceptions.ManagerException;
+import controller.exceptions.manager.GoodManagerException;
 import controller.exceptions.repository.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.clients.Administrator;
 import model.clients.Client;
 import model.clients.Employee;
-import model.entities.Good;
 import model.entities.Order;
 import model.entities.User;
 import model.repositories.Repository;
@@ -18,13 +17,15 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static controller.exceptions.manager.UserManagerException.CANNOT_DELETE_USER;
+
 @Named
 @ApplicationScoped
 @NoArgsConstructor
 public class UserManager implements IManager<User, UUID> {
 
     @Inject
-    private Repository<User, UUID> userRepository;// = new PersonRepository();
+    private Repository<User, UUID> userRepository;
 
     @Override
     public void add(User user) throws RepositoryException {
@@ -36,10 +37,10 @@ public class UserManager implements IManager<User, UUID> {
         this.userRepository.remove(user);
     }
 
-    public void remove(OrderManager orderManager, User user) throws ManagerException, RepositoryException {
+    public void remove(OrderManager orderManager, User user) throws GoodManagerException, RepositoryException {
         for (Order o : orderManager.getAll()) {
             if (o.getClient().getUuid().equals(user.getUuid()))
-                throw new ManagerException("Cannot delete the user that is a part of the order");
+                throw new GoodManagerException(CANNOT_DELETE_USER);
         }
         this.userRepository.remove(user);
 
@@ -62,18 +63,15 @@ public class UserManager implements IManager<User, UUID> {
 
 
     public List<User> getAllClients() {
-        List<User> people = this.getAll().stream().filter(person -> person instanceof Client).collect(Collectors.toList());
-        return people;
+        return this.getAll().stream().filter(person -> person instanceof Client).collect(Collectors.toList());
     }
 
-    public List<User> getAllEmployees() { // todo move to the repository
-        List<User> people = this.getAll().stream().filter(person -> person instanceof Employee).collect(Collectors.toList());
-        return people;
+    public List<User> getAllEmployees() {
+        return this.getAll().stream().filter(person -> person instanceof Employee).collect(Collectors.toList());
     }
 
     public List<User> getAllAdministrators() {
-        List<User> people = this.getAll().stream().filter(person -> person instanceof Administrator).collect(Collectors.toList());
-        return people;
+        return this.getAll().stream().filter(person -> person instanceof Administrator).collect(Collectors.toList());
     }
 
 }

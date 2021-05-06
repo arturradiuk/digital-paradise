@@ -6,7 +6,6 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import java.util.UUID;
 
-//@FacesConverter(forClass = java.util.UUID.class)
 @FacesConverter("converters.UUIDConverter")
 public class UUIDConverter implements Converter {
     @Override

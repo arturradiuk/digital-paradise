@@ -34,7 +34,6 @@ public abstract class User {
         this.address = address;
     }
 
-
     public User(UUID uuid, String email, String name, Address address) throws UserException {
 
         if (uuid == null || email == null || address == null)
@@ -50,7 +49,7 @@ public abstract class User {
     }
 
     @Override
-    public boolean equals(Object o) { // todo remember
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;

@@ -13,16 +13,17 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static controller.exceptions.repository.UserRepositoryException.THIS_EMAIL_IS_TAKEN;
+
 @Data
 @NoArgsConstructor
-public class UserRepository implements Repository<User, UUID> { // todo write methods getBy...
+public class UserRepository implements Repository<User, UUID> {
 
     private List<User> people;
 
     @Override
     public User getResourceByUUID(UUID uuid) throws RepositoryException {
-        for (User u :
-                people) {
+        for (User u : people) {
             if (u.getUuid().equals(uuid)) {
                 return u;
             }
@@ -35,13 +36,9 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
     public void update(UUID id, User element) throws RepositoryException {
         synchronized (this.people) {
             boolean exists = false;
-
-
             for (User user : people) {
                 if (user.isEmailEquals(element.getEmail()) && !user.equals(element))
-
-                    throw new UserRepositoryException("This email is already taken");
-
+                    throw new UserRepositoryException(THIS_EMAIL_IS_TAKEN);
             }
 
 
@@ -64,7 +61,7 @@ public class UserRepository implements Repository<User, UUID> { // todo write me
                 if (user.equals(element))
                     throw new UserRepositoryException(UserRepositoryException.EXIST_USER);
                 if (user.isEmailEquals(element.getEmail()))
-                    throw new UserRepositoryException("This email is already taken");
+                    throw new UserRepositoryException(THIS_EMAIL_IS_TAKEN);
             }
             this.people.add(element);
         }

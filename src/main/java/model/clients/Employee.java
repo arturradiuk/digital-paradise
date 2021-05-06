@@ -20,24 +20,16 @@ public class Employee extends User {
 
     public Employee(String email, String name, Address address, Float earnings) throws  UserException {
         super(email, name, address);
-
         if (earnings == null)
             throw new EmployeeException(EmployeeException.NULL_FIELD);
-
-        //        if (earnings.equals(""))
-        //            throw new EmployeeException(EmployeeException.EMPTY_FIELD);
 
         this.earnings = earnings;
     }
     
     public Employee(UUID uuid, String email, String name, Address address, Float earnings) throws  UserException {
         super(uuid, email, name, address);
-
         if (earnings == null)
             throw new EmployeeException(EmployeeException.NULL_FIELD);
-
-//        if (earnings.equals(""))
-//            throw new EmployeeException(EmployeeException.EMPTY_FIELD);
 
         this.earnings = earnings;
     }

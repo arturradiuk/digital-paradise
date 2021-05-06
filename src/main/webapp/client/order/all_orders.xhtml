@@ -14,7 +14,7 @@
 
 
         <ui:define name="content">
-            <h:outputStylesheet name="css/order/allorders_content.css"/>
+            <h:outputStylesheet name="css/order/all_orders_content.css"/>
             <div class="content-wrap">
 
             <span>
@@ -99,7 +99,7 @@
                 </h:form>
 
                 <h:form>
-                    <h:commandButton value="#{msg['add_order']}" action="AddOrder" rendered="#{request.isUserInRole('CLIENTS')}"/>
+                    <h:commandButton value="#{msg['add_order']}" action="add_order" rendered="#{request.isUserInRole('CLIENTS')}"/>
                 </h:form>
             </div>
         </ui:define>

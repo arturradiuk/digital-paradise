@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import controller.exceptions.ManagerException;
+import controller.exceptions.manager.GoodManagerException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.OrderManager;
 import controller.managers.UserManager;
@@ -20,6 +20,8 @@ import model.clients.Administrator;
 import model.clients.Client;
 import model.clients.Employee;
 import model.entities.User;
+
+import static controller.exceptions.controller.UserControllerException.NAME_CANNOT_NULL;
 
 @Data
 @Named
@@ -58,7 +60,6 @@ public class UserController implements Serializable {
             e.printStackTrace();
             return "UserError";
         }
-        //this.newAdministrator = new Administrator();
         this.initCurrentUsers();
         return "AllUsers";
     }
@@ -67,7 +68,7 @@ public class UserController implements Serializable {
         if (this.newUser == null) {
             this.addEmployee();
         } else if (this.newUser.getName().isEmpty()) {
-            throw new IllegalArgumentException("Proba zatwirdzenia NewEmployee bez name danych.");
+            throw new IllegalArgumentException(NAME_CANNOT_NULL);
         }
         try {
             this.userManager.add(this.newUser);
@@ -76,7 +77,6 @@ public class UserController implements Serializable {
             return "UserError";
 
         }
-        //this.newUser = new Employee();
         this.initCurrentUsers();
         return "AllUsers";
     }
@@ -85,7 +85,7 @@ public class UserController implements Serializable {
         if (this.newUser == null) {
             this.addClient();
         } else if (this.newUser.getName().isEmpty()) {
-            throw new IllegalArgumentException("Proba zatwierdzenia newClient bez name danych.");
+            throw new IllegalArgumentException(NAME_CANNOT_NULL);
         }
         try {
             this.userManager.add(this.newUser);
@@ -93,7 +93,6 @@ public class UserController implements Serializable {
             e.printStackTrace();
             return "UserError";
         }
-        //        this.newUser = new Client();
         this.initCurrentUsers();
         return "AllUsers";
     }
@@ -107,10 +106,8 @@ public class UserController implements Serializable {
             this.errorMessage = e.getMessage();
             return "UserError";
         }
-
         return "AllUsers";
     }
-
 
     @PostConstruct
     public void initCurrentUsers() {
@@ -121,9 +118,8 @@ public class UserController implements Serializable {
 
     public String removeUser(User user) {
         try {
-            //            this.userManager.remove(user);
             this.userManager.remove(orderManager, user);
-        } catch (RepositoryException | ManagerException e) {
+        } catch (RepositoryException | GoodManagerException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
             return "UserError";
@@ -139,19 +135,16 @@ public class UserController implements Serializable {
 
     public String seeAdministrator(Administrator administrator) {
         this.currentUser = administrator;
-//        return "UpdateAdministrator";
         return "UpdateUser";
     }
 
     public String seeEmployee(Employee employee) {
         this.currentUser = employee;
-//        return "UpdateEmployee";
         return "UpdateUser";
     }
 
     public String seeClient(Client client) {
         this.currentUser = client;
-//        return "UpdateClient";
         return "UpdateUser";
     }
 
@@ -231,39 +224,6 @@ public class UserController implements Serializable {
         return "AllUsers";
     }
 
-//    public String updateAdministrator() {
-//        try {
-//            this.userManager.update(this.currentAdministrator.getUuid(), this.currentAdministrator);
-//        } catch (RepositoryException e) {
-//            e.printStackTrace();
-//            return "UserUpdateFailure";
-//        }
-//        this.initCurrentUsers();
-//        return "AllUsers";
-//    }
-//
-//    public String updateEmployee() {
-//        try {
-//            this.userManager.update(this.currentEmployee.getUuid(), this.currentEmployee);
-//        } catch (RepositoryException e) {
-//            e.printStackTrace();
-//            return "UserUpdateFailure";
-//        }
-//        this.initCurrentUsers();
-//        return "AllUsers";
-//    }
-//
-//    public String updateClient() {
-//        try {
-//            this.userManager.update(this.currentClient.getUuid(), this.currentClient);
-//        } catch (RepositoryException e) {
-//            e.printStackTrace();
-//            return "UserUpdateFailure";
-//        }
-//        this.initCurrentUsers();
-//        return "AllUsers";
-//    }
-
     public String findUserById() {
 
         try {
@@ -273,8 +233,6 @@ public class UserController implements Serializable {
             this.errorMessage = e.getMessage();
             return "UserError";
         }
-
-
         return "FindById";
     }
 

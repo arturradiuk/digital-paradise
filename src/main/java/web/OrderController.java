@@ -5,13 +5,12 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import controller.exceptions.ManagerException;
+import controller.exceptions.manager.GoodManagerException;
 import controller.exceptions.OrderException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
@@ -66,12 +65,8 @@ public class OrderController implements Serializable {
     public List<Order> currentOrders() {
         String id = identityUtils.getMyLogin();
         List<Order> list = new ArrayList<>();
-
         boolean isClient = false;
-
-
         try {
-
             User user = this.userManager.getUserByUUID(UUID.fromString(id));
             if (user instanceof Client)
                 isClient = true;
@@ -97,7 +92,7 @@ public class OrderController implements Serializable {
 
 
     public String processNewOrder() {
-        User user = null; // todo should be client
+        User user = null;
         try {
             user = this.userManager.getUserByUUID(UUID.fromString(identityUtils.getMyLogin()));
         } catch (RepositoryException | ClassCastException e) {
@@ -123,7 +118,7 @@ public class OrderController implements Serializable {
                 this.errorMessage = "This user is not Client";
                 return "OrderError";
             }
-        } catch (OrderException | ManagerException | RepositoryException e) {
+        } catch (OrderException | GoodManagerException | RepositoryException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
             return "OrderError";
@@ -167,7 +162,6 @@ public class OrderController implements Serializable {
 
 
     public String refresh() {
-        System.out.println("in order refresh");
         this.initCurrentOrders();
         return "AllOrders";
     }
@@ -192,9 +186,7 @@ public class OrderController implements Serializable {
 
 
     private void initCurrentOrdersById() throws RepositoryException {
-
-        Order o = null;
-        o = this.orderManager.getOrderByUUID(UUID.fromString(this.orderUuid));
+        Order o = this.orderManager.getOrderByUUID(UUID.fromString(this.orderUuid));
         this.currentOrders = new CopyOnWriteArrayList<>();
         this.currentOrders.add(o);
     }
@@ -212,8 +204,6 @@ public class OrderController implements Serializable {
 
     private void initCurrentOrdersByUserId() throws RepositoryException {
         User user = this.userManager.getUserByUUID(UUID.fromString(userUuid));
-
-        System.out.println(user.toString());
         this.currentOrders = this.orderManager.getAllOrdersForTheUser(user);
     }
 }

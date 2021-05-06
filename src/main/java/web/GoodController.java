@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import controller.exceptions.ManagerException;
+import controller.exceptions.manager.GoodManagerException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.GoodManager;
 import controller.managers.OrderManager;
@@ -19,6 +19,8 @@ import lombok.Setter;
 import model.entities.Good;
 import model.goods.Laptop;
 import model.goods.PC;
+
+import static controller.exceptions.controller.GoodControllerException.NUMBER_OF_GOODS_CANNOT_BE_ZERO_AND_NAME_CANNOT_NULL;
 
 
 @Data
@@ -72,8 +74,8 @@ public class GoodController implements Serializable {
     public String processNewLaptop() {
         if (null == newGood) {
             this.addLaptop();
-        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty() || newGood.getCount() < 0) { //todo
-            throw new IllegalArgumentException("Proba zatwirdzenia NewLaptop bez goodName danych.");
+        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty() || newGood.getCount() < 0) {
+            throw new IllegalArgumentException(NUMBER_OF_GOODS_CANNOT_BE_ZERO_AND_NAME_CANNOT_NULL);
         }
         try {
             this.goodManager.add(this.newGood);
@@ -100,7 +102,6 @@ public class GoodController implements Serializable {
         } catch (RepositoryException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
-
             return "GoodError";
         }
         this.initCurrentGoods();
@@ -110,8 +111,8 @@ public class GoodController implements Serializable {
     public String processNewPC() {
         if (null == newGood) {
             this.addPC();
-        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty() || newGood.getCount() < 0) { //todo
-            throw new IllegalArgumentException("Proba zatwierdzenia NewPC bez goodName danych.");
+        } else if (null == newGood.getGoodName() || newGood.getGoodName().isEmpty() || newGood.getCount() < 0) {
+            throw new IllegalArgumentException(NUMBER_OF_GOODS_CANNOT_BE_ZERO_AND_NAME_CANNOT_NULL);
         }
         try {
             this.goodManager.add(this.newGood);
@@ -121,8 +122,6 @@ public class GoodController implements Serializable {
 
             return "GoodError";
         }
-
-
         this.initCurrentGoods();
         return "AllGoods";
     }
@@ -131,7 +130,7 @@ public class GoodController implements Serializable {
     public String removeGood(Good good) {
         try {
             this.goodManager.remove(this.orderManager, good);
-        } catch (RepositoryException | ManagerException e) {
+        } catch (RepositoryException | GoodManagerException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
 
@@ -164,7 +163,6 @@ public class GoodController implements Serializable {
 
     public boolean isNewGoodLaptop() {
         if (this.newGood == null) {
-            //            goToAllUsers();
             return false;
         }
         return this.newGood.getClass().equals(Laptop.class);
@@ -172,7 +170,6 @@ public class GoodController implements Serializable {
 
     public boolean isNewGoodPC() {
         if (this.newGood == null) {
-            //            goToAllUsers();
             return false;
         }
         return this.newGood.getClass().equals(PC.class);
@@ -180,7 +177,6 @@ public class GoodController implements Serializable {
 
     public boolean isCurrentGoodLaptop() {
         if (this.currentGood == null) {
-            //            goToAllUsers();
             return false;
         }
         return this.currentGood.getClass().equals(Laptop.class);
@@ -188,7 +184,6 @@ public class GoodController implements Serializable {
 
     public boolean isCurrentGoodPC() {
         if (this.currentGood == null) {
-            //            goToAllUsers();
             return false;
         }
         return this.currentGood.getClass().equals(PC.class);
@@ -203,7 +198,6 @@ public class GoodController implements Serializable {
     }
 
     public String findGoodById() {
-
         Good g = null;
         try {
             g = this.goodManager.getGoodByUUID(UUID.fromString(this.uuid));

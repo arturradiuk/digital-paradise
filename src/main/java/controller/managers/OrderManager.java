@@ -1,9 +1,8 @@
 package controller.managers;
 
 
-import controller.exceptions.ManagerException;
+import controller.exceptions.manager.GoodManagerException;
 import controller.exceptions.OrderException;
-import controller.exceptions.repository.OrderRepositoryException;
 import controller.exceptions.repository.RepositoryException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +22,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static controller.exceptions.manager.OrderManagerException.NOT_ENOUGH_GOODS;
+
 @Named
 @ApplicationScoped
 @NoArgsConstructor
@@ -33,7 +34,7 @@ public class OrderManager implements IManager<Order, UUID> {
     private Repository<Order, UUID> orderRepository;
 
     @Override
-    public void add(Order element) throws RepositoryException { // todo here must be exception
+    public void add(Order element) throws RepositoryException {
         this.orderRepository.add(element);
     }
 
@@ -49,18 +50,13 @@ public class OrderManager implements IManager<Order, UUID> {
 
     @Override
     public List<Order> getAll() {
-        List<Order> orders = this.orderRepository.getAll();
-        return orders;
+        return this.orderRepository.getAll();
     }
 
-    public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException, RepositoryException, ManagerException {
-        boolean exists = false;
-
+    public Order createOrder(GoodManager goodManager, List<Good> goods, Client client) throws OrderException, RepositoryException, GoodManagerException {
         Map<Good, Integer> tempMap = new HashMap<Good, Integer>();
-
         for (int i = 0; i < goods.size(); i++) {
             if (tempMap.containsKey(goods.get(i))) {
-
                 int tempInt = tempMap.get(goods.get(i));
                 tempInt++;
                 tempMap.remove(goods.get(i));
@@ -70,11 +66,10 @@ public class OrderManager implements IManager<Order, UUID> {
                 tempMap.put(goods.get(i), 1);
             }
         }
-        for (Good g :
-                goodManager.getAll()) {
+        for (Good g : goodManager.getAll()) {
             if(tempMap.containsKey(g)){
-                if( (g.getCount() - tempMap.get(g)) < 0){
-                    throw new ManagerException("There are not enough goods in magazine"); // todo add static string in ManagerException
+                if((g.getCount() - tempMap.get(g)) < 0){
+                    throw new GoodManagerException(NOT_ENOUGH_GOODS);
                 }
                 else{
                     g.setCount(g.getCount()-tempMap.get(g));
@@ -83,8 +78,6 @@ public class OrderManager implements IManager<Order, UUID> {
                 }
             }
         }
-
-
         Order order = new Order(LocalDateTime.now(), goods, client);
         this.orderRepository.add(order);
 
@@ -95,7 +88,6 @@ public class OrderManager implements IManager<Order, UUID> {
     public void returnOrder(GoodManager goodManager, Order order) throws RepositoryException {
         this.remove(order);
         for (Good g : goodManager.getAll()) {
-
             for (Good og : order.getGoods()) {
                 if (g.getUuid().equals(og.getUuid())) {
                     g.setCount(g.getCount() + 1);
@@ -113,7 +105,6 @@ public class OrderManager implements IManager<Order, UUID> {
         for (Order order : this.orderRepository.getAll()) {
             if (order.getClient().getUuid().equals(user.getUuid())) {
                 orders.add(order);
-                System.out.println(order);
             }
         }
         return orders;

@@ -7,18 +7,18 @@ import lombok.NoArgsConstructor;
 import model.entities.Good;
 import fillers.DataFiller;
 import fillers.StaticGoodFiller;
-import model.entities.User;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static controller.exceptions.repository.GoodRepositoryException.NOT_EXIST_GOOD_WITH_SUCH_UUID;
 
-//@ApplicationScoped // todo check the necessity
+
 @Data
 @NoArgsConstructor
-public class GoodRepository implements Repository<Good, UUID> { // todo write methods getBy...
+public class GoodRepository implements Repository<Good, UUID> {
     private List<Good> goods;
 
     @Override
@@ -28,7 +28,7 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
                 return g;
             }
         }
-        throw new GoodRepositoryException("There is no good with such uuid in the GoodRepository");
+        throw new GoodRepositoryException(NOT_EXIST_GOOD_WITH_SUCH_UUID);
     }
 
     @Override
@@ -45,11 +45,9 @@ public class GoodRepository implements Repository<Good, UUID> { // todo write me
     @Override
     public void remove(Good element) throws RepositoryException {
         synchronized (this.goods) {
-
             if (!this.goods.remove(element)) {
                 throw new GoodRepositoryException(GoodRepositoryException.NOT_EXIST_GOOD);
             }
-
         }
     }
 

@@ -41,7 +41,7 @@ public class Order {
         this.client = client;
     }
 
-    public void setGoods(List<Good> goods) throws OrderException { // todo try to remove this ...
+    public void setGoods(List<Good> goods) throws OrderException {
         if (goods == null) {
             throw new OrderException(OrderException.NULL_Goods);
         }
@@ -56,7 +56,7 @@ public class Order {
     }
 
     @Override
-    public boolean equals(Object o) { // todo remember
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
