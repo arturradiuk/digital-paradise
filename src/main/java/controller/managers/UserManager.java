@@ -1,6 +1,7 @@
 package controller.managers;
 
 import controller.exceptions.manager.GoodManagerException;
+import controller.exceptions.manager.UserManagerException;
 import controller.exceptions.repository.RepositoryException;
 import lombok.NoArgsConstructor;
 import model.clients.Administrator;
@@ -16,8 +17,6 @@ import javax.inject.Named;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
-import static controller.exceptions.manager.UserManagerException.CANNOT_DELETE_USER;
 
 @Named
 @ApplicationScoped
@@ -37,10 +36,10 @@ public class UserManager implements IManager<User, UUID> {
         this.userRepository.remove(user);
     }
 
-    public void remove(OrderManager orderManager, User user) throws GoodManagerException, RepositoryException {
+    public void remove(OrderManager orderManager, User user) throws UserManagerException, RepositoryException {
         for (Order o : orderManager.getAll()) {
             if (o.getClient().getUuid().equals(user.getUuid()))
-                throw new GoodManagerException(CANNOT_DELETE_USER);
+                throw new UserManagerException(UserManagerException.CANNOT_DELETE_USER);
         }
         this.userRepository.remove(user);
 

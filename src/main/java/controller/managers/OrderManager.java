@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static controller.exceptions.manager.OrderManagerException.NOT_ENOUGH_GOODS;
 
 @Named
 @ApplicationScoped
@@ -69,7 +68,7 @@ public class OrderManager implements IManager<Order, UUID> {
         for (Good g : goodManager.getAll()) {
             if(tempMap.containsKey(g)){
                 if((g.getCount() - tempMap.get(g)) < 0){
-                    throw new GoodManagerException(NOT_ENOUGH_GOODS);
+                    throw new GoodManagerException(GoodManagerException.NOT_ENOUGH_GOODS);
                 }
                 else{
                     g.setCount(g.getCount()-tempMap.get(g));

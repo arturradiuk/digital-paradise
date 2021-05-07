@@ -13,9 +13,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static controller.exceptions.repository.GoodRepositoryException.NOT_EXIST_GOOD_WITH_SUCH_UUID;
-
-
 @Data
 @NoArgsConstructor
 public class GoodRepository implements Repository<Good, UUID> {
@@ -28,7 +25,7 @@ public class GoodRepository implements Repository<Good, UUID> {
                 return g;
             }
         }
-        throw new GoodRepositoryException(NOT_EXIST_GOOD_WITH_SUCH_UUID);
+        throw new GoodRepositoryException(GoodRepositoryException.NOT_EXIST_GOOD_WITH_SUCH_UUID);
     }
 
     @Override

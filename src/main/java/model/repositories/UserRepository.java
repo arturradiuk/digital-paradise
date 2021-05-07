@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static controller.exceptions.repository.UserRepositoryException.THIS_EMAIL_IS_TAKEN;
 
 @Data
 @NoArgsConstructor
@@ -29,7 +28,7 @@ public class UserRepository implements Repository<User, UUID> {
             }
 
         }
-        throw new UserRepositoryException("There is no user with such uuid");
+        throw new UserRepositoryException(UserRepositoryException.NO_SUCH_USER);
     }
 
     @Override
@@ -38,7 +37,7 @@ public class UserRepository implements Repository<User, UUID> {
             boolean exists = false;
             for (User user : people) {
                 if (user.isEmailEquals(element.getEmail()) && !user.equals(element))
-                    throw new UserRepositoryException(THIS_EMAIL_IS_TAKEN);
+                    throw new UserRepositoryException(UserRepositoryException.THIS_EMAIL_IS_TAKEN);
             }
 
 
@@ -61,7 +60,7 @@ public class UserRepository implements Repository<User, UUID> {
                 if (user.equals(element))
                     throw new UserRepositoryException(UserRepositoryException.EXIST_USER);
                 if (user.isEmailEquals(element.getEmail()))
-                    throw new UserRepositoryException(THIS_EMAIL_IS_TAKEN);
+                    throw new UserRepositoryException(UserRepositoryException.THIS_EMAIL_IS_TAKEN);
             }
             this.people.add(element);
         }

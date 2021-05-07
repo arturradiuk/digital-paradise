@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static controller.exceptions.repository.OrderRepositoryException.NOT_EXIST_ORDER_WITH_SUCH_UUID;
-
 @Data
 @NoArgsConstructor
 public class OrderRepository implements Repository<Order, UUID> {
@@ -28,7 +26,7 @@ public class OrderRepository implements Repository<Order, UUID> {
                 return o;
             }
         }
-        throw new OrderRepositoryException(NOT_EXIST_ORDER_WITH_SUCH_UUID);
+        throw new OrderRepositoryException(OrderRepositoryException.NOT_EXIST_ORDER_WITH_SUCH_UUID);
     }
 
     @Override

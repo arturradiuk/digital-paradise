@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static controller.exceptions.manager.GoodManagerException.CANNON_DELETE;
-
 @Named
 @ApplicationScoped
 @NoArgsConstructor
@@ -51,7 +49,7 @@ public class GoodManager implements IManager<Good, UUID> {
         for (Order o : orderManager.getAll()) {
             for (Good g : o.getGoods()) {
                 if (g.getUuid().equals(good.getUuid())) {
-                    throw new GoodManagerException(CANNON_DELETE);
+                    throw new GoodManagerException(GoodManagerException.CANNOT_DELETE);
                 }
             }
         }
