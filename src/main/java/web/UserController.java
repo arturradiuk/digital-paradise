@@ -10,6 +10,7 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import controller.exceptions.manager.GoodManagerException;
+import controller.exceptions.manager.UserManagerException;
 import controller.exceptions.repository.RepositoryException;
 import controller.managers.OrderManager;
 import controller.managers.UserManager;
@@ -119,7 +120,7 @@ public class UserController implements Serializable {
     public String removeUser(User user) {
         try {
             this.userManager.remove(orderManager, user);
-        } catch (RepositoryException | GoodManagerException e) {
+        } catch (RepositoryException | UserManagerException e) {
             e.printStackTrace();
             this.errorMessage = e.getMessage();
             return "UserError";
